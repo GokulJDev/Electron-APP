@@ -1,0 +1,107 @@
+.about-us-section {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 50px 0;
+  text-align: center;
+  background: none;
+  overflow: hidden;
+  border: none;
+}
+
+
+.about-us-title {
+  font-size: 60.23px;
+  font-weight: 500;
+  color: #f7fafaff;
+  margin-bottom: 50px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.cards-container.show {
+  opacity: 1;
+}
+
+.card {
+  position: relative;
+  width: 481.17px;
+  height: 492.78px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* Shine effect */
+.card:hover {
+  transform: scale(1.05); /* Slightly enlarge card on hover */
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+/* Title and description text */
+.card-title {
+  font-size: 45.01px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.card-description {
+  font-size: 23.75px;
+  font-weight: 700;
+  color: #5a8162ff;
+}
+
+/* Shining effect (using a gradient overlay) */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
+  opacity: 0;
+  z-index: 2;
+  animation: shine 1.5s infinite linear;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

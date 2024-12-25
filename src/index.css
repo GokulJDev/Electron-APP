@@ -1,0 +1,267 @@
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  background-color: #0f1e1c;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 75px;
+  height: 82px;
+  width: 100%;
+  background: transparent;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  width: 85.22px;
+  height: 82px;
+  position: relative;
+}
+
+.logo {
+  width: 85.22px;
+  height: 82px;
+  object-fit: contain;
+}
+
+.logo-text {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30.69px;
+  height: 59px;
+  left: 24px;
+  top: 10px;
+}
+
+.logo-text span {
+  font-family: 'MonteCarlo', cursive;
+  font-size: 34.69px;
+  font-weight: 400;
+  color: #F7FAFA;
+}
+
+.vector {
+  position: absolute;
+  width: 22.98px;
+  height: 19.02px;
+  top: 31.34px;
+  left: 7.72px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 53px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #E0E0E0;
+}
+
+.upload-button {
+  position: relative;
+  width: 162px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 42px;
+  cursor: pointer;
+}
+
+.button-border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+
+.upload-button span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  z-index: 1;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 5rem;
+  background: linear-gradient(302.77deg, rgba(0,0,2,1) 4.73%, rgba(13,38,32,1) 32.37%, rgba(0,0,2,1) 72.7%);
+  min-height: 100vh;
+}
+
+.hero-content {
+  max-width: 685px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 188.72px;
+  font-weight: 500;
+  color: #F7FAFA;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+}
+
+.hero-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 27.65px;
+  font-weight: 500;
+  color: #F7FAFA;
+  text-transform: uppercase;
+  line-height: 41.47px;
+  margin: 0;
+}
+
+.upload-btn {
+  width: 162px;
+  height: 71px;
+  background: #07A22B;
+  border: none;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 16px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: #068f25;
+}
+
+.hero-image {
+  width: 791px;
+  height: 791px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1600px) {
+  .hero-title {
+    font-size: 140px;
+  }
+  
+  .hero-image {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero-content {
+    align-items: center;
+  }
+  
+  .hero-title {
+    font-size: 100px;
+  }
+  
+  .hero-image {
+    width: 400px;
+    height: 400px;
+    margin-top: 2rem;
+  }
+}
+
+.about-us-section {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.about-us-title {
+  font-size: 60.23px;
+  font-weight: 500;
+  color: #f7fafaff;
+  margin-bottom: 50px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  width: 481.17px;
+  height: 492.78px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 45.01px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.card-description {
+  font-size: 23.75px;
+  font-weight: 700;
+  color: #5a8162ff;
+}
+

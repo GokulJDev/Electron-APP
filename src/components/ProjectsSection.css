@@ -1,0 +1,126 @@
+.projects-section {
+    min-height: 100vh;
+    padding: 90px 115px;
+    box-sizing: border-box;
+    background: none;
+    overflow: hidden; 
+}
+
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 112px;
+  }
+  
+  .title {
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 60.23px;
+    font-weight: 500;
+    color: #F7FAFA;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+  
+  .green {
+    color: #33623E;
+  }
+  
+  .upload-btn {
+    background: #33623E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 16px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 39px;
+    cursor: pointer;
+    min-width: 162px;
+    text-align: center;
+  }
+  
+  .projects-container {
+    display: flex;
+    gap: 105px;
+  }
+  
+  .left-section {
+    flex: 0 0 835px;
+  }
+  
+  .featured-project img {
+    width: 835px;
+    height: 546px;
+    object-fit: cover;
+    margin-bottom: 49px;
+  }
+  
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  
+  .project-card {
+    width: 250px;
+  }
+  
+  .project-card img {
+    width: 250px;
+    height: 255px;
+    object-fit: cover;
+    margin-bottom: 18px;
+  }
+  
+  .project-info h2 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 49.74px;
+    font-weight: 400;
+    letter-spacing: -0.994897px;
+    line-height: 49.74px;
+    color: #fff;
+    margin: 0 0 14px 0;
+  }
+  
+  .project-info p {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 34.82px;
+    font-weight: 300;
+    line-height: 44.77px;
+    color: #fff;
+    margin: 0;
+    opacity: 0.9;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1440px) {
+    .projects-section {
+      padding: 60px 40px;
+    }
+    
+    .projects-container {
+      gap: 40px;
+    }
+    
+    .left-section {
+      flex: 0 0 600px;
+    }
+    
+    .featured-project img {
+      width: 600px;
+      height: 400px;
+    }
+    
+    .project-info h2 {
+      font-size: 40px;
+    }
+    
+    .project-info p {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  
