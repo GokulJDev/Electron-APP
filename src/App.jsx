@@ -1,22 +1,26 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import necessary components
 import Navbar from './components/Navbar';
-import HeroSection from './components/Herosection';
-import AboutUsSection from './components/Aboutussection';
+import HeroSection from './components/HeroSection';
+import AboutUsSection from './components/AboutUsSection';
 import HowItWorks from './components/HowItWorks';
-import './App.css'; // Main global styles for your app
+import ProjectsSection from './components/ProjectsSection';
 import ContactUs from './components/ContactUs';
-import ProjectsSection from './components/Projectssection';
+import './App.css';
 
 const App = () => {
   return (
-    <div>
+    <Router>
       <Navbar />
-      <HeroSection />
-      <AboutUsSection />
-      <HowItWorks />
-      <ProjectsSection/>
-      <ContactUs/>
-    </div>
+      <Routes>
+        {/* Define the routes for different components */}
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/about" element={<AboutUsSection />} />
+        <Route path="/steps" element={<HowItWorks />} />
+        <Route path="/projects" element={<ProjectsSection />} />
+        <Route path="/contact" element={<ContactUs />} />
+      </Routes>
+    </Router>
   );
 };
 

@@ -1,7 +1,7 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
+import { createAppMenu } from './menu.js'; // Import the menu component
 import path from 'path';
 import { fileURLToPath } from 'url';
-import chokidar from 'chokidar';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,35 +18,14 @@ function createWindow() {
     },
   });
 
-  // Change the taskbar color (Windows/Linux)
-  if (process.platform === 'win32' || process.platform === 'linux') {
-    mainWindow.setBackgroundColor('#07A22B'); // Green color
-  }
-
   mainWindow.loadURL('http://localhost:5173');
 
-  // Optionally, add custom CSS
-  mainWindow.webContents.on('did-finish-load', () => {
-    mainWindow.webContents.insertCSS(`
-      body::-webkit-scrollbar {
-        display: none;
-      }
-      body {
-        overflow: scroll;
-      }
-    `);
-  });
+  // Apply the menu
+  const appMenu = createAppMenu(mainWindow);
+  Menu.setApplicationMenu(appMenu);
 }
 
-app.on('ready', () => {
-  createWindow();
-
-  // Watch for file changes
-  chokidar.watch([path.join(__dirname, 'src'), path.join(__dirname, 'public')]).on('change', () => {
-    app.relaunch();
-    app.exit();
-  });
-});
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
