@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './HowItWorks.css';
 
 const HowItWorks = ({
@@ -10,13 +10,13 @@ const HowItWorks = ({
       description: "Upload your 2D floor plan images to convert them into interactive 3D models. We support JPEG and blend files."
     },
     {
-      number: "2", 
+      number: "2",
       title: "AI Recognition and Rendering",
       description: "Automatically identifies elements like walls, doors, and windows in the 2D plan, then renders them into a 3D model."
     },
     {
       number: "3",
-      title: "Interactive Customization", 
+      title: "Interactive Customization",
       description: "Users can customize the 3D model by adjusting layouts, furniture, and design elements to suit their preferences."
     },
     {
@@ -26,35 +26,45 @@ const HowItWorks = ({
     }
   ]
 }) => {
+  const [activeStep, setActiveStep] = useState(0);
+
+  // Auto-advance steps every 3 seconds
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [steps.length]);
+
   return (
     <div className="how-it-works">
-      <h1 className="title">{title}</h1>
+      <h1 className="title animated-gradient">{title}</h1>
       
       <div className="steps-container">
-        <div className="steps">
+        <div className="steps-content">
           {steps.map((step, index) => (
-            <div key={index} className="step">
-              <div className="step-number">
-                <img src={`http://cp.asset/ellipse-${step.number}.png`} alt={`Step ${step.number}`} />
-                <span>{step.number}</span>
+            <div 
+              key={index}
+              className={`step-card ${index === activeStep ? 'active' : ''} 
+                         ${index < activeStep ? 'completed' : ''} 
+                         fade-in-slide`}
+              onClick={() => setActiveStep(index)}
+              style={{
+                animationDelay: `${index * 0.2}s`
+              }}
+            >
+              <div className="step-header">
+                <div className={`step-number ${index === activeStep ? 'pulse' : ''}`}>
+                  <span className={index <= activeStep ? 'number' : 'number-inactive'}>
+                    {step.number}
+                  </span>
+                </div>
+                <h3 className="step-title">{step.title}</h3>
               </div>
-              {index < steps.length - 1 && <div className="connector" />}
-            </div>
-          ))}
-        </div>
-
-        <div className="step-titles">
-          {steps.map((step, index) => (
-            <div key={index} className="step-title">
-              {step.title}
-            </div>
-          ))}
-        </div>
-
-        <div className="step-descriptions">
-          {steps.map((step, index) => (
-            <div key={index} className="step-description">
-              {step.description}
+              
+              <div className="step-body">
+                <p className="step-description">{step.description}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -64,4 +74,3 @@ const HowItWorks = ({
 };
 
 export default HowItWorks;
-
