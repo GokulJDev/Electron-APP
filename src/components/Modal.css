@@ -1,0 +1,270 @@
+/* Modal overlay - background blur effect */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal content */
+.modal-content {
+  background-color:rgba(7, 162, 43, 0.1);;
+  padding: 32px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease;
+}
+.modal-content h2 {
+  color: #e5ebe6; /* Replace with your desired color */
+  font-size: 16px; /* Optional: Adjust font size */
+  text-align: center; /* Optional: Align the text */
+}
+
+
+/* Description */
+.modal-description {
+  font-size: 11px;
+  margin-bottom: 16px;
+  color: #939191;
+  line-height: 1.6;
+}
+
+/* File Input */
+.modal-upload-options {
+  margin-bottom: 16px;
+}
+
+/* Further reduced size for the upload button */
+.upload-btn {
+  padding: 4px 8px;
+  font-size: 5px;
+  font-weight: normal;
+  background-color: #118821;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
+  height: 22px;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect for the button */
+.upload-btn:hover {
+  background-color: #0c6f18;
+  transform: scale(1.02);
+}
+
+/* Active state for buttons */
+.upload-btn:active {
+  transform: scale(0.98);
+}
+
+/* Disabled button state */
+.upload-btn:disabled {
+  background-color: #888888;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+/* File List */
+.file-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 16px 0;
+  text-align: left;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease;
+}
+
+.file-item:hover {
+  background-color: #f1f1f1;
+  border-color: #999;
+}
+
+/* File name and size display */
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-name {
+  font-size: 11px;
+  font-weight: normal;
+  color: #333;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-size {
+  font-size: 10px;
+  color: #f0f0f0;
+  font-weight: normal;
+}
+
+/* Remove File Button */
+.remove-file-btn {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: normal;
+  transition: all 0.2s ease;
+  height: 20px;
+  line-height: 1;
+  display: inline-flex;      /* Changed to inline-flex */
+  align-items: center;       /* Vertical alignment */
+  justify-content: center;   /* Horizontal alignment */
+  white-space: nowrap;      /* Prevent text wrapping */
+  overflow: hidden;         /* Hide overflow */
+  text-overflow: ellipsis;  /* Add ellipsis for overflow text */
+  box-sizing: border-box;   /* Include padding in height calculation */
+}
+
+.remove-file-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Close Button "X" */
+.close-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-modal:hover {
+  color: #f44336;
+  background-color: #f1f1f1;
+}
+
+/* Progress bar for uploads */
+.upload-progress {
+  width: 100%;
+  height: 4px;
+  background-color: #eee;
+  border-radius: 2px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #118821;
+  transition: width 0.3s ease;
+}
+
+/* Drag and drop zone */
+.drag-drop-zone {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.drag-drop-zone.dragging {
+  border-color: #118821;
+  background-color: #f0f9f0;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #118821;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+  
+  .file-name {
+    max-width: 120px;
+    font-size: 10px;
+  }
+  
+  .modal-description {
+    font-size: 11px;
+  }
+  .file-size{
+    font-size: 9px;
+  }
+}

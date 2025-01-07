@@ -8,7 +8,7 @@ body {
   width: 100%;
   animation: backgroundAnimation 15s ease-in-out infinite;
   border: none !important;
-  
+
   /* Allow scrolling but hide scrollbar */
   overflow: auto;  /* Enables scrolling */
 }
@@ -38,4 +38,11 @@ body::-webkit-scrollbar {
     background-position: 0% 50%;
     background-color: rgba(0, 0, 2, 1);
   }
+}
+
+/* Add this for consistent app layout styles */
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

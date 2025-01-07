@@ -1,0 +1,88 @@
+.login-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px; /* Increased size */
+  height: 100%;
+  background: rgba(61, 73, 64, 0); /* Transparent background with blur effect */
+  color: white;
+  backdrop-filter: blur(10px); /* Actual blur effect */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.close-sidebar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+h2 {
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Increased gap between input fields */
+  margin-top: 20px;
+}
+
+.login-form label {
+  font-size: 1rem;
+}
+
+.login-form input {
+  padding: 15px; /* Increased padding for larger input fields */
+  font-size: 1rem;
+  border: 1px solid #4ee44300; /* No border color, transparent */
+  border-radius: 8px; /* Rounded corners */
+  background: rgba(0, 128, 0, 0.1); /* Subtle greenish background */
+  color: white;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); /* Inner shadow for effect */
+}
+
+.login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Placeholder color */
+}
+
+.login-form input:focus {
+  background: rgba(0, 128, 0, 0.2); /* Darker green on focus */
+  border-color: #28a745; /* Green border on focus */
+}
+
+.login-submit {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-submit:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+  color: #aaaaaa;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}

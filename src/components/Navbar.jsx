@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../assets/assets';
 
-const Navbar = () => {
+const Navbar = ({ onLoginClick }) => {
   const [activeMenu, setActiveMenu] = useState("HOME");
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const location = useLocation();
@@ -29,6 +29,18 @@ const Navbar = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [location.pathname]);
+
+  // Reset activeMenu for Home when on Upload page
+  useEffect(() => {
+    if (location.pathname === '/upload') {
+      setActiveMenu(""); // Clear active state when on upload page
+    }
+  }, [location.pathname]);
+
+  // Only show Navbar if the route is not /upload
+  if (location.pathname === '/upload') {
+    return null; // Hide navbar on Upload page
+  }
 
   return (
     <nav className={`navbar ${isNavbarVisible ? '' : 'hidden'}`}>
@@ -81,7 +93,7 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="navbar-buttons">
-        <button className="navbar-button">Login</button>
+        <button className="navbar-button" onClick={onLoginClick}>Login</button>
       </div>
     </nav>
   );

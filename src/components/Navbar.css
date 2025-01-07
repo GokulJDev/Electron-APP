@@ -60,7 +60,7 @@
 /* Active navbar item */
 .navbar-item.active {
   font-weight: bold;
-  color: #66d30c;
+  color: #f2f2f2;
 }
 
 /* Hover underline effect for navbar items */
