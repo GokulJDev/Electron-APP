@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+import PropTypes from 'prop-types';
 import { assets } from '../assets/assets';
 
 const Navbar = ({ onLoginClick }) => {
@@ -97,6 +98,9 @@ const Navbar = ({ onLoginClick }) => {
       </div>
     </nav>
   );
+};
+Navbar.propTypes = {
+  onLoginClick: PropTypes.func.isRequired,
 };
 
 export default Navbar;

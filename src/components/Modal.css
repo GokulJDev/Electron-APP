@@ -16,7 +16,7 @@
 
 /* Modal content */
 .modal-content {
-  background-color:rgba(7, 162, 43, 0.1);;
+  background-color: rgba(7, 162, 43, 0.1);
   padding: 32px;
   border-radius: 8px;
   width: 90%;
@@ -26,12 +26,25 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   animation: slideIn 0.3s ease;
 }
-.modal-content h2 {
-  color: #e5ebe6; /* Replace with your desired color */
-  font-size: 16px; /* Optional: Adjust font size */
-  text-align: center; /* Optional: Align the text */
+
+/* Error message */
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: rgba(244, 67, 54, 0.1);
+  border: 1px solid #f44336;
+  text-align: center;
 }
 
+/* Modal heading */
+.modal-content h2 {
+  color: #e5ebe6;
+  font-size: 16px;
+  text-align: center;
+}
 
 /* Description */
 .modal-description {
@@ -86,6 +99,7 @@
   opacity: 0.7;
   transform: none;
 }
+
 /* File List */
 .file-list {
   list-style-type: none;
@@ -149,13 +163,13 @@
   transition: all 0.2s ease;
   height: 20px;
   line-height: 1;
-  display: inline-flex;      /* Changed to inline-flex */
-  align-items: center;       /* Vertical alignment */
-  justify-content: center;   /* Horizontal alignment */
-  white-space: nowrap;      /* Prevent text wrapping */
-  overflow: hidden;         /* Hide overflow */
-  text-overflow: ellipsis;  /* Add ellipsis for overflow text */
-  box-sizing: border-box;   /* Include padding in height calculation */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 
 .remove-file-btn:hover {
@@ -168,7 +182,7 @@
   top: 8px;
   right: 8px;
   font-size: 24px;
-  color: #666;
+  color: #000;
   cursor: pointer;
   transition: all 0.2s ease;
   width: 24px;
@@ -176,55 +190,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
 }
 
 .close-modal:hover {
   color: #f44336;
-  background-color: #f1f1f1;
-}
-
-/* Progress bar for uploads */
-.upload-progress {
-  width: 100%;
-  height: 4px;
-  background-color: #eee;
-  border-radius: 2px;
-  margin: 8px 0;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: #118821;
-  transition: width 0.3s ease;
-}
-
-/* Drag and drop zone */
-.drag-drop-zone {
-  border: 2px dashed #ccc;
-  border-radius: 4px;
-  padding: 16px;
-  text-align: center;
-  background-color: #f9f9f9;
-  transition: all 0.2s ease;
-  font-size: 11px;
-  font-weight: normal;
-}
-
-.drag-drop-zone.dragging {
-  border-color: #118821;
-  background-color: #f0f9f0;
-}
-
-/* Loading spinner */
-.loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #118821;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+  background-color: none transparent;
 }
 
 /* Animations */
@@ -241,30 +211,5 @@
   to {
     transform: translateY(0);
     opacity: 1;
-  }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .modal-content {
-    width: 95%;
-    padding: 20px;
-  }
-  
-  .file-name {
-    max-width: 120px;
-    font-size: 10px;
-  }
-  
-  .modal-description {
-    font-size: 11px;
-  }
-  .file-size{
-    font-size: 9px;
   }
 }

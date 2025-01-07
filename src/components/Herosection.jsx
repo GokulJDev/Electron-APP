@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { assets } from '../assets/assets';
 import Modal from './Modal';  // Import the Modal component
 import './HeroSection.css';
@@ -41,5 +42,9 @@ const HeroSection = ({
     </div>
   );
 };
+HeroSection.propTypes = {
+  subtitle: PropTypes.string,
+};
 
 export default HeroSection;
+
