@@ -92,9 +92,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **MongoDB**: For managing data storage.
 
 Feel free to reach out if you need any assistance or have any questions about the project!
-### Notes:
-- Replace `your-username` with your GitHub username in the `git clone` command.
-- The formatting issues such as misplaced code blocks have been corrected.
-- You can add any specific additional instructions for contributors, or adjust any dependencies/tech details if necessary.
 
-Let me know if you'd like any further changes!
