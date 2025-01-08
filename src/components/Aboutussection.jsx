@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AboutUsSection.css';
 import { assets } from '../assets/assets';  // Assuming the assets are exported from a separate file
 
@@ -30,10 +30,7 @@ const AboutUsSection = () => {
   }, []);
 
   return (
-    <button 
-      className="about-us-section" 
-      onMouseEnter={handleClick} 
-    >
+    <div className="about-us-section">
       <h1 className="about-us-title">ABOUT US</h1>
       <div className={`cards-container ${showCards ? "show" : ""}`}>
         {cards.map((card, index) => (
