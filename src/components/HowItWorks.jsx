@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './HowItWorks.css';
 
 const HowItWorks = ({
@@ -43,9 +44,10 @@ const HowItWorks = ({
       <div className="steps-container">
         <div className="steps-content">
           {steps.map((step, index) => (
-            <div 
-              key={index}
-              className={`step-card ${index === activeStep ? 'active' : ''} 
+            <button 
+              key={step.number}
+              className={`step-card 
+                         ${index === activeStep ? 'active' : ''} 
                          ${index < activeStep ? 'completed' : ''} 
                          fade-in-slide`}
               onClick={() => setActiveStep(index)}
@@ -65,12 +67,23 @@ const HowItWorks = ({
               <div className="step-body">
                 <p className="step-description">{step.description}</p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
     </div>
   );
+};
+
+HowItWorks.propTypes = {
+  title: PropTypes.string,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      number: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ).isRequired,  // Ensures that steps are passed as required
 };
 
 export default HowItWorks;

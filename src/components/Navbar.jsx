@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+import PropTypes from 'prop-types';
 import { assets } from '../assets/assets';
 
 const Navbar = ({ onLoginClick }) => {
@@ -13,7 +14,7 @@ const Navbar = ({ onLoginClick }) => {
   };
 
   const handleMouseMove = (event) => {
-    if (event.clientY < 50) {
+    if (event.clientY < 120) {
       setIsNavbarVisible(true);
     } else if (location.pathname !== '/') {
       setIsNavbarVisible(false);
@@ -97,6 +98,9 @@ const Navbar = ({ onLoginClick }) => {
       </div>
     </nav>
   );
+};
+Navbar.propTypes = {
+  onLoginClick: PropTypes.func.isRequired,
 };
 
 export default Navbar;

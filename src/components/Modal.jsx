@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Modal.css';
+import PropTypes from 'prop-types';
 
 const Modal = ({ onClose }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   // Handle file selection
@@ -20,7 +22,11 @@ const Modal = ({ onClose }) => {
 
   // Handle Upload Button Click
   const handleUploadClick = () => {
-    if (selectedFiles.length > 0) {
+    const isLoggedIn = false; // Assume a check for whether the user is logged in (replace with actual logic)
+    
+    if (!isLoggedIn) {
+      setErrorMessage('You need to log in first to upload.');
+    } else if (selectedFiles.length > 0) {
       navigate('/login', { state: { files: selectedFiles } });
     } else {
       alert('Please select a file to upload.');
@@ -31,13 +37,22 @@ const Modal = ({ onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         {/* Close Button "X" */}
-        <span className="close-modal" onClick={onClose}>×</span>
+        <button
+          className="close-modal"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          X
+        </button>
 
         <h2>Upload Your Floor Plan</h2>
         <p className="modal-description">
           Upload your 2D floor plan images to convert them into interactive 3D models. 
-          <p>We support JPEG and Blend files.</p>
+          <p>We support JPEG and PNG files.</p>
         </p>
+
+        {/* Error Message */}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
 
         {/* File Input Section (Hidden if files are selected) */}
         {selectedFiles.length === 0 && (
@@ -46,7 +61,7 @@ const Modal = ({ onClose }) => {
               type="file"
               className="upload-input"
               onChange={handleFileChange}
-              accept=".jpg,.jpeg,.blend"
+              accept=".jpg,.jpeg,.png"
             />
           </div>
         )}
@@ -55,7 +70,7 @@ const Modal = ({ onClose }) => {
         {selectedFiles.length > 0 && (
           <ul className="file-list">
             {selectedFiles.map((file, index) => (
-              <li key={index} className="file-item">
+              <li key={file.name} className="file-item">
                 {file.name}
                 <button
                   className="remove-file-btn"
@@ -79,6 +94,10 @@ const Modal = ({ onClose }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Modal;
