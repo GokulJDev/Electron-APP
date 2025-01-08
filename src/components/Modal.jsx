@@ -70,7 +70,7 @@ const Modal = ({ onClose }) => {
 
         {/* Upload Button */}
         <button
-          className="upload-btn"
+          className="upload-btn-model"
           onClick={handleUploadClick}
           disabled={selectedFiles.length === 0}
         >
