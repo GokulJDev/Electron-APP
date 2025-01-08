@@ -15,7 +15,7 @@
   color: #FF5733;  /* Changed title color to a shade of red */
 }
 
-.animated-gradient {
+.animated-gradient {/*HOW ITS WORK TITTLE*/
   background: linear-gradient(
     90deg,
     #3D7B6A,

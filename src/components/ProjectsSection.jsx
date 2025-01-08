@@ -1,140 +1,119 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ProjectsSection.css';
+// Import assets correctly
+import { assets } from '../assets/assets'; // Adjust the path based on your file structure
 
-const ProjectsSection = ({ projects = [
-  {
-    id: 1,
-    customerName: "John Doe",
-    title: "E-commerce Platform",
-    description: "buivvvvvvvvvhbvbh hbfn",
-    status: "In Progress",
-    dueDate: "2024-02-15",
-    image: "/api/placeholder/835/546"
-  },
-  {
-    id: 2,
-    customerName: "Jane Smith",
-    title: "Mobile App Design",
-    description: "iOS and Android app UI/UX design",
-    status: "Completed",
-    dueDate: "2024-01-30",
-    image: "/api/placeholder/250/255"
-  },
-  {
-    id: 3,
-    customerName: "Alex Johnson",
-    title: "Brand Redesign",
-    description: "Complete corporate identity refresh",
-    status: "In Progress",
-    dueDate: "2024-03-10",
-    image: "/api/placeholder/250/255"
-  },
-  {
-    id: 4,
-    customerName: "Sarah Williams",
-    title: "Marketing Website",
-    description: "Responsive website with CMS integration",
-    status: "Completed",
-    dueDate: "2024-01-20",
-    image: "/api/placeholder/250/255"
-  },
-  {
-    id: 5,
-    customerName: "Michael Brown",
-    title: "Dashboard Development",
-    description: "Analytics dashboard with real-time data",
-    status: "In Progress",
-    dueDate: "2024-04-05",
-    image: "/api/placeholder/250/255"
-  },
-  {
-    id: 6,
-    customerName: "Emily Davis",
-    title: "Social Media App",
-    description: "Community platform with messaging",
-    status: "Completed",
-    dueDate: "2024-01-15",
-    image: "/api/placeholder/250/255"
-  },
-  {
-    id: 7,
-    customerName: "David Wilson",
-    title: "Portfolio Website",
-    description: "Personal portfolio with gallery",
-    status: "In Progress",
-    dueDate: "2024-03-25",
-    image: "/api/placeholder/250/255"
-  },
-  {
-    id: 8,
-    customerName: "Lisa Anderson",
-    title: "Educational Platform",
-    description: "Online learning management system",
-    status: "Completed",
-    dueDate: "2024-02-01",
-    image: "/api/placeholder/250/255"
-  }
-] }) => {
-  const [filter, setFilter] = useState('all');
+const ProjectsSection = () => {
+  const [selectedProject, setSelectedProject] = useState(null); // Add state to track selected project
+  
+  // Move projects data inside component to access assets
+  const projects = [
+    {
+      id: 1,
+      title: "Modern Apartment Design",
+      description: "2D to 3D conversion of 1200 sqft apartment with open floor plan. Features detailed texturing and lighting.",
+      customerName: "John Doe",
+      dueDate: "2024-02-15",
+      image: assets.image_1
+    },
+    {
+      id: 2,
+      title: "Office Complex Layout",
+      description: "Multi-floor office space visualization with interactive floor switching and realistic materials.",
+      customerName: "Jane Smith",
+      dueDate: "2024-01-30",
+      image: assets.image_2
+    },
+    {
+      id: 3,
+      title: "Luxury Villa Design",
+      description: "Luxury villa 3D conversion showcasing indoor-outdoor flow with detailed landscaping elements.",
+      customerName: "Alex Johnson",
+      dueDate: "2024-03-10",
+      image: assets.image_3
+    },
+    {
+      id: 4,
+      title: "Studio Apartment",
+      description: "Compact studio apartment visualization with space-saving furniture and optimal traffic flow.",
+      customerName: "Sarah Williams",
+      dueDate: "2024-01-20",
+      image: assets.image_4
+    },
+    {
+      id: 5,
+      title: "Penthouse Suite",
+      description: "High-rise penthouse with panoramic views and multi-level living spaces rendered in photorealistic 3D.",
+      customerName: "Michael Brown",
+      dueDate: "2024-04-05",
+      image: assets.image_5
+    },
+    {
+      id: 6,
+      title: "Restaurant Floor Plan",
+      description: "Commercial restaurant space with detailed seating arrangements and kitchen workflow visualization.",
+      customerName: "Emily Davis",
+      dueDate: "2024-01-15",
+      image: assets.image_6
+    }
+  ];
 
-  const filteredProjects = projects.filter(project => {
-    if (filter === 'all') return true;
-    return project.status.toLowerCase() === filter;
-  });
+  const handleProjectClick = (id) => {
+    setSelectedProject(id); // Set the selected project ID when clicked
+  };
 
   return (
     <div className="projects-section">
-      <div className="headerproj">
-        <h1 className="titlep">Projects</h1>
-        <div className="filters">
-          <button 
-            className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
-            onClick={() => setFilter('all')}
-          >
-            All ({projects.length})
-          </button>
-          <button 
-            className={`filter-btn ${filter === 'in progress' ? 'active' : ''}`}
-            onClick={() => setFilter('in progress')}
-          >
-            In Progress ({projects.filter(p => p.status.toLowerCase() === 'in progress').length})
-          </button>
-          <button 
-            className={`filter-btn ${filter === 'completed' ? 'active' : ''}`}
-            onClick={() => setFilter('completed')}
-          >
-            Completed ({projects.filter(p => p.status.toLowerCase() === 'completed').length})
-          </button>
-          <button 
-            className="filter-btn new-project-btn"
-            onClick={() => alert("Add new project clicked!")}
-          >
-            New Project
+      {/* Header Section */}
+      <div className="projects-header">
+        <div className="header-left">
+          <h1 className="projects-title">3D Floor Plan Gallery</h1>
+        </div>
+        <div className="header-actions">
+          <button className="start-project-btn">
+            Start Your Project
           </button>
         </div>
       </div>
 
+      {/* Projects Grid */}
       <div className="projects-grid">
-        {filteredProjects.map((project, index) => (
-          <div key={project.id} className="project-card">
-            <div className="project-header">
-              <div className="customer-info">
-                <div className="customer-avatar">
-                  {project.customerName.charAt(0)}  {/* Display the first letter of customerName inside a circle */}
+        {projects.map((project, index) => (
+          <div 
+            key={project.id} 
+            className={`project-card ${selectedProject === project.id ? 'project-card-clicked' : ''}`}
+            onClick={() => handleProjectClick(project.id)} // Trigger the click handler
+          >
+            <div className="card-overlay">
+              <div className="project-header">
+                <div className="customer-info">
+                  <div className="customer-avatar">
+                    {project.customerName.charAt(0)}
+                  </div>
+                  <span className="customer-name">{project.customerName}</span>
                 </div>
-                <span className="customer-name">{`Project ${index + 1}`}</span>  {/* Dynamic Project Title */}
               </div>
-              <span className={`status-badge ${project.status.toLowerCase().replace(' ', '-')}`}>
-                {project.status}
-              </span>
-            </div>
-            <img src={project.image} alt={project.title} className="project-image" />
-            <div className="project-info">
-              <h2>{project.title}</h2>
-              <p>{project.description}</p>
-              <div className="project-footer">
-                <span className="due-date">Due: {new Date(project.dueDate).toLocaleDateString()}</span>
+              <div className="image-container">
+                <img 
+                  src={project.image} 
+                  alt={`Project ${index + 1}`} 
+                  className="project-image" 
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.src = assets.hero_image;
+                    e.target.classList.add('error');
+                  }}
+                />
+              </div>
+              <div className="project-info">
+                <h2>{`Project ${index + 1}`}</h2>
+                <p>{project.description}</p>
+                <div className="project-footer">
+                  <button className="view-details-btn">
+                    View Details →
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -142,20 +121,6 @@ const ProjectsSection = ({ projects = [
       </div>
     </div>
   );
-};
-
-ProjectsSection.propTypes = {
-  projects: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      customerName: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      dueDate: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired
-    })
-  )
 };
 
 export default ProjectsSection;

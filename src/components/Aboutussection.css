@@ -1,51 +1,87 @@
 .about-us-section {
   width: 100%;
   max-width: 1920px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 50px 0;
   text-align: center;
   background: none;
   overflow: hidden;
   border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
-
 .about-us-title {
-  font-size: 60.23px;
+  font-size: 50px;
   font-weight: 500;
-  color: #f7fafaff;
-  margin-bottom: 50px;
+  background: linear-gradient(90deg, #3D7B6A, #4CAF50, #3D7B6A);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.7s ease-out;
+}
+
+.about-us-title.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;  /* Distribute cards and video side by side */
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.video-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;  /* Align the GIF to the right */
+  align-items: center;  /* Center the GIF vertically */
+  margin-top: 20px;
+  width: 100%;
+  height: 300px;  /* Adjust height as needed */
+}
+
+.video-gif {
+  max-width: 800px;  /* Limit the max-width of the GIF */
+  width: 100%;  /* Let the GIF scale down if needed */
+  height: auto;  /* Maintain aspect ratio */
 }
 
 .cards-container {
+  flex: 2;
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.cards-container.show {
-  opacity: 1;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+  margin: 0;
 }
 
 .card {
   position: relative;
-  width: 481.17px;
-  height: 492.78px;
+  height: 140px;
   border-radius: 15px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  transition: transform 0.3s ease;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.4s ease;
 }
 
-/* Shine effect */
-.card:hover {
-  transform: scale(1.05); /* Slightly enlarge card on hover */
+.card.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.card:hover,
+.card.active {
+  transform: translateX(10px);
 }
 
 .card-background {
@@ -63,24 +99,40 @@
 .card-content {
   position: relative;
   z-index: 2;
-  padding: 20px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Title and description text */
-.card-title {
-  font-size: 45.01px;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 20px;
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
-.card-description {
-  font-size: 23.75px;
+.card-number {
+  font-size: 18px;
   font-weight: 700;
   color: #5a8162ff;
 }
 
-/* Shining effect (using a gradient overlay) */
+.card-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.card-description {
+  font-size: 16px;
+  font-weight: 700;
+  color: #5a8162ff;
+  margin: 0;
+}
+
 .card::after {
   content: '';
   position: absolute;
@@ -103,5 +155,31 @@
   }
   100% {
     transform: translateX(100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-us-section {
+    padding: 2rem;
+    flex-direction: column;
+  }
+
+  .content-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cards-container {
+    margin-left: 0;
+  }
+
+  .card {
+    height: auto;
+    min-height: 120px;
+  }
+
+  .video-container video {
+    max-width: 50%;
   }
 }
