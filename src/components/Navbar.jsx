@@ -14,7 +14,7 @@ const Navbar = ({ onLoginClick }) => {
   };
 
   const handleMouseMove = (event) => {
-    if (event.clientY < 50) {
+    if (event.clientY < 120) {
       setIsNavbarVisible(true);
     } else if (location.pathname !== '/') {
       setIsNavbarVisible(false);
