@@ -20,56 +20,82 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-layout">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <h2>KAIRA Dashboard</h2>
-        <nav>
-          <ul>
-            <li>Upload</li>
-            <li>Process</li>
-            <li>Preview</li>
-            <li>Settings</li>
+      <aside className="dashboard-navigation-panel">
+        <h2 className="dashboard-brand-logo">Kira</h2>
+        <nav className="navigation-links-container">
+          <ul className="navigation-link-list">
+            <li className="navigation-link-item">My Project</li>
+            <li className="navigation-link-item">Steps</li>
+            <li className="navigation-link-item">Setting</li>
           </ul>
         </nav>
+
+        {/* About Us and Help & Support at the bottom */}
+        <div className="bottom-links">
+          <ul className="navigation-link-list">
+            <li className="navigation-link-item">About Us</li>
+            <li className="navigation-link-item">Help & Support</li>
+          </ul>
+        </div>
       </aside>
 
       {/* Main Content */}
-      <main className="main-content">
-        <h1>Convert 2D Floor Plan to 3D</h1>
-        <div className="upload-section">
-          <label htmlFor="file-upload" className="file-upload-label">
-            Upload 2D Floor Plan
-          </label>
-          <input
-            type="file"
-            id="file-upload"
-            className="file-upload-input"
-            onChange={handleFileUpload}
-            accept=".jpg,.jpeg,.png,.blend"
-          />
+      <main className="dashboard-main-panel">
+        <div className="dashboard-project-grid">
+          {/* Upload Tile */}
+          <div className="dashboard-upload-card">
+            <label htmlFor="file-upload" className="upload-file-label">
+              Upload 2D Floor Plan
+            </label>
+            <input
+              type="file"
+              id="file-upload"
+              className="upload-file-input"
+              onChange={handleFileUpload}
+              accept=".jpg,.jpeg,.png,.blend"
+            />
+          </div>
+
+          {/* File Details Tile */}
+          {selectedFile && (
+            <div className="dashboard-file-details-card">
+              <p>File: {selectedFile.name}</p>
+              <p>
+                Status: {conversionStatus === 'processing' ? 'Processing...' : 'Ready'}
+              </p>
+            </div>
+          )}
+
+          {/* Model Preview Tile */}
+          {conversionStatus === 'completed' && convertedModel && (
+            <div className="dashboard-preview-card">
+              <h2>3D Model Preview</h2>
+              <model-viewer
+                src={convertedModel}
+                alt="3D Floor Plan"
+                ar
+                auto-rotate
+                camera-controls
+                style={{ width: '100%', height: '150px' }}
+              ></model-viewer>
+            </div>
+          )}
+
+          {/* Placeholder Tiles */}
+          <div className="dashboard-placeholder-card"></div>
+          <div className="dashboard-placeholder-card"></div>
+
+          {/* Profile Card */}
+          <div className="dashboard-profile-card">
+            <div className="profile-avatar-circle">N</div>
+            <p className="profile-user-name">Nandana</p>
+            <a className="profile-info-link" href="#">
+              Fill my profile information
+            </a>
+          </div>
         </div>
-
-        {selectedFile && (
-          <div className="file-details">
-            <p>File: {selectedFile.name}</p>
-            <p>Status: {conversionStatus === 'processing' ? 'Processing...' : 'Ready'}</p>
-          </div>
-        )}
-
-        {conversionStatus === 'completed' && convertedModel && (
-          <div className="preview-section">
-            <h2>3D Model Preview</h2>
-            <model-viewer
-              src={convertedModel}
-              alt="3D Floor Plan"
-              ar
-              auto-rotate
-              camera-controls
-              style={{ width: '100%', height: '500px' }}
-            ></model-viewer>
-          </div>
-        )}
       </main>
     </div>
   );
