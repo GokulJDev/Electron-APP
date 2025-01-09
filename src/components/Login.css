@@ -1,88 +1,123 @@
-.login-sidebar {
+/* Modal overlay with better blur effect and animation */
+.modal-overlay {
   position: fixed;
   top: 0;
-  right: 0;
-  width: 400px; /* Increased size */
+  left: 0;
+  width: 100%;
   height: 100%;
-  background: rgba(61, 73, 64, 0); /* Transparent background with blur effect */
-  color: white;
-  backdrop-filter: blur(10px); /* Actual blur effect */
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0);
-  z-index: 1000;
-  transition: transform 0.3s ease-in-out;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  backdrop-filter: blur(12px);
 }
 
-.close-sidebar {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  align-self: flex-end;
-}
-
-h2 {
+/* Modal content with larger font and more professional design */
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 48px;
+  color: #333333;
+  border-radius: 12px;
+  width: 80%;
+  z-index: 9999;
+  max-width: 600px;
   text-align: center;
+  position: relative;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+  h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000000;
+  }
+  p{
+    font-size: 16px;
+    padding: 12px;
+    color: #070707cb;
+  }
+  
 }
 
+/* Form and input styles for a clean and modern feel */
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 25px; /* Increased gap between input fields */
-  margin-top: 20px;
+  gap: 20px;
 }
 
 .login-form label {
-  font-size: 1rem;
+  font-size: 16px;
+  color: #333333;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .login-form input {
-  padding: 15px; /* Increased padding for larger input fields */
-  font-size: 1rem;
-  border: 1px solid #4ee44300; /* No border color, transparent */
-  border-radius: 8px; /* Rounded corners */
-  background: rgba(0, 128, 0, 0.1); /* Subtle greenish background */
-  color: white;
-  outline: none;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); /* Inner shadow for effect */
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 16px;
 }
 
 .login-form input::placeholder {
-  color: rgba(255, 255, 255, 0.7); /* Placeholder color */
+  color: #1f1e1e79;
 }
 
 .login-form input:focus {
-  background: rgba(0, 128, 0, 0.2); /* Darker green on focus */
-  border-color: #28a745; /* Green border on focus */
-}
-
-.login-submit {
-  background-color: #28a745;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.login-submit:hover {
-  background-color: #218838; /* Darker green on hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
+  border-color: #4caf50;
+  transform: scale(1.02);
 }
 
 .forgot-password {
-  text-align: center;
-  margin-top: 10px;
-  color: #aaaaaa;
+  font-size: 14px;
+  color: #388e3c;
   text-decoration: none;
+  text-align: right;  
 }
 
 .forgot-password:hover {
   text-decoration: underline;
 }
+
+.login-submit {
+  padding: 14px;
+  background-color: #388e3c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.login-submit:hover {
+  background-color: #4caf50;
+  transform: scale(1.05);
+}
+
+.signup-link {
+  color: #388e3c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.skip-for-now {
+  display: block;
+  margin-top: 24px;
+  font-size: 16px;
+  color: #388e3c;
+  text-decoration: none;
+}
+
+.skip-for-now:hover {
+  text-decoration: underline;
+}
+

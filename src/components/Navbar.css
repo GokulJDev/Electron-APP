@@ -3,13 +3,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 40px 40px;
   transition: visibility 0.3s, opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
   visibility: visible; /* Default visibility */
   opacity: 1; /* Fully visible */
   z-index: 1000;
+  top:0;
   position: fixed;
-  top: 10px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.548), transparent);
   left: 0;
   width: 100%;
   box-sizing: border-box;
@@ -107,8 +108,9 @@
 }
 
 .navbar-button:hover {
-  background-color: #a5fc02;
-  transform: translateY(-2px); /* Lift effect on hover */
+  background-color: #34fc02bd;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px 5px rgba(52, 252, 2, 0.5); /* Green light effect */
 }
 
 /* Responsive Navbar Styles */
