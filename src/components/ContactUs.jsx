@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './ContactUs.css';
+import PropTypes from 'prop-types';
+import { FaLocationArrow, FaEnvelope, FaPhone } from 'react-icons/fa';
+
 
 const ContactUs = ({ 
   onSubmit = () => {},
-  defaultLocation = "Chenagannur,Kerala",
+  defaultLocation = "Chenagannur, Kerala",
   defaultEmail = "kaira@gmail.com",
-  defaultPhone = "12345678990"
+  defaultPhone = "9061470096"
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -31,14 +34,14 @@ const ContactUs = ({
   return (
     <div className="contact-us-container">
       <div className="contact-wrapper">
-        <h1 className="main-title">Contact <span className="title-highlight">Us</span></h1>
+        <h1 className="main-title animated-gradient">Contact Us</h1>
         <h2 className="subtitle">For Any Queries and Support</h2>
         
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-item">
               <div className="icon-wrapper">
-                <img src="https://dashboard.codeparrot.ai/api/assets/Z2RlpxEM3nUkN2u5" alt="Location" className="icon" />
+                <FaLocationArrow size="24" />
               </div>
               <div className="info-text">
                 <h3>Location</h3>
@@ -48,7 +51,7 @@ const ContactUs = ({
             
             <div className="info-item">
               <div className="icon-wrapper">
-                <img src="https://dashboard.codeparrot.ai/api/assets/Z2RlpxEM3nUkN2u6" alt="Email" className="icon" />
+                <FaEnvelope size="24" />
               </div>
               <div className="info-text">
                 <h3>Drop Us An E-mail</h3>
@@ -58,7 +61,7 @@ const ContactUs = ({
             
             <div className="info-item">
               <div className="icon-wrapper">
-                <img src="https://dashboard.codeparrot.ai/api/assets/Z2RlpxEM3nUkN2u7" alt="Phone" className="icon" />
+                <FaPhone size="24" />
               </div>
               <div className="info-text">
                 <h3>Call Us</h3>
@@ -123,6 +126,13 @@ const ContactUs = ({
       </div>
     </div>
   );
+};
+
+ContactUs.propTypes = {
+  onSubmit: PropTypes.func,
+  defaultLocation: PropTypes.string,
+  defaultEmail: PropTypes.string,
+  defaultPhone: PropTypes.string
 };
 
 export default ContactUs;

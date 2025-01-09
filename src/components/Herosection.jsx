@@ -20,25 +20,26 @@ const HeroSection = ({
   };
 
   return (
-    <div className="hero-container">
-      <div className="hero-content">
-        <h1 className="hero-title">
-          <span className="hero-title-line">Kinetic</span>
-          <span className="hero-title-line">Architectural</span>
-          <span className="interactive-render">Interactive Rendering</span>
-          <span className="hero-title-line">Application</span>
-        </h1>
-        <h2 className="hero-subtitle">{subtitle}</h2>
-        <button className="upload-btn" onClick={handleUploadClick}>
-          Upload
-        </button>
-      </div>
-      <div className="hero-image">
-        <img src={assets.hero_image} alt="3D Visualization" />
-      </div>
+    <div className="hero">
+      <div className="hero-container">
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="hero-title-line">Kinetic</span>
+            <span className="hero-title-line">Architectural</span>
+            <span className="interactive-render">Interactive Rendering</span>
+            <span className="hero-title-line">Application</span>
+          </h1>
+          <h2 className="hero-subtitle">{subtitle}</h2>
+          <button className="upload-btn" onClick={handleUploadClick}>
+            Upload
+          </button>
+        </div>
+        <div className="hero-image">
+          <img src={assets.hero_image} alt="3D Visualization" />
+        </div>
 
-      {/* Show Modal if Visible */}
       {isModalVisible && <Modal onClose={handleCloseModal} />}
+    </div>
     </div>
   );
 };

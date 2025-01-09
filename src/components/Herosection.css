@@ -6,12 +6,23 @@
     box-sizing: border-box;
 }
 
+html{
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
     overflow-x: hidden;
     font-family: 'Montserrat', sans-serif;
     background: #0A0A0A;
+}
+.hero{
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+
 }
 
 .hero-container {
@@ -23,7 +34,6 @@ body {
     min-height: 10vh;
     margin-top: 40px;
     max-width: 100%;
-    overflow: hidden;
 }
 
 /* Background Shapes */
@@ -110,12 +120,15 @@ body {
 }
 
 .upload-btn{
-    padding: 6px 12px;
     border: none;
-    background: #07A22B;
+    max-width: 140px;
+    max-height: 40px;
+    padding: 0;
+    background: #07a22ba1;
     color: white;
     cursor: pointer;
-    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
     font-weight: normal;
     border-radius: 4px;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -123,7 +136,7 @@ body {
 }
 
 .upload-btn:hover {
-    background: #a5fc02;
+    background: #34fc0288;
     transform: translateY(-1px);
 }
 
@@ -203,7 +216,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 1600px) {
-    .hero-title {
+    .hero-title,.interactive-render {
         font-size: 56px;
     }
     .hero-image {
@@ -213,7 +226,7 @@ body {
 }
 
 @media (max-width: 1400px) {
-    .hero-title {
+    .hero-title,.interactive-render {
         font-size: 50px;
     }
     .hero-image {
@@ -234,7 +247,7 @@ body {
         align-items: center;
     }
 
-    .hero-title, .hero-subtitle {
+    .hero-title,.interactive-render, .hero-subtitle {
         text-align: center;
     }
 
@@ -250,7 +263,7 @@ body {
 }
 
 @media (max-width: 992px) {
-    .hero-title {
+    .hero-title,.interactive-render {
         font-size: 45px;
     }
 
@@ -272,7 +285,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .hero-title {
+    .hero-title,.interactive-render {
         font-size: 40px;
     }
 
@@ -293,7 +306,7 @@ body {
 }
 
 @media (max-width: 576px) {
-    .hero-title {
+    .hero-title,.interactive-render {
         font-size: 36px;
     }
 
@@ -322,7 +335,7 @@ body {
 }
 
 @media (max-width: 400px) {
-    .hero-title {
+    .hero-title,.interactive-render {
         font-size: 32px;
     }
 

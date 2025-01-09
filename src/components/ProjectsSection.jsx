@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './ProjectsSection.css';
-// Import assets correctly
 import { assets } from '../assets/assets'; // Adjust the path based on your file structure
 
 const ProjectsSection = () => {
@@ -68,7 +66,7 @@ const ProjectsSection = () => {
       {/* Header Section */}
       <div className="projects-header">
         <div className="header-left">
-          <h1 className="projects-title">3D Floor Plan Gallery</h1>
+          <h1 className="projects-title animated-gradient">3D Floor Plan Gallery</h1>
         </div>
         <div className="header-actions">
           <button className="start-project-btn">
@@ -80,7 +78,7 @@ const ProjectsSection = () => {
       {/* Projects Grid */}
       <div className="projects-grid">
         {projects.map((project, index) => (
-          <div 
+          <button 
             key={project.id} 
             className={`project-card ${selectedProject === project.id ? 'project-card-clicked' : ''}`}
             onClick={() => handleProjectClick(project.id)} // Trigger the click handler
@@ -116,7 +114,7 @@ const ProjectsSection = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </div>

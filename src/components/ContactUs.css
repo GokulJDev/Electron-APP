@@ -1,39 +1,60 @@
+/* Contact Us Container Styles */
 .contact-us-container {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
-  padding: 4rem 2rem;
+  background: none;
+  margin: 10px auto;
+  padding: 8rem 2rem;
   display: flex;
   justify-content: center;
   color: #ffffff;
 }
 
+/* Wrapper for the Contact Section */
 .contact-wrapper {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
 
+/* Contact Header Styles */
 .contact-header {
   text-align: center;
   margin-bottom: 3rem;
 }
 
 .main-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  text-align: center;
+  margin-bottom: 24px;  /* Reduced bottom margin */
+  position: relative;
+  color: #ffffff;
 }
 
-.title-highlight {
-  color: #4CAF50;
+.animated-gradient {
+  background: linear-gradient(
+    90deg,
+    #3D7B6A,
+    #4CAF50,
+    #3D7B6A
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 3s linear infinite;
 }
+
 
 .subtitle {
   font-size: 1.5rem;
-  color: #9e9e9e;
+  margin-left: 40px;
+  padding: 15px;
+  color: #ffffffd0;
   font-weight: 500;
 }
 
+/* Contact Content Styles */
 .contact-content {
   display: flex;
   gap: 4rem;
@@ -67,7 +88,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(76, 175, 80, 0.1);
+  background: linear-gradient(
+    90deg,
+    #3D7B6A,
+    #4CAF50,
+    #3D7B6A
+  );
+  background-size: 200% auto;
+  background-clip:content-box;
+  -webkit-background-clip: content-box;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 3s linear infinite;
   border-radius: 50%;
 }
 
@@ -135,7 +166,7 @@ textarea {
 }
 
 .submit-btn {
-  background-color: #4CAF50;
+  background-color: #07a22ba1;
   color: white;
   padding: 1rem 2rem;
   border: none;
@@ -148,7 +179,7 @@ textarea {
 }
 
 .submit-btn:hover {
-  background-color: #45a049;
+  background-color: #34fc0288;
 }
 
 /* Responsive Styles */

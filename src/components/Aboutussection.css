@@ -1,119 +1,181 @@
-/* General layout and container */
+/* Main container styles */
 .about-us-section {
-  width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 50px 0;
-  text-align: center;
-  background: none transparent;
-  color: none transparent;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  margin: 40px auto;
+  padding: 80px 24px;
+  color: #FFFFFF;
+  max-width: 1200px;
+  background: none;
   border: none;
 }
 
-
-.about-us-title {
-  font-size: 60.23px;
-  font-weight: 500;
-  color: #f7fafaff;
-  margin-bottom: 50px;
-}
-
-/* Cards container */
-.cards-container {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.cards-container.show {
-  opacity: 1;
-}
-
-/* Card styling */
-.card {
-  position: relative;
-  width: 481.17px;
-  height: 492.78px;
-  border-radius: 15px;
-  overflow: hidden;
+/* Left content section (title and GIF) */
+.content-left {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 24px;
+  justify-content: flex-start;
   align-items: center;
+}
+
+/* Right content section (cards) */
+.content-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Title Styles */
+.abtitle {
+  font-size: 3.5rem;
+  font-weight: 700;
   text-align: center;
-  transition: transform 0.3s ease;
-}
-
-/* Shine effect */
-.card:hover {
-  transform: scale(1.05); /* Slightly enlarge card on hover */
-}
-
-/* Card background image */
-.card-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size:contain no-repeat;
-  background-position: center;
-  opacity: 1 !important;
-  z-index: 1;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.card:hover .card-background {
-  opacity: 0.4;
-}
-
-/* Card content */
-.card-content {
+  margin-bottom: 24px;
   position: relative;
-  z-index: 2;
-  padding: 20px;
+  color: #FF5733;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Title and description text */
+.animated-gradient {
+  background: linear-gradient(
+    90deg,
+    #3D7B6A,
+    #4CAF50,
+    #3D7B6A
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 3s linear infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Cards Container */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Card Styles */
+.card {
+  background: rgba(61, 123, 106, 0.2);
+  border: 3px solid transparent; /* Transparent initial border */
+  border-radius: 16px;
+  width: 700px;
+  height: 200px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  transform: scale(1); /* Slight downwards position */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Soft card shadow */
+  overflow: hidden; /* Ensure the gradient stays within the card */
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover Effects on Card */
+.card:hover {
+  transform: scale(1.15); /* Slight pop-up effect */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Larger shadow on hover */
+  border-color: #4CAF50; /* Green border on hover */
+}
+
+/* Card Content */
+.card-content {
+  padding: 16px;
+}
+
 .card-title {
-  font-size: 45.01px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Card description */
 .card-description {
-  font-size: 23.75px;
-  font-weight: 700;
-  color: #5a8162ff;
+  font-size: 1rem;
+  color: #637587;
+  line-height: 1.6;
+  margin: 0;
+  transition: opacity 0.3s ease;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Shining effect (using a gradient overlay) */
-.card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+/* GIF Video Container */
+.video-container {
+  text-align: center;
+  margin-top: 24px;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(4, 248, 25, 0.178), rgba(255, 255, 255, 0.3));
-  opacity: 0;
-  z-index: 3;
-  animation: shine 1.5s infinite linear;
 }
 
-@keyframes shine {
-  0% {
-    transform: translateX(-100%);
+.video-gif {
+  width: auto;
+  height: auto;
+}
+
+.video-gif:hover {
+  transform: scale(1.25); /* Slightly scale the GIF on hover for interactivity */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .about-us-section {
+    flex-direction: column; /* Stack the content vertically on small screens */
+    align-items: center;
   }
-  50% {
-    transform: translateX(100%);
+
+  .content-left,
+  .content-right {
+    flex: 1;
+    width: 100%;
   }
-  100% {
-    transform: translateX(100%);
+
+  .abtitle {
+    font-size: 2.5rem;
+  }
+
+  .cards-container {
+    width: 100%;
+  }
+
+  .card {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+  }
+
+  .video-container {
+    margin-top: 24px;
   }
 }
