@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import PropTypes from 'prop-types';
 import './ProjectsSection.css';
-// Import assets correctly
 import { assets } from '../assets/assets'; // Adjust the path based on your file structure
 
 const ProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState(null); // Add state to track selected project
-  
-  // Move projects data inside component to access assets
+  const [selectedProject, setSelectedProject] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
+
   const projects = [
     {
       id: 1,
@@ -63,6 +63,10 @@ const ProjectsSection = () => {
     setSelectedProject(id); // Set the selected project ID when clicked
   };
 
+  const handleStartProject = () => {
+    navigate('/dashboard'); // Navigate to the Dashboard route
+  };
+
   return (
     <div className="projects-section">
       {/* Header Section */}
@@ -71,7 +75,10 @@ const ProjectsSection = () => {
           <h1 className="projects-title">3D Floor Plan Gallery</h1>
         </div>
         <div className="header-actions">
-          <button className="start-project-btn">
+          <button 
+            className="start-project-btn" 
+            onClick={handleStartProject} // Navigate to the Dashboard on click
+          >
             Start Your Project
           </button>
         </div>

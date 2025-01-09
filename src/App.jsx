@@ -8,6 +8,7 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactUs from './components/ContactUs';
 import Login from './components/Login'; // Import the Login modal component
 import './App.css';
+import Dashboard from './Dashboard/Dashboard';
 
 const App = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/steps" element={<HowItWorks />} />
         <Route path="/projects" element={<ProjectsSection />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
       </Routes>
       {/* Render the Login modal conditionally */}
       {isLoginModalOpen && <Login onClose={closeLoginModal} />}
