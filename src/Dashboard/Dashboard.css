@@ -1,0 +1,152 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0e1812;
+  color: #ffffff;
+}
+
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.dashboard-navigation-panel {
+  width: 20%;
+  background-color: #112a20;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dashboard-brand-logo {
+  font-size: 24px;
+  color: #ffffff;
+  font-family: 'Cursive', sans-serif;
+  margin-bottom: 20px;
+}
+
+.navigation-links-container {
+  padding: 0;
+}
+
+.navigation-link-list {
+  list-style: none;
+  padding: 0;
+}
+
+.navigation-link-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.navigation-link-item:hover {
+  background-color: #145d37;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* Add space between top links and bottom links */
+.bottom-links {
+  margin-top: auto;
+}
+
+.bottom-links .navigation-link-item {
+  margin-top: 20px;
+}
+
+.dashboard-main-panel {
+  width: 80%;
+  padding: 20px;
+}
+
+.dashboard-project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.dashboard-upload-card {
+  background-color: #1a3c2a;
+  color: #ffffff;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  border: 2px dashed #ffffff;
+  cursor: pointer;
+}
+
+.upload-file-label {
+  cursor: pointer;
+}
+
+.upload-file-input {
+  display: none;
+}
+
+.dashboard-file-details-card {
+  background-color: #145d37;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.dashboard-preview-card {
+  background-color: #1a3c2a;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-placeholder-card {
+  background-color: #1a3c2a;
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.dashboard-profile-card {
+  background-color: #1a3c2a;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.profile-avatar-circle {
+  background-color: #ffffff;
+  color: #112a20;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.profile-user-name {
+  margin: 5px 0;
+}
+
+.profile-info-link {
+  color: #87c88a;
+  text-decoration: none;
+}
+
+.profile-info-link:hover {
+  text-decoration: underline;
+}
