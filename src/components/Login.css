@@ -1,5 +1,5 @@
 /* Modal overlay with better blur effect and animation */
-.modal-overlay {
+.modal-overlay-login {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,7 @@
 }
 
 /* Modal content with larger font and more professional design */
-.modal-content {
+.modal-content-login {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 48px;
   color: #333333;

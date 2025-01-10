@@ -4,8 +4,8 @@ import './Login.css';
 
 const LoginSidebar = ({ onClose }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay-login">
+      <div className="modal-content-login">
         <h2 className='wel'>Welcome Back!</h2>
         <p className='para'>Enter your details to login and continue</p>
         <form className="login-form">

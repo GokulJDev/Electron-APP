@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
+import { assets } from '../assets/assets';
 
 const Dashboard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -23,7 +24,7 @@ const Dashboard = () => {
     <div className="dashboard-layout">
       {/* Sidebar */}
       <aside className="dashboard-navigation-panel">
-        <h2 className="dashboard-brand-logo">Kira</h2>
+        <img src={assets.logo} alt="Brand Logo" className="navbar-logo" />
         <nav className="navigation-links-container">
           <ul className="navigation-link-list">
             <li className="navigation-link-item">My Project</li>
