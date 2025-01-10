@@ -8,7 +8,7 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactUs from './components/ContactUs';
 import Login from './components/Login'; // Import the Login modal component
 import './App.css';
-import Dashboard from './Dashboard/Dashboard';
+import Dashboard from './AfterLogin/Dashboard';
 
 const App = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

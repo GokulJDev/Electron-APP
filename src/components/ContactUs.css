@@ -5,7 +5,7 @@
   margin: 10px auto;
   padding: 8rem 2rem;
   display: flex;
-  justify-content: center;
+  justify-content:space-around;
   color: #ffffff;
 }
 
@@ -48,7 +48,8 @@
 
 .subtitle {
   font-size: 1.15rem;
-  padding: 20px;
+  padding: 30px;
+  margin-left: 35px;
   color: #ffffff8f;
   font-weight: 500;
 }
@@ -58,8 +59,8 @@
   display: flex;
   gap: 4rem;
   align-items: flex-start;
+  justify-content: space-around;
 }
-
 /* Contact Information Styles */
 .contact-info {
   flex: 1;

@@ -66,6 +66,10 @@ const ProjectsSection = () => {
     navigate('/dashboard'); // Navigate to the Dashboard route
   };
 
+  const handleViewDetailsClick = () => {
+    alert('Please login first to view project details.');
+  };
+
   return (
     <div className="projects-section">
       {/* Header Section */}
@@ -116,7 +120,10 @@ const ProjectsSection = () => {
                 <h2>{`Project ${index + 1}`}</h2>
                 <p>{project.description}</p>
                 <div className="project-footer">
-                  <button className="view-details-btn">
+                  <button 
+                    className="view-details-btn"
+                    onClick={handleViewDetailsClick} // Show login warning on click
+                  >
                     View Details →
                   </button>
                 </div>
