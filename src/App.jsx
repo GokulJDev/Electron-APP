@@ -6,7 +6,7 @@ import AboutUsSection from './components/AboutUssection';
 import HowItWorks from './components/HowItWorks';
 import ProjectsSection from './components/ProjectsSection';
 import ContactUs from './components/ContactUs';
-import Login from './components/Login'; // Import the Login modal component
+import Login from './components/Login';
 import './App.css';
 import Dashboard from './AfterLogin/Dashboard';
 
