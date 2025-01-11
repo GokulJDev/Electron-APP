@@ -87,3 +87,6 @@ jobs:
 
       - name: Check disk space after deployment
         run: df -h
+
+      - name: Clean up workspace
+        run: git clean -fdx
