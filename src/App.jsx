@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import necessary components
 import Navbar from './components/Navbar';
 import HeroSection from './components/Herosection';
-import AboutUsSection from './components/AboutUssection';
+import AboutUsSection from './components/Aboutussection';
 import HowItWorks from './components/HowItWorks';
 import ProjectsSection from './components/ProjectsSection';
 import ContactUs from './components/ContactUs';
