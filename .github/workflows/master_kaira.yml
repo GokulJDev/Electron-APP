@@ -60,7 +60,8 @@ jobs:
 
     steps:
       - name: Check disk space before download
-        run: df -h
+        run: |
+          Get-PSDrive -PSProvider FileSystem
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -86,7 +87,8 @@ jobs:
           package: .
 
       - name: Check disk space after deployment
-        run: df -h
+        run: |
+          Get-PSDrive -PSProvider FileSystem
 
       - name: Clean up workspace
         run: git clean -fdx
