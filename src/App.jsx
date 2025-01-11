@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import necessary components
 import Navbar from './components/Navbar';
 import HeroSection from './components/Herosection';
-import AboutUsSection from './components/AboutUsSection';
+import AboutUsSection from './components/Aboutussection';
 import HowItWorks from './components/HowItWorks';
 import ProjectsSection from './components/ProjectsSection';
 import ContactUs from './components/ContactUs';
-import Login from './components/Login'; // Import the Login modal component
+import Login from './components/Login';
 import './App.css';
 import Dashboard from './AfterLogin/Dashboard';
 

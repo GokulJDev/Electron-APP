@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { assets } from '../assets/assets';
 import Modal from './Modal';  // Import the Modal component
-import './HeroSection.css';
+import './Herosection.css';
 
 const HeroSection = ({ 
   subtitle = "With KAIRA, you can seamlessly convert your traditional 2D floor plans into realistic and interactive 3D models. Explore designs with greater precision and creativity, bringing your ideas to life."

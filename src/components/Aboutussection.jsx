@@ -1,4 +1,4 @@
-import './AboutUsSection.css';
+import './Aboutussection.css';
 import { assets } from '../assets/assets';
 
 const AboutUsSection = () => {
