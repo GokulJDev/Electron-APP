@@ -21,11 +21,24 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: Check disk space before install
+        run: df -h
+
+      - name: Clean up space before install
+        run: |
+          sudo rm -rf /tmp/*
+          sudo rm -rf /var/tmp/*
+          sudo apt-get clean
+          sudo rm -rf ~/.npm/_cache
+
       - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
+
+      - name: Check disk space after build
+        run: df -h
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
@@ -46,6 +59,9 @@ jobs:
       id-token: write #This is required for requesting the JWT
 
     steps:
+      - name: Check disk space before download
+        run: df -h
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
@@ -53,7 +69,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -68,4 +84,6 @@ jobs:
           app-name: 'KAIRA'
           slot-name: 'Production'
           package: .
-          
+
+      - name: Check disk space after deployment
+        run: df -h
