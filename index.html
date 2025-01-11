@@ -2,10 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- In your index.html file -->
-  <link rel="icon" type="image/svg+xml" href="/src/assets/kaira.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="KAIRA is a VR app for immersive space planning, designed to help homeowners and architects visualize layouts and customize interiors before construction." />
+    <meta name="keywords" content="KAIRA, VR, space planning, architecture, home design" />
+
+    <link rel="icon" href="/src/assets/kaira.ico" type="image/x-icon" />
+    <link rel="icon" href="/src/assets/kaira.svg" type="image/svg+xml" />
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="KAIRA - Immersive VR Space Planning" />
+    <meta property="og:description" content="Visualize and customize your space in VR with KAIRA." />
+    <meta property="og:image" content="/src/assets/kaira-social-preview.png" />
+    <meta property="og:url" content="https://your-kaira-app-url.com" />
+
+    <!-- Twitter card meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KAIRA - Immersive VR Space Planning" />
+    <meta name="twitter:description" content="Visualize and customize your space in VR with KAIRA." />
+    <meta name="twitter:image" content="/src/assets/kaira-twitter-preview.png" />
+
     <title>KAIRA</title>
+
+    <!-- Preload main script -->
+    <link rel="preload" href="/src/main.jsx" as="script" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "KAIRA",
+      "description": "KAIRA is a VR app for immersive space planning, designed to help homeowners and architects visualize layouts and customize interiors before construction.",
+      "url": "https://your-kaira-app-url.com",
+      "applicationCategory": "VR Application",
+      "operatingSystem": "Windows, macOS, Web",
+      "softwareVersion": "1.0.0"
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
