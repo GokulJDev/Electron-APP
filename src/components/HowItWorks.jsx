@@ -83,7 +83,8 @@ HowItWorks.propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
     })
-  ).isRequired,  // Ensures that steps are passed as required
+  )
 };
 
 export default HowItWorks;
+

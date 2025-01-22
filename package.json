@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@electron/packager": "^18.3.6",
+    "axios": "^1.7.9",
     "chokidar": "^4.0.3",
     "kaira-vr-app": "file:",
     "lucide-react": "^0.469.0",
