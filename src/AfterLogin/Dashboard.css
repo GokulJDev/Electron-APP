@@ -1,152 +1,204 @@
+/* Dashboard.css */
+
+/* Base styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #0e1812;
-  color: #ffffff;
+  background-color: #1d1d1d;
+  color: white;
 }
 
-.dashboard-layout {
+/* Layout */
+.dashboard {
   display: flex;
   height: 100vh;
 }
 
-.dashboard-navigation-panel {
-  width: 20%;
-  background-color: #112a20;
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background-color: #0D2620;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-.dashboard-brand-logo {
-  font-size: 24px;
-  color: #ffffff;
-  font-family: 'Cursive', sans-serif;
-  margin-bottom: 20px;
-}
-
-.navigation-links-container {
-  padding: 0;
-}
-
-.navigation-link-list {
-  list-style: none;
-  padding: 0;
-}
-
-.navigation-link-item {
-  padding: 10px 20px;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 16px;
-  transition: background 0.3s, color 0.3s;
-}
-
-.navigation-link-item:hover {
-  background-color: #145d37;
-  color: #ffffff;
-  border-radius: 5px;
-}
-
-/* Add space between top links and bottom links */
-.bottom-links {
-  margin-top: auto;
-}
-
-.bottom-links .navigation-link-item {
-  margin-top: 20px;
-}
-
-.dashboard-main-panel {
-  width: 80%;
-  padding: 20px;
-}
-
-.dashboard-project-grid {
-  display: flex;
-  flex-wrap: wrap;
   gap: 20px;
 }
 
-.dashboard-upload-card {
-  background-color: #1a3c2a;
-  color: #ffffff;
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
+.sidebar-header h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #e6e6e6;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+
+.nav-list li {
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-list li:hover {
+  color: #0078d4;
+}
+
+.nav-list.secondary li {
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.project-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Header */
+/* Previous CSS remains the same until header styles */
+
+/* Header Container */
+.header-container {
+  background-color: #0D2620;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 32px;
+  border: 1px solid #2b622d;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+
+
+.header-right {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 16px;
-  border: 2px dashed #ffffff;
+  gap: 24px;
+}
+
+/* Search */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: #b3b3b3;
+}
+
+.search-input {
+  padding: 8px 12px 8px 40px;
+  border: 1px solid #2b622d;
+  border-radius: 4px;
+  background-color: #0D2620;
+  color: white;
+  width: 250px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0078d4;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
-}
-
-.upload-file-label {
-  cursor: pointer;
-}
-
-.upload-file-input {
-  display: none;
-}
-
-.dashboard-file-details-card {
-  background-color: #145d37;
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
+  background-color: white;
+  border-radius: 50%;
   padding: 10px;
 }
 
-.dashboard-preview-card {
-  background-color: #1a3c2a;
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dashboard-placeholder-card {
-  background-color: #1a3c2a;
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
-}
-
-.dashboard-profile-card {
-  background-color: #1a3c2a;
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-  flex: 1;
-}
-
-.profile-avatar-circle {
-  background-color: #ffffff;
-  color: #112a20;
+.profile-image {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
+  object-fit: cover;
 }
 
-.profile-user-name {
-  margin: 5px 0;
+.profile-icon {
+  color: #b3b3b3;
 }
 
-.profile-info-link {
-  color: #87c88a;
-  text-decoration: none;
+/* Buttons */
+.primary-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #0078d4;
+  color: white;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-.profile-info-link:hover {
-  text-decoration: underline;
+.primary-btn:hover {
+  background-color: #0086ef;
+  box-shadow: 0 0 10px rgba(0, 120, 212, 0.5);
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 32px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #e6e6e6;
+}
+
+/* Recent Projects */
+.recent-projects {
+  margin-top: 32px;
+}
+
+.recent-projects h2 {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #0D2620;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.projects-table th,
+.projects-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid #163617;
+}
+
+.projects-table th {
+  background-color: #2b622d;
+  font-weight: 500;
+  color: #e6e6e6;
+}
+
+.projects-table td {
+  color: #b3b3b3;
+}
+
+.projects-table tr:hover td {
+  background-color: #2b622d;
 }

@@ -63,7 +63,8 @@ const ProjectsSection = () => {
   };
 
   const handleStartProject = () => {
-    alert('Please login first Start a New Project.');
+    // alert('Please login first Start a New Project.');
+    navigate("/dashboard")
   };
 
   const handleViewDetailsClick = () => {
