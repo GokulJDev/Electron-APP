@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import HeroSection from './components/Herosection';
-import AboutUsSection from './components/Aboutussection';
+import HeroSection from './components/HeroSection'; // Ensure consistent naming
+import AboutUsSection from './components/AboutUsSection'; // Ensure consistent naming
 import HowItWorks from './components/HowItWorks';
 import ProjectsSection from './components/ProjectsSection';
 import ContactUs from './components/ContactUs';
@@ -38,7 +38,11 @@ const App = () => {
           {/* Protect the Dashboard route */}
           <Route 
             path="/dashboard" 
-            element={<PrivateRoute element={<Dashboard />} />} 
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
           />
         </Routes>
 

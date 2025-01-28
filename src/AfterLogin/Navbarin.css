@@ -1,0 +1,212 @@
+/* Base Navbar Styles */
+.unique-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    background-color: #0D2620;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Left Section */
+.unique-navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.unique-logo {
+    height: 100px;
+    position: relative;
+    left: 70px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.unique-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Menu Toggle Button (For mobile view) */
+.unique-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Right Section */
+.unique-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    position: relative;
+    right: 10px;
+}
+
+/* Search Bar Container */
+.unique-search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Search Icon */
+.unique-search-icon {
+    position: absolute;
+    left: 12px;
+    color: #b3b3b3;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth transform and color transition */
+}
+
+/* Input field */
+.unique-search-input {
+    padding: 10px 16px 10px 40px;
+    border: 2px solid #444;
+    border-radius: 6px;
+    background-color: #1f1f1f;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    display: block;
+    transition: all 0.3s ease-in-out; /* Simplified transition */
+}
+
+/* Focus state for input field */
+.unique-search-input:focus {
+    outline: none;
+    border-color: #00d47c;
+    background-color: #2a2a2a;
+    width: 130%;
+    padding-left: 50px; /* Extra padding for smoothness */
+    box-shadow: 0 0 8px rgba(0, 212, 124, 0.5); /* Added subtle glow effect */
+}
+
+/* Placeholder color animation */
+.unique-search-input::placeholder {
+    color: #b3b3b3;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Change placeholder color when focused */
+.unique-search-input:focus::placeholder {
+    color: #ffffffc0;
+}
+
+/* Change icon color and animate when focused */
+.unique-search-input:focus + .unique-search-icon {
+    color: #00d47c;
+    transform: scale(1.2); /* Icon grows when search is focused */
+}
+
+
+
+/* Notifications */
+.unique-notifications {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Hover effect for notifications */
+.unique-notifications:hover {
+    transform: scale(1.1);
+}
+/* Notification count */
+.unique-notification-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #ff3d00;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    animation: bounce 0.6s ease-in-out infinite;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+/* Profile */
+.unique-profile-container {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #1d1c1c;
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect for the profile container */
+  }
+  
+  /* Hover effect for profile container */
+  .unique-profile-container:hover {
+    transform: scale(1.1); /* Slightly enlarges the profile icon */
+    background: #00d47c;
+    border: 2px solid white; /* Adds a border when hovered */
+  }
+  
+  /* Profile icon */
+  .unique-profile-icon {
+    color: #b3b3b3;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+  }
+  
+  /* Hover effect for profile icon */
+  .unique-profile-container:hover .unique-profile-icon {
+    color: #ffffff; /* New color when hovered */
+  }
+  
+  /* Profile Dropdown */
+  .unique-profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: #222;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); /* Initially positioned below the profile icon */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  /* Show dropdown when active */
+  .unique-profile-container:hover .unique-profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Dropdown smoothly moves up */
+  }
+  
+  /* Profile Dropdown List */
+  .unique-profile-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Profile Dropdown Items */
+  .unique-profile-dropdown li {
+    padding: 8px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.2s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  /* Hover effect for dropdown items */
+  .unique-profile-dropdown li:hover {
+    background-color: #333;
+    color: #00d47c; /* Color change on hover */
+  }

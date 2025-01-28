@@ -36,6 +36,10 @@ export const AuthProvider = ({ children }) => {
     };
 
     fetchUser();
+
+    return () => {
+      // Clean up function if necessary
+    };
   }, []);
 
   const login = async (username, password) => {
@@ -46,7 +50,10 @@ export const AuthProvider = ({ children }) => {
       setUser(userData);
     } catch (error) {
       console.error('Login failed:', error);
-      setErrorMessage('Invalid credentials, please try again.');
+      const errorMessage = error.response?.status === 401 
+        ? 'Invalid credentials, please try again.' 
+        : 'An error occurred, please try again later.';
+      setErrorMessage(errorMessage);
       setUser(null);  // Optionally handle logout state on failed login
     }
   };

@@ -1,0 +1,95 @@
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: #0D2620;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out;
+    overflow: hidden;
+}
+
+/* Links in Sidebar */
+.sidebar .unique-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .unique-nav-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: color 0.2s, transform 0.2s, background-color 0.2s;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Hover effect for links */
+.sidebar .unique-nav-list li:hover {
+    color: #00d47c;
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Buttons inside Sidebar */
+.project-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.primary-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #118329;
+    color: white;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+/* Hover effect for buttons */
+.primary-btn:hover {
+    background-color: #118329;
+    box-shadow: 0 0 10px rgba(0, 120, 212, 0.5);
+    transform: scale(1.05);
+}
+
+/* Adding keyframe animations */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* Applying animations */
+
+.sidebar .unique-nav-list li,
+.project-buttons .primary-btn {
+    animation: fadeIn 0.5s ease-in-out;
+}

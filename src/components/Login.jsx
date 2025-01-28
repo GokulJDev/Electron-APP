@@ -37,6 +37,7 @@ const Login = ({ onClose }) => {
       // Close the login modal and navigate to dashboard
       onClose();
       navigate('/dashboard');
+      console.log('Login successful');
     } catch (error) {
       setIsLoading(false); // Set loading state to false after the request finishes
       if (error.response) {

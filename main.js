@@ -28,14 +28,16 @@ function createWindow() {
 }
 
 function startBackend() {
-  // Start the Node.js backend server
   backendProcess = spawn('node', ['backend/server.js'], {
-    cwd: __dirname, // Set the current working directory
-    shell: true, // Required for Windows compatibility
+    cwd: __dirname,
+    shell: true,
   });
 
   backendProcess.stdout.on('data', (data) => {
     console.log(`[Backend]: ${data}`);
+    if (data.includes('Connected to MongoDB')) {
+      createWindow(); // Create Electron window once the backend is ready
+    }
   });
 
   backendProcess.stderr.on('data', (data) => {
@@ -47,9 +49,9 @@ function startBackend() {
   });
 }
 
+
 app.on('ready', () => {
   startBackend(); // Start the backend server
-  createWindow();
 });
 
 app.on('window-all-closed', () => {
