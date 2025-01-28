@@ -2,7 +2,7 @@
 .sidebar {
     width: 280px;
     height: 100vh;
-    background-color: #0D2620;
+    background-color: #185143;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -10,6 +10,7 @@
     box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
     animation: slideIn 0.5s ease-out;
     overflow: hidden;
+    border-radius: 1%;
 }
 
 /* Links in Sidebar */
