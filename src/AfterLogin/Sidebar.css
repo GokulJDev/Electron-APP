@@ -1,7 +1,7 @@
 /* Sidebar */
 .sidebar {
     width: 280px;
-    height: 100vh;
+    height: 82vh;
     background-color: #185143;
     padding: 20px;
     display: flex;
@@ -30,16 +30,37 @@
     cursor: pointer;
     font-size: 16px;
     color: white;
-    transition: color 0.2s, transform 0.2s, background-color 0.2s;
-    padding: 10px;
-    border-radius: 4px;
+    transition: all 0.3s ease;
+    padding: 12px 16px;
+    border-radius: 8px;
+    position: relative;
 }
 
 /* Hover effect for links */
 .sidebar .unique-nav-list li:hover {
-    color: #00d47c;
-    transform: scale(1.05);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 212, 124, 0.1);
+    transform: translateX(8px);
+}
+
+/* Active state for selected item */
+.sidebar .unique-nav-list li.active {
+    background-color: #00d47c;
+    color: #0D2620;
+    font-weight: 500;
+    transform: translateX(8px);
+}
+
+/* Add a subtle indicator for active item */
+.sidebar .unique-nav-list li.active::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: #00d47c;
+    border-radius: 0 4px 4px 0;
 }
 
 /* Buttons inside Sidebar */
@@ -47,27 +68,29 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin: 20px 0;
 }
 
 .primary-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     background-color: #118329;
     color: white;
-    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition: all 0.3s ease;
 }
 
 /* Hover effect for buttons */
 .primary-btn:hover {
-    background-color: #118329;
-    box-shadow: 0 0 10px rgba(0, 120, 212, 0.5);
-    transform: scale(1.05);
+    background-color: #00d47c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 124, 0.2);
 }
 
 /* Adding keyframe animations */
@@ -80,17 +103,23 @@
     }
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+/* Secondary navigation section */
+.sidebar-nav.secondary {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
-/* Applying animations */
 
-.sidebar .unique-nav-list li,
-.project-buttons .primary-btn {
-    animation: fadeIn 0.5s ease-in-out;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .sidebar .unique-nav-list li:hover,
+    .sidebar .unique-nav-list li.active {
+        transform: none;
+    }
 }

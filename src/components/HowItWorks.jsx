@@ -6,7 +6,7 @@ const HowItWorks = ({
   title = "How It Works",
   steps = [
     {
-      number: "1",
+  number: "1",
       title: "Upload a Floor Plan",
       description: "Upload your 2D floor plan images to convert them into interactive 3D models. We support JPEG and blend files."
     },
@@ -24,7 +24,7 @@ const HowItWorks = ({
       number: "4",
       title: "Visualize and Share",
       description: "Users can view the 3D model in a realistic, immersive view with VR and share it with clients for feedback."
-    }
+    }    
   ]
 }) => {
   const [activeStep, setActiveStep] = useState(0);

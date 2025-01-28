@@ -1,0 +1,115 @@
+/* General Layout */
+.learning-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #0D2620;
+  }
+  
+  .learning-content-container {
+    display: flex;
+    flex: 1;
+  }
+  
+  .learning-main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #fff;
+    margin-left: 250px; /* Adjust based on your sidebar width */
+  }
+  
+  /* Title */
+  .learning-path-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Progress Tracker */
+  .progress-tracker {
+    margin-bottom: 2rem;
+  }
+  
+  .progress-bar-background {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+  }
+  
+  /* Learning Steps Container */
+  .learning-steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Step Card */
+  .learning-step-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .learning-step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .learning-step-card.active-step {
+    border-color: #007bff;
+  }
+  
+  .learning-step-card.completed-step {
+    background-color: #f0f8ff;
+  }
+  
+  /* Step Card Header */
+  .step-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .step-number-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .step-info-container {
+    flex: 1;
+  }
+  
+  .step-title {
+    font-size: 1.25rem;
+    color: #333;
+    margin: 0;
+  }
+  
+  .step-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+  }
+  
+  .step-status-icon {
+    color: #007bff;
+  }
