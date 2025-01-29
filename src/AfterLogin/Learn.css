@@ -1,115 +1,161 @@
-/* General Layout */
-.learning-page-wrapper {
+.learn-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #0D2620;
   }
   
-  .learning-content-container {
+  .learn-content {
     display: flex;
     flex: 1;
-  }
-  
-  .learning-main-content {
-    flex: 1;
+    gap: 2rem;
     padding: 2rem;
-    background-color: #fff;
-    margin-left: 250px; /* Adjust based on your sidebar width */
   }
   
-  /* Title */
-  .learning-path-title {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1.5rem;
+  .learn-main {
+    flex: 1;
   }
   
-  /* Progress Tracker */
-  .progress-tracker {
-    margin-bottom: 2rem;
+  .learning-card {
+    background-color: #0D2620;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px #185143;;
+    border: 1px solid #0D2620;
   }
   
-  .progress-bar-background {
-    width: 100%;
-    height: 8px;
-    background-color: #e0e0e0;
-    border-radius: 4px;
-    overflow: hidden;
+  .learning-card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #185143;;
   }
   
-  .progress-bar-fill {
-    height: 100%;
-    background-color: #007bff;
-    transition: width 0.3s ease;
+  .learning-card-content {
+    padding: 1.5rem;
   }
   
-  /* Learning Steps Container */
-  .learning-steps-container {
+  .learning-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .learning-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+  }
+   
+  
+  .steps-grid-learn {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  /* Step Card */
-  .learning-step-card {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .learning-step-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .learning-step-card.active-step {
-    border-color: #007bff;
-  }
-  
-  .learning-step-card.completed-step {
-    background-color: #f0f8ff;
-  }
-  
-  /* Step Card Header */
-  .step-card-header {
-    display: flex;
-    align-items: center;
     gap: 1rem;
   }
   
-  .step-number-container {
+  .step-card-learn {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #185143;;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .step-card-learn:hover {
+    background-color: #185143;;
+    transform: translateY(-2px);
+  }
+  
+  .step-card-learn.active {
+    border-color: #185143;;
+    background-color: #185143;;
+  }
+   
+  .step-content-learn {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .step-icon-container-learn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #007bff;
-    border-radius: 50%;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #185143;;
+    border-radius: 0.5rem;
+    color: #37b495;;
+    flex-shrink: 0;
   }
   
-  .step-info-container {
+  .step-icon-learn {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  
+  .step-info-learn {
     flex: 1;
   }
   
-  .step-title {
-    font-size: 1.25rem;
-    color: #333;
-    margin: 0;
+  .step-header-learn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
   }
   
-  .step-description {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0;
+  .step-number-learn {
+    font-size: 0.875rem;
+    color: #2ca587;;
+    font-weight: 500;
   }
   
-  .step-status-icon {
-    color: #007bff;
+
+  
+  .step-title-learn {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
   }
+  
+  .step-description-learn {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #31b897;;
+    line-height: 1.5;
+  }
+  
+  .step-extra-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #0a1e1a;
+    border-radius: 0.5rem;
+    border: 1px solid #185143;
+  }
+  
+  .step-details-learn {
+    color: #a6f3d8;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
+  .upload-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    background-color: #37b495;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-button:hover {
+    background-color: #2ca587;
+  }
+  
