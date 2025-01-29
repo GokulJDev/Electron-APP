@@ -120,9 +120,9 @@
   position: absolute;
   top: -5px;
   right: -10px;
-  background: rgba(0, 120, 212, 0.5);
-  color: white;
-  font-size: 12px;
+  background: #00d47c;
+  color: rgb(241, 255, 245);
+  font-size: 14px;
   padding: 2px 6px;
   border-radius: 50%;
   animation: bounce 0.6s ease-in-out infinite;
@@ -200,6 +200,7 @@
   padding: 8px;
   cursor: pointer;
   color: white;
+  border-radius: 10px;
   transition: background-color 0.2s ease-in-out, color 0.3s ease-in-out;
 }
 
@@ -207,4 +208,34 @@
 .unique-profile-dropdown li:hover {
   background-color: #333;
   color: #00d47c; /* Color change on hover */
+}
+
+
+.outbut {
+  color: white; /* Ensure text color is legible */
+}
+
+.outbut:hover {
+  color: #ed1e0c;
+}
+
+/* Menu Toggle Button for Mobile View */
+@media screen and (max-width: 768px) {
+  .unique-menu-toggle {
+    display: block;
+    color: white;
+  }
+
+  .unique-navbar-left {
+    justify-content: space-between; /* Ensure logo and menu button are spaced out */
+  }
+
+  .unique-navbar-right {
+    display: none; /* Hide the right section in mobile by default */
+  }
+
+  /* Menu open state for mobile */
+  .unique-navbar.open .unique-navbar-right {
+    display: flex;
+  }
 }

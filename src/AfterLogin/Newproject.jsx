@@ -1,13 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Upload, FileText, Image, X, AlertTriangle, Check } from "lucide-react";
+import { X, AlertTriangle, Check, Upload } from "lucide-react";
+import axios from "axios";
 import "./NewProject.css";
 
 const NewProject = ({ onClose }) => {
   const [projectName, setProjectName] = useState("");
-  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
+  const [description, setDescription] = useState("");
+  const [tags, setTags] = useState("");
   const [validationErrors, setValidationErrors] = useState({});
-  const fileInputRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const imageInputRef = React.useRef(null);
 
   const validateForm = () => {
     const errors = {};
@@ -20,16 +25,14 @@ const NewProject = ({ onClose }) => {
       errors.projectName = "Project name cannot exceed 50 characters";
     }
 
-    if (!file) {
-      errors.file = "Please upload a 2D plan file";
-    } else {
-      const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
-      const maxSize = 10 * 1024 * 1024;
+    if (image) {
+      const allowedImageTypes = ["image/jpeg", "image/png"];
+      const maxImageSize = 5 * 1024 * 1024;
 
-      if (!allowedTypes.includes(file.type)) {
-        errors.file = "Invalid file type. Please upload JPG, PNG, or PDF";
-      } else if (file.size > maxSize) {
-        errors.file = "File size exceeds 10MB limit";
+      if (!allowedImageTypes.includes(image.type)) {
+        errors.image = "Invalid image type. Please upload JPG or PNG";
+      } else if (image.size > maxImageSize) {
+        errors.image = "Image size exceeds 5MB limit";
       }
     }
 
@@ -37,30 +40,68 @@ const NewProject = ({ onClose }) => {
     return Object.keys(errors).length === 0;
   };
 
-  const processFile = (selectedFile) => {
-    setFile(selectedFile);
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+    if (selectedImage) setImage(selectedImage);
   };
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) processFile(selectedFile);
-  };
-
-  const handleRemoveFile = () => {
-    setFile(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+  const handleRemoveImage = () => {
+    setImage(null);
+    if (imageInputRef.current) {
+      imageInputRef.current.value = "";
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log("Project Name:", projectName);
-      console.log("Uploaded File:", file);
+    if (!validateForm()) return;
+
+    setLoading(true);
+    setValidationErrors({});
+    setSuccessMessage("");
+
+    const formData = new FormData();
+    formData.append("name", projectName);
+    formData.append("description", description);
+    formData.append("tags", tags.split(",").map(tag => tag.trim()));
+    if (image) formData.append("image", image);
+
+    // Append image metadata
+    if (image) {
+      formData.append("imageMetadata", JSON.stringify({
+        originalName: image.name,
+        size: image.size,
+        mimeType: image.type,
+      }));
+    }
+
+    try {
+      const token = localStorage.getItem("token"); // Retrieve JWT token
+      if (!token) {
+        setValidationErrors({ server: "Token not found. Please log in again." });
+        return;
+      }
+      await axios.post(
+        "http://localhost:3001/projects",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setSuccessMessage("Project created successfully!");
       setProjectName("");
-      setFile(null);
+      setImage(null);
+      setDescription("");
+      setTags("");
       onClose();
+    } catch (error) {
+      setValidationErrors({ server: error.response?.data?.message || "An error occurred" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,6 +115,7 @@ const NewProject = ({ onClose }) => {
         <div className="modal-header">
           <h2 id="modal-title">Create New Project</h2>
           <button className="close-btn" onClick={onClose}>
+            <X size={16} />
           </button>
         </div>
 
@@ -95,18 +137,38 @@ const NewProject = ({ onClose }) => {
           </div>
 
           <div className="form-group">
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Enter project description"
+              maxLength="500"
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              id="tags"
+              type="text"
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
+              placeholder="Enter tags (comma separated)"
+            />
+          </div>
+
+          <div className="form-group">
             <button
               type="button"
-              className={`file-upload-area ${file ? "file-selected" : ""}`}
-              onClick={() => fileInputRef.current.click()}
+              className={`file-upload-area ${image ? "file-selected" : ""}`}
+              onClick={() => imageInputRef.current.click()}
             >
-              {file ? (
+              {image ? (
                 <div className="file-info">
-                  <span className="file-name">{file.name}</span>
+                  <span className="file-name">{image.name}</span>
                   <button
                     type="button"
                     className="remove-file-btn"
-                    onClick={handleRemoveFile}
+                    onClick={handleRemoveImage}
                   >
                     <X size={12} />
                   </button>
@@ -114,35 +176,46 @@ const NewProject = ({ onClose }) => {
               ) : (
                 <div className="upload-placeholder">
                   <Upload size={48} />
-                  <p>Click to upload</p>
-                  <small>Supports: JPG, PNG, PDF (max 10MB)</small>
+                  <p>Click to upload image</p>
+                  <small>Supports: JPG, PNG (max 5MB)</small>
                 </div>
               )}
             </button>
-            {validationErrors.file && (
-              <div id="file-upload-error" className="error-message">
-                <AlertTriangle size={16} /> {validationErrors.file}
+            {validationErrors.image && (
+              <div id="image-upload-error" className="error-message">
+                <AlertTriangle size={16} /> {validationErrors.image}
               </div>
             )}
           </div>
+
+          {validationErrors.server && (
+            <div className="error-message server-error">
+              <AlertTriangle size={16} /> {validationErrors.server}
+            </div>
+          )}
+
+          {successMessage && (
+            <div className="success-message">
+              <Check size={16} /> {successMessage}
+            </div>
+          )}
 
           <div className="form-actions">
             <button type="button" className="secondary-btn" onClick={onClose}>
               Cancel
             </button>
-            <button type="submit" className="primary-btn">
-              <Check size={16} /> Create Project
+            <button type="submit" className="primary-btn" disabled={loading}>
+              {loading ? "Creating..." : <>Create Project</>}
             </button>
           </div>
         </form>
 
-        {/* Hidden file input for selecting files */}
         <input
-          ref={fileInputRef}
+          ref={imageInputRef}
           type="file"
           style={{ display: "none" }}
-          onChange={handleFileChange}
-          accept=".jpg,.jpeg,.png,.pdf"
+          onChange={handleImageChange}
+          accept=".jpg,.jpeg,.png"
         />
       </div>
     </dialog>

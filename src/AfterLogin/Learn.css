@@ -19,13 +19,13 @@
   .learning-card {
     background-color: #0D2620;
     border-radius: 1rem;
-    box-shadow: 0 1px 3px #185143;;
+    box-shadow: 0 1px 3px #185143;
     border: 1px solid #0D2620;
   }
   
   .learning-card-header {
     padding: 1.5rem;
-    border-bottom: 1px solid #185143;;
+    border-bottom: 1px solid #185143;
   }
   
   .learning-card-content {
@@ -56,19 +56,19 @@
   .step-card-learn {
     padding: 1.25rem;
     border-radius: 0.75rem;
-    border: 1px solid #185143;;
+    border: 1px solid #185143;
     cursor: pointer;
     transition: all 0.2s ease;
   }
   
   .step-card-learn:hover {
-    background-color: #185143;;
+    background-color: #185143;
     transform: translateY(-2px);
   }
   
   .step-card-learn.active {
-    border-color: #185143;;
-    background-color: #185143;;
+    border-color: #185143;
+    background-color: #185143;
   }
    
   .step-content-learn {
@@ -83,9 +83,9 @@
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    background-color: #185143;;
+    background-color: #185143;
     border-radius: 0.5rem;
-    color: #37b495;;
+    color: #37b495;
     flex-shrink: 0;
   }
   
@@ -93,7 +93,6 @@
     width: 1.25rem;
     height: 1.25rem;
   }
-  
   
   .step-info-learn {
     flex: 1;
@@ -108,11 +107,9 @@
   
   .step-number-learn {
     font-size: 0.875rem;
-    color: #2ca587;;
+    color: #2ca587;
     font-weight: 500;
   }
-  
-
   
   .step-title-learn {
     margin: 0 0 0.5rem 0;
@@ -124,7 +121,7 @@
   .step-description-learn {
     margin: 0;
     font-size: 0.875rem;
-    color: #31b897;;
+    color: #31b897;
     line-height: 1.5;
   }
   

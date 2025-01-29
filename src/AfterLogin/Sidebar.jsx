@@ -29,7 +29,7 @@ const Sidebar = () => {
   const mainNavItems = [
     { label: 'Home', path: '/dashboard' },
     { label: 'Learn', path: '/learn' },
-    { label: 'Sync Settings', path: '/settings' }
+    { label: 'VR View', path: '/settings' }
   ];
 
   const secondaryNavItems = [

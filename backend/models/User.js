@@ -11,8 +11,9 @@ const UserSchema = new mongoose.Schema({
         enum: ['admin', 'user'], // Valid roles
         default: 'user' // Optional
     },
-    lastLogin: { type: Date, default: null }
-}, { collection: 'Users', timestamps: true }); // Additional options
+    lastLogin: { type: Date, default: null },
+    isLoggedIn: { type: Boolean, default: false } // Track if user is logged in
+}, { collection: 'Users', timestamps: true });
 
 // Pre-save middleware to hash passwords
 UserSchema.pre('save', async function (next) {
