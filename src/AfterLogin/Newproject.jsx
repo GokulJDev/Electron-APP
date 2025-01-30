@@ -111,10 +111,10 @@ const NewProject = ({ onClose }) => {
       aria-labelledby="modal-title"
       aria-modal="true"
     >
-      <div className="modal-content">
-        <div className="modal-header">
-          <h2 id="modal-title">Create New Project</h2>
-          <button className="close-btn" onClick={onClose}>
+      <div className="modal-content-new">
+        <div className="modal-header-new">
+          <h2 id="modal-title-new">Create New Project</h2>
+          <button className="close-btn-new" onClick={onClose}>
             <X size={16} />
           </button>
         </div>
@@ -204,7 +204,7 @@ const NewProject = ({ onClose }) => {
             <button type="button" className="secondary-btn" onClick={onClose}>
               Cancel
             </button>
-            <button type="submit" className="primary-btn" disabled={loading}>
+            <button type="submit" className="primary-btn-new" disabled={loading}>
               {loading ? "Creating..." : <>Create Project</>}
             </button>
           </div>

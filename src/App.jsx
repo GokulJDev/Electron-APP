@@ -12,6 +12,7 @@ import Dashboard from './AfterLogin/Dashboard';
 import Learn from './AfterLogin/Learn';
 import { AuthProvider } from './context/authContext';
 import PrivateRoute from './utils/PrivateRoute';
+import AboutUsModal from './AfterLogin/AboutUsModal';
 
 const App = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -50,6 +51,15 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Learn />
+              </PrivateRoute>
+            }
+          />
+
+           <Route
+            path="/weare"
+            element={
+              <PrivateRoute>
+                <AboutUsModal />
               </PrivateRoute>
             }
           />

@@ -13,7 +13,7 @@
   backdrop-filter: blur(4px);
 }
 
-.modal-content {
+.modal-content-new {
   background: #0d2620;
   padding: 24px;
   border-radius: 12px;
@@ -25,20 +25,20 @@
   border: 1px solid rgba(0, 212, 124, 0.1);
 }
 
-.modal-header {
+.modal-header-new {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.modal-header h2 {
+.modal-header-new h2 {
   margin: 0;
   font-size: 1.5rem;
   color: white;
 }
 
-.close-btn {
+.close-btn-new {
   background: transparent;
   border: none;
   color: #b3b3b3;
@@ -46,7 +46,7 @@
   transition: color 0.2s;
 }
 
-.close-btn:hover {
+.close-btn-new:hover {
   color: #00d47c;
 }
 
@@ -140,8 +140,8 @@
   border-color: #00d47c;
 }
 
-.primary-btn {
-  background: #00d47c;
+.primary-btn-new {
+  background: #0098d4;
   border: none;
   color: white;
   padding: 8px 16px;
@@ -151,11 +151,11 @@
   transition: all 0.3s ease;
 }
 
-.primary-btn:hover {
-  background: #00b86a;
+.primary-btn-new:hover {
+  background: #3e6c80;
 }
 
-.primary-btn:disabled {
+.primary-btn-new:disabled {
   background: #7c7c7c;
   cursor: not-allowed;
 }
