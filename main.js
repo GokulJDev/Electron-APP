@@ -1,8 +1,8 @@
 import { app, BrowserWindow, Menu } from 'electron';
-import { createAppMenu } from './menu.js';
+import { createAppMenu } from './menu.js'; // Import the menu component
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { spawn } from 'child_process';
+import { spawn } from 'child_process'; // For starting the backend server
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,64 +16,56 @@ function createWindow() {
     height: 800,
     icon: path.join(__dirname, '/src/assets/kaira.ico'),
     webPreferences: {
-      nodeIntegration: false, // More secure, enable if needed
-      contextIsolation: true, // Recommended for security
+      nodeIntegration: true,
     },
   });
 
-  mainWindow.loadURL('http://localhost:3001');
+  mainWindow.loadURL('http://localhost:5173'); // Point to the frontend
 
+  // Apply the menu
   const appMenu = createAppMenu(mainWindow);
   Menu.setApplicationMenu(appMenu);
-
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  mainWindow.on('ready-to-show', () => {
+    console.log('Main window is ready to be shown');
+    mainWindow.show();
   });
 }
 
 function startBackend() {
-  if (backendProcess) {
-    console.log('Backend is already running.');
-    return;
-  }
-
   backendProcess = spawn('node', ['backend/server.js'], {
     cwd: __dirname,
     shell: true,
-    stdio: ['pipe', 'pipe', 'pipe'], // Handle logs properly
   });
 
   backendProcess.stdout.on('data', (data) => {
-    const message = data.toString();
-    console.log(`[Backend]: ${message}`);
-
-    if (message.includes('Connected to MongoDB')) {
-      if (!mainWindow) {
-        createWindow();
-      }
+    console.log(`[Backend]: ${data}`);
+    if (data.includes('Connected to MongoDB')) {
+      createWindow(); // Create Electron window once the backend is ready
     }
   });
 
   backendProcess.stderr.on('data', (data) => {
-    console.error(`[Backend Error]: ${data.toString()}`);
+    console.error(`[Backend Error]: ${data}`);
   });
 
   backendProcess.on('close', (code) => {
     console.log(`[Backend Process Exited]: Code ${code}`);
-    backendProcess = null;
-    // Optional: Restart the backend on crash
-    setTimeout(startBackend, 3000);
   });
 }
 
-app.whenReady().then(startBackend);
+
+app.on('ready', () => {
+  startBackend(); // Start the backend server
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    if (backendProcess) {
-      backendProcess.kill();
-      backendProcess = null;
-    }
+    // Ensure backend process is killed
+    if (backendProcess) backendProcess.kill();
     app.quit();
   }
 });
@@ -81,3 +73,4 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
+ 

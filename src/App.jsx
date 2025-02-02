@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import AboutUsSection from './components/AboutUsSection';
-import HowItWorks from './components/HowItWorks';
-import ProjectsSection from './components/ProjectsSection';
-import ContactUs from './components/ContactUs';
-import Login from './components/Login';
+import Navbar from './components/Nav/Navbar';
+import HeroSection from './components/Hero/Herosection';
+import AboutUsSection from './components/Aboutus/AboutUsSection';
+import HowItWorks from './components/Steps/HowItWorks';
+import ProjectsSection from './components/Project/ProjectsSection';
+import ContactUs from './components/Contactus/ContactUs';
+import Login from './components/Login/Login';
+import ForgotPassword from './components/Login/forgot';
 import './App.css';
 import Dashboard from './AfterLogin/Dashboard';
 import Learn from './AfterLogin/Learn';
-import { AuthProvider } from './context/authContext';
-import PrivateRoute from './utils/PrivateRoute';
+import ProjectPage from './AfterLogin/ProjectPage';
 
 const App = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -25,7 +25,6 @@ const App = () => {
   };
 
   return (
-    <AuthProvider>
       <Router>
         <Navbar onLoginClick={openLoginModal} />
         <Routes>
@@ -35,29 +34,26 @@ const App = () => {
           <Route path="/steps" element={<HowItWorks />} />
           <Route path="/projects" element={<ProjectsSection />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
 
           {/* Protected routes */}
           <Route
             path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
+            element={<Dashboard />}
           />
           <Route
             path="/learn"
-            element={
-              <PrivateRoute>
-                <Learn />
-              </PrivateRoute>
-            }
+            element={<Learn />}
+          />
+        <Route
+            path="/projectpage"
+            element={<ProjectPage />}
           />
         </Routes>
 
         {isLoginModalOpen && <Login onClose={closeLoginModal} />}
       </Router>
-    </AuthProvider>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import PropTypes from 'prop-types';
-import { assets } from '../assets/assets';
+import { assets } from '../../assets/assets';
 
 const Navbar = ({ onLoginClick }) => {
   const [activeMenu, setActiveMenu] = useState("HOME");
@@ -14,7 +14,7 @@ const Navbar = ({ onLoginClick }) => {
   };
 
   const handleMouseMove = (event) => {
-    if (event.clientY < 120) {
+    if (event.clientY < 180) {
       setIsNavbarVisible(true);
     } else if (location.pathname !== '/') {
       setIsNavbarVisible(false);

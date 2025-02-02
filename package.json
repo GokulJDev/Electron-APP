@@ -12,7 +12,7 @@
     "architecture",
     "home design"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Gokul J Dev <gokuljdevpulickal@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "@electron/packager": "^18.3.6",
+    "@react-three/drei": "^9.121.4",
+    "@react-three/fiber": "^8.17.12",
     "axios": "^1.7.9",
     "chokidar": "^4.0.3",
     "kaira-vr-app": "file:",

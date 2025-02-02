@@ -9,29 +9,10 @@ const Navbarin = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/logout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming the token is stored in localStorage
-        },
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        // Clear token from localStorage and redirect to login
-        localStorage.removeItem('token');
-        navigate("/");
-      } else {
-        console.error('Logout failed:', data.message);
-        alert('Logout failed: ' + data.message);
-      }
-    } catch (err) {
-      console.error('Error during logout:', err);
-      alert('An error occurred during logout.');
-    }
+  const handleLogout = () => {
+    // Clear token from localStorage and redirect to login
+    localStorage.clear();
+    navigate("/");
   };
 
   return (

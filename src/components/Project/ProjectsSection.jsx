@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './ProjectsSection.css';
-import { assets } from '../assets/assets'; // Adjust the path based on your file structure
+import { assets } from '../../assets/assets'; // Adjust the path based on your file structure
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);

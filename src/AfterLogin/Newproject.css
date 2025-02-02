@@ -32,11 +32,12 @@
   margin-bottom: 20px;
 }
 
-.modal-header h2 {
+#modal-title{
   margin: 0;
   font-size: 1.5rem;
   color: white;
 }
+
 
 .close-btn {
   background: transparent;
@@ -158,4 +159,14 @@
 .primary-btn:disabled {
   background: #7c7c7c;
   cursor: not-allowed;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #185143 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+
 }

@@ -8,6 +8,7 @@ import image_4 from './image_4.png'
 import image_5 from './image_5.png'
 import image_6 from './image_6.png'
 import video from './video.gif'
+import house3d from './houseplan.glb'
 
 
 
@@ -22,5 +23,6 @@ export const assets = {
     image_4,
     image_5,
     image_6,
-    video    
+    video,
+    house3d
 }

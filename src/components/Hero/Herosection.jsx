@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { assets } from '../assets/assets';
-import Modal from './Modal';  // Import the Modal component
+import { assets } from '../../assets/assets';
+import Modal from './upload/Modal';  // Import the Modal component
 import './Herosection.css';
 
 const HeroSection = ({ 

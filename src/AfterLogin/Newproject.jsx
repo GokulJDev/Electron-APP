@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { X, AlertTriangle, Check, Upload } from "lucide-react";
 import axios from "axios";
 import "./NewProject.css";
+import { useNavigate } from "react-router-dom";
 
 const NewProject = ({ onClose }) => {
   const [projectName, setProjectName] = useState("");
@@ -13,6 +14,7 @@ const NewProject = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const imageInputRef = React.useRef(null);
+  const Navigate = useNavigate();
 
   const validateForm = () => {
     const errors = {};
@@ -52,58 +54,51 @@ const NewProject = ({ onClose }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
 
-    setLoading(true);
-    setValidationErrors({});
-    setSuccessMessage("");
+  const handleSubmit = () => {
+    Navigate('/projectpage');
+  }
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validateForm()) return;
 
-    const formData = new FormData();
-    formData.append("name", projectName);
-    formData.append("description", description);
-    formData.append("tags", tags.split(",").map(tag => tag.trim()));
-    if (image) formData.append("image", image);
+  //   setLoading(true);
+  //   setValidationErrors({});
+  //   setSuccessMessage("");
 
-    // Append image metadata
-    if (image) {
-      formData.append("imageMetadata", JSON.stringify({
-        originalName: image.name,
-        size: image.size,
-        mimeType: image.type,
-      }));
-    }
+  //   const formData = new FormData();
+  //   formData.append("name", projectName);
+  //   formData.append("description", description);
+  //   formData.append("tags", tags.split(",").map(tag => tag.trim()));
+  //   if (image) formData.append("image", image);
 
-    try {
-      const token = localStorage.getItem("token"); // Retrieve JWT token
-      if (!token) {
-        setValidationErrors({ server: "Token not found. Please log in again." });
-        return;
-      }
-      await axios.post(
-        "http://localhost:3001/projects",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  //   // Append image metadata
+  //   if (image) {
+  //     formData.append("imageMetadata", JSON.stringify({
+  //       originalName: image.name,
+  //       size: image.size,
+  //       mimeType: image.type,
+  //     }));
+  //   }
 
-      setSuccessMessage("Project created successfully!");
-      setProjectName("");
-      setImage(null);
-      setDescription("");
-      setTags("");
-      onClose();
-    } catch (error) {
-      setValidationErrors({ server: error.response?.data?.message || "An error occurred" });
-    } finally {
-      setLoading(false);
-    }
-  };
+  //   await axios.post(
+  //     "http://localhost:3001/projects",
+  //     formData,
+  //     {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //   );
+
+  //   setSuccessMessage("Project created successfully!");
+  //   setProjectName("");
+  //   setImage(null);
+  //   setDescription("");
+  //   setTags("");
+  //   onClose();
+  // };
 
   return (
     <dialog
@@ -119,7 +114,7 @@ const NewProject = ({ onClose }) => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="form-group">
             <input
               id="project-name"
@@ -204,7 +199,7 @@ const NewProject = ({ onClose }) => {
             <button type="button" className="secondary-btn" onClick={onClose}>
               Cancel
             </button>
-            <button type="submit" className="primary-btn" disabled={loading}>
+            <button type="submit" className="primary-btn" disabled={loading} onClick={handleSubmit}>
               {loading ? "Creating..." : <>Create Project</>}
             </button>
           </div>

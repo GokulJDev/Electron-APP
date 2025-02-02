@@ -1,0 +1,116 @@
+.project-page {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn svg {
+  color: #555;
+  transition: color 0.3s ease-in-out;
+}
+
+.close-btn:hover svg {
+  color: #d9534f;
+}
+
+.floor-plan {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.floor-plan h3 {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.floor-plan-img {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.floor-plan-img:hover {
+  transform: scale(1.02);
+}
+
+.view-options {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.view-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.view-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.view-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.error-message svg {
+  margin-right: 5px;
+}
+
+.three-container {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  background: #eee;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
