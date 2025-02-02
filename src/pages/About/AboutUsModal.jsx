@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Navbarin";
-import Sidebar from "./Sidebar";
+import Navbar from "../nav&side/Navbarin";
+import Sidebar from "../nav&side/Sidebar";
 import "./AboutUsModal.css";
 
 const AboutUs = () => {
