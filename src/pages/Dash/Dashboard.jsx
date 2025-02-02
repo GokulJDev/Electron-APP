@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart, Activity, FileText, Clock } from 'lucide-react';
-import Navbar from './Navbarin';
-import Sidebar from './Sidebar';
+import Navbar from '../nav&side/Navbarin';
+import Sidebar from '../nav&side/Sidebar';
 import './Dashboard.css';
 
 const Dashboard = () => {

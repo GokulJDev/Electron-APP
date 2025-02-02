@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
-import Uploadpage from "./Newproject";
+import Uploadpage from "../project/Newproject";
 
 const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

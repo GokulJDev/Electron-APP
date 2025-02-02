@@ -9,10 +9,10 @@ import ContactUs from './components/Contactus/ContactUs';
 import Login from './components/Login/Login';
 import ForgotPassword from './components/Login/forgot';
 import './App.css';
-import Dashboard from './AfterLogin/Dashboard';
-import Learn from './AfterLogin/Learn';
-import ProjectPage from './AfterLogin/ProjectPage';
-import AboutUsModal from './AfterLogin/AboutUsModal';
+import Dashboard from './pages/Dash/Dashboard';
+import Learn from './pages/steps/Learn';
+import ProjectPage from './pages/project/ProjectPage';
+import AboutUsModal from './pages/About/AboutUsModal';
 
 const App = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Book, Brain, Paintbrush, Share2 } from "lucide-react";
-import Navbar from "./Navbarin";
-import Sidebar from "./Sidebar";
+import Navbar from "../nav&side/Navbarin";
+import Sidebar from "../nav&side/Sidebar";
 import "./Learn.css";
 
 const Learn = () => {
