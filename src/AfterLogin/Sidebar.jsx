@@ -33,7 +33,7 @@ const Sidebar = () => {
   ];
 
   const secondaryNavItems = [
-    { label: 'About Us', path: '/about' },
+    { label: 'About Us', path: '/weare' },
     { label: 'Support', path: '/contact' }
   ];
 
@@ -53,12 +53,12 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <div className="project-buttons">
-        <button className="primary-btn" onClick={openModal}>
+      <div className="project-buttons-side">
+        <button className="primary-btn-side" onClick={openModal}>
           New Project
         </button>
         <button
-          className="primary-btn"
+          className="primary-btn-side"
           onClick={() => fileInputRef.current.click()} // Trigger file input
         >
           Open Project

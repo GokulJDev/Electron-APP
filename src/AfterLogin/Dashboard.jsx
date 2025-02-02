@@ -8,7 +8,8 @@ const Dashboard = () => {
   const links = [
     { label: 'Home', href: '/' },
     { label: 'Learn', href: '/learn' },
-    { label: 'Sync Settings', href: '/settings' },
+    { label: 'VR View', href: '/settings' },
+    { label: 'AboutUsModel',href:'/weare'},
     { label: 'Support', href: '/support' },
   ];
 

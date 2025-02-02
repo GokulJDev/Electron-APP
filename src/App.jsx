@@ -12,6 +12,7 @@ import './App.css';
 import Dashboard from './AfterLogin/Dashboard';
 import Learn from './AfterLogin/Learn';
 import ProjectPage from './AfterLogin/ProjectPage';
+import AboutUsModal from './AfterLogin/AboutUsModal';
 
 const App = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -49,6 +50,11 @@ const App = () => {
         <Route
             path="/projectpage"
             element={<ProjectPage />}
+          />
+
+           <Route
+            path="/weare"
+            element={<AboutUsModal />}
           />
         </Routes>
 

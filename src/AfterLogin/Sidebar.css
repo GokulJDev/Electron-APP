@@ -63,14 +63,14 @@
 }
 
 /* Buttons inside Sidebar */
-.project-buttons {
+.project-buttons-side {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin: 20px 0;
 }
 
-.primary-btn {
+.primary-btn-side {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,14 +80,15 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    background-color: #118329;
+    background-color: #0098d4;
     color: white;
     transition: all 0.3s ease;
 }
 
 /* Hover effect for buttons */
-.primary-btn:hover {
-    background-color: #00d47c;
+.primary-btn-side:hover {
+    background-color: #a4eaf3;
+    color: black;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 212, 124, 0.2);
 }
