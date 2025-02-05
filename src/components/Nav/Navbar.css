@@ -3,14 +3,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 40px;
-  transition: visibility 0.3s, opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
-  visibility: visible; /* Default visibility */
-  opacity: 1; /* Fully visible */
+  padding: 20px 40px; /* Reduced padding */
+  transition: visibility 0.3s, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  visibility: visible;
+  opacity: 1;
   z-index: 1000;
-  top:0;
+  top: 0;
   position: fixed;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.795), transparent);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent); /* Improved gradient */
   left: 0;
   width: 100%;
   box-sizing: border-box;
@@ -18,20 +18,20 @@
 
 /* Navbar hidden state */
 .navbar.hidden {
-  visibility: hidden; /* Hide the navbar */
-  opacity: 0; /* Fade out */
-  transform: translateY(-100%); /* Move navbar up */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-120%); /* Adjusted for smoother hiding */
 }
 
 /* Navbar logo */
 .navbar-logo {
-  width: 100px; /* Adjust logo size */
+  width: 100px;
   height: auto;
   transition: transform 0.3s ease-in-out;
 }
 
 .navbar-logo:hover {
-  transform: scale(1.1); /* Slight zoom effect on hover */
+  transform: scale(1.1);
 }
 
 /* Navbar Menu */
@@ -54,17 +54,17 @@
 }
 
 .navbar-item:hover {
-  color: #a5fc02; /* Active link color */
-  transform: translateY(-3px); /* Hover effect - lift the link */
+  color: #a5fc02;
+  transform: translateY(-3px);
 }
 
 /* Active navbar item */
 .navbar-item.active {
   font-weight: bold;
-  color: #f2f2f2;
+  color: #ddd; /* Improved visibility */
 }
 
-/* Hover underline effect for navbar items */
+/* Hover underline effect */
 .navbar-item::after {
   content: '';
   position: absolute;
@@ -78,15 +78,9 @@
   transition: transform 0.3s ease;
 }
 
-/* Hover underline effect on hover */
-.navbar-item:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-/* Persist underline effect for active navbar item */
+.navbar-item:hover::after,
 .navbar-item.active::after {
-  transform: scaleX(1); /* Make the underline visible */
+  transform: scaleX(1);
   transform-origin: bottom left;
 }
 
@@ -110,7 +104,7 @@
 .navbar-button:hover {
   background-color: #34fc02bd;
   transform: translateY(-2px);
-  box-shadow: 0 0 10px 5px rgba(52, 252, 2, 0.5); /* Green light effect */
+  box-shadow: 0 0 10px 5px rgba(52, 252, 2, 0.5);
 }
 
 /* Responsive Navbar Styles */
@@ -135,16 +129,28 @@
   .navbar-button {
     margin-top: 20px;
   }
+
+  .navbar-buttons {
+    width: 100%;
+    align-self: center;
+    justify-content: center;
+  }
 }
 
 /* Mobile Navigation Hamburger */
 .navbar-hamburger {
-  display: none;
+  display: none; /* Initially hidden */
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
   width: 30px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-hamburger {
+    display: flex; /* Show on mobile */
+  }
 }
 
 .navbar-hamburger div {

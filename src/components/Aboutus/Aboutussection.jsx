@@ -1,5 +1,6 @@
 import './Aboutussection.css';
 import { assets } from '../../assets/assets';
+import Navbar from '../Nav/Navbar';
 
 const AboutUsSection = () => {
   const cards = [
@@ -19,6 +20,7 @@ const AboutUsSection = () => {
 
   return (
     <div className="about-us-section">
+      <Navbar />
       <div className="content-left">
         <h1 className="abtitle animated-gradient">ABOUT US</h1>
         <div className="video-container">

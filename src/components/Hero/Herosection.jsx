@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { assets } from '../../assets/assets';
 import Modal from './upload/Modal';  // Import the Modal component
 import './Herosection.css';
+import Navbar from '../Nav/Navbar';
 
 const HeroSection = ({ 
   subtitle = "With KAIRA, you can seamlessly convert your traditional 2D floor plans into realistic and interactive 3D models. Explore designs with greater precision and creativity, bringing your ideas to life."
@@ -21,6 +22,7 @@ const HeroSection = ({
 
   return (
     <div className="hero">
+      <Navbar />
       <div className="hero-container">
         <div className="hero-content">
           <h1 className="hero-title">

@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './Login.css';
 import { authLogin } from '../../../api/auth';
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
-const Login = ({ onClose }) => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // ✅ Added missing state
+  const [showPassword, setShowPassword] = useState(false);
 
+  const onClose = () => {
+    setActiveMenu("LOGIN");
+    window.location.href = "/";
+  };
+  
   // Handle login submission
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +26,7 @@ const Login = ({ onClose }) => {
 
     setIsLoading(true);
     try {
-      await authLogin({ username, password }); // ✅ Await API call
+      await authLogin({ username, password });
     } catch (error) {
       setErrorMessage('Login failed. Please check your credentials.');
     }
@@ -64,7 +68,7 @@ const Login = ({ onClose }) => {
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </button>
+                </button>
               </div>
             </label>
           </div>
@@ -79,16 +83,14 @@ const Login = ({ onClose }) => {
         <p className="para">
           Don’t have an account? <a href="https://www.google.com" className="signup-link">Get an Account</a>
         </p>
-        <a href="/" className="skip-for-now" onClick={onClose}>
-          Skip for now &rarr;
-        </a>
+        
+          <a href="/" className="skip-for-now" onClick={onClose}>
+            Skip for now &rarr;
+          </a>
       </div>
     </div>
   );
 };
 
-Login.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
 
 export default Login;

@@ -2,7 +2,9 @@ export const kaira ={
     //Auth
     login: '/login',
     refresh: '/refresh-token',
+    logout: '/logout',
 
-    
-    projects: '/projects',
+    //Project
+    project: '/project',
+    projectData: '/projectdata',
 }

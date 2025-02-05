@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './ProjectsSection.css';
 import { assets } from '../../assets/assets'; // Adjust the path based on your file structure
+import Navbar from '../Nav/Navbar';
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
 
   const projects = [
     {
@@ -63,7 +62,7 @@ const ProjectsSection = () => {
   };
 
   const handleStartProject = () => {
-    navigate("/dashboard") // alert('Please login first Start a New Project.')
+    alert('Please login first Start a New Project.');
   };
 
   const handleViewDetailsClick = () => {
@@ -72,7 +71,7 @@ const ProjectsSection = () => {
 
   return (
     <div className="projects-section">
-      {/* Header Section */}
+      <Navbar />
       <div className="projects-header">
         <div className="header-left">
           <h1 className="projects-title animated-gradient">3D Floor Plan Gallery</h1>

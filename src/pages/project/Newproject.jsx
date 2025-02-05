@@ -1,219 +1,126 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
-import { X, AlertTriangle, Check, Upload } from "lucide-react";
-import axios from "axios";
+import { X, AlertTriangle, Upload } from "lucide-react";
 import "./NewProject.css";
-import { useNavigate } from "react-router-dom";
+import { projectentry, namecheck } from "../../../api/project";
+
+// Debounce function to limit API calls
+const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func(...args), delay);
+  };
+};
 
 const NewProject = ({ onClose }) => {
-  const [projectName, setProjectName] = useState("");
-  const [image, setImage] = useState(null);
-  const [description, setDescription] = useState("");
-  const [tags, setTags] = useState("");
-  const [validationErrors, setValidationErrors] = useState({});
+  const [projectData, setProjectData] = useState({
+      projectName: "",
+      description: "",
+      tags: "",
+      image: null,
+  });
+  const [nameExists, setNameExists] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-  const imageInputRef = React.useRef(null);
-  const Navigate = useNavigate();
+  const imageInputRef = useRef(null);
 
-  const validateForm = () => {
-    const errors = {};
+  // Debounced name check to optimize API calls
+  const debouncedNameCheck = debounce(namecheck, 500);
 
-    if (!projectName.trim()) {
-      errors.projectName = "Project name is required";
-    } else if (projectName.length < 3) {
-      errors.projectName = "Project name must be at least 3 characters";
-    } else if (projectName.length > 50) {
-      errors.projectName = "Project name cannot exceed 50 characters";
-    }
+  const handleChange = (e) => {
+      const { id, value } = e.target;
+      setProjectData((prev) => ({ ...prev, [id]: value }));
 
-    if (image) {
-      const allowedImageTypes = ["image/jpeg", "image/png"];
-      const maxImageSize = 5 * 1024 * 1024;
-
-      if (!allowedImageTypes.includes(image.type)) {
-        errors.image = "Invalid image type. Please upload JPG or PNG";
-      } else if (image.size > maxImageSize) {
-        errors.image = "Image size exceeds 5MB limit";
+      if (id === "projectName") {
+          debouncedNameCheck(value, setNameExists);
       }
-    }
-
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
   };
 
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    if (selectedImage) setImage(selectedImage);
+      setProjectData({ ...projectData, image: e.target.files[0] });
   };
 
   const handleRemoveImage = () => {
-    setImage(null);
-    if (imageInputRef.current) {
-      imageInputRef.current.value = "";
-    }
+      setProjectData({ ...projectData, image: null });
+      if (imageInputRef.current) imageInputRef.current.value = "";
   };
 
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (nameExists) return; // Prevent submission if name already exists
 
-  const handleSubmit = () => {
-    Navigate('/projectpage');
-  }
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!validateForm()) return;
-
-  //   setLoading(true);
-  //   setValidationErrors({});
-  //   setSuccessMessage("");
-
-  //   const formData = new FormData();
-  //   formData.append("name", projectName);
-  //   formData.append("description", description);
-  //   formData.append("tags", tags.split(",").map(tag => tag.trim()));
-  //   if (image) formData.append("image", image);
-
-  //   // Append image metadata
-  //   if (image) {
-  //     formData.append("imageMetadata", JSON.stringify({
-  //       originalName: image.name,
-  //       size: image.size,
-  //       mimeType: image.type,
-  //     }));
-  //   }
-
-  //   await axios.post(
-  //     "http://localhost:3001/projects",
-  //     formData,
-  //     {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   );
-
-  //   setSuccessMessage("Project created successfully!");
-  //   setProjectName("");
-  //   setImage(null);
-  //   setDescription("");
-  //   setTags("");
-  //   onClose();
-  // };
+      setLoading(true);
+      await projectentry(projectData);
+      setProjectData({ projectName: "", description: "", tags: "", image: null });
+      setLoading(false);
+  };
 
   return (
-    <dialog
-      className="new-project-modal"
-      aria-labelledby="modal-title"
-      aria-modal="true"
-    >
-      <div className="modal-content-new">
-        <div className="modal-header-new">
-          <h2 id="modal-title-new">Create New Project</h2>
-          <button className="close-btn-new" onClick={onClose}>
-            <X size={16} />
-          </button>
-        </div>
-
-        <form>
-          <div className="form-group">
-            <input
-              id="project-name"
-              type="text"
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
-              placeholder="Enter project name"
-              aria-describedby="project-name-error"
-            />
-            {validationErrors.projectName && (
-              <div id="project-name-error" className="error-message">
-                <AlertTriangle size={16} /> {validationErrors.projectName}
+      <dialog className="new-project-modal" aria-labelledby="modal-title" aria-modal="true">
+          <div className="modal-content-new">
+              <div className="modal-header-new">
+                  <h2 id="modal-title-new">Create New Project</h2>
+                  <button className="close-btn-new" onClick={onClose}><X size={16} /></button>
               </div>
-            )}
+
+              <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                      <input
+                          id="projectName"
+                          type="text"
+                          value={projectData.projectName}
+                          onChange={handleChange}
+                          placeholder="Enter project name"
+                      />
+                      {nameExists && <div className="error-message"><AlertTriangle size={16} /> Project name already exists</div>}
+                  </div>
+
+                  {["description", "tags"].map((field) => (
+                      <div className="form-group" key={field}>
+                          <input
+                              id={field}
+                              type="text"
+                              value={projectData[field]}
+                              onChange={handleChange}
+                              placeholder={`Enter ${field}`}
+                          />
+                      </div>
+                  ))}
+
+                  <div className="form-group">
+                      <button
+                          type="button"
+                          className={`file-upload-area ${projectData.image ? "file-selected" : ""}`}
+                          onClick={() => imageInputRef.current.click()}
+                      >
+                          {projectData.image ? (
+                              <div className="file-info">
+                                  <span className="file-name">{projectData.image.name}</span>
+                                  <button type="button" className="remove-file-btn" onClick={handleRemoveImage}>
+                                      <X size={12} />
+                                  </button>
+                              </div>
+                          ) : (
+                              <div className="upload-placeholder">
+                                  <Upload size={48} />
+                                  <p>Click to upload image</p>
+                                  <small>Supports: JPG, PNG (max 5MB)</small>
+                              </div>
+                          )}
+                      </button>
+                  </div>
+
+                  <div className="form-actions">
+                      <button type="button" className="secondary-btn" onClick={onClose}>Cancel</button>
+                      <button type="submit" className="primary-btn-new" disabled={loading || nameExists}>
+                          {loading ? "Creating..." : "Create Project"}
+                      </button>
+                  </div>
+              </form>
+
+              <input ref={imageInputRef} type="file" style={{ display: "none" }} onChange={handleImageChange} accept=".jpg,.jpeg,.png" />
           </div>
-
-          <div className="form-group">
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter project description"
-              maxLength="500"
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              id="tags"
-              type="text"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-              placeholder="Enter tags (comma separated)"
-            />
-          </div>
-
-          <div className="form-group">
-            <button
-              type="button"
-              className={`file-upload-area ${image ? "file-selected" : ""}`}
-              onClick={() => imageInputRef.current.click()}
-            >
-              {image ? (
-                <div className="file-info">
-                  <span className="file-name">{image.name}</span>
-                  <button
-                    type="button"
-                    className="remove-file-btn"
-                    onClick={handleRemoveImage}
-                  >
-                    <X size={12} />
-                  </button>
-                </div>
-              ) : (
-                <div className="upload-placeholder">
-                  <Upload size={48} />
-                  <p>Click to upload image</p>
-                  <small>Supports: JPG, PNG (max 5MB)</small>
-                </div>
-              )}
-            </button>
-            {validationErrors.image && (
-              <div id="image-upload-error" className="error-message">
-                <AlertTriangle size={16} /> {validationErrors.image}
-              </div>
-            )}
-          </div>
-
-          {validationErrors.server && (
-            <div className="error-message server-error">
-              <AlertTriangle size={16} /> {validationErrors.server}
-            </div>
-          )}
-
-          {successMessage && (
-            <div className="success-message">
-              <Check size={16} /> {successMessage}
-            </div>
-          )}
-
-          <div className="form-actions">
-            <button type="button" className="secondary-btn" onClick={onClose}>
-              Cancel
-            </button>
-            <button type="submit" className="primary-btn" disabled={loading} onClick={handleSubmit}>
-              {loading ? "Creating..." : <>Create Project</>}
-            </button>
-          </div>
-        </form>
-
-        <input
-          ref={imageInputRef}
-          type="file"
-          style={{ display: "none" }}
-          onChange={handleImageChange}
-          accept=".jpg,.jpeg,.png"
-        />
-      </div>
-    </dialog>
+      </dialog>
   );
 };
 

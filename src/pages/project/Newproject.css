@@ -32,14 +32,14 @@
   margin-bottom: 20px;
 }
 
-#modal-title{
+#modal-title-new {
   margin: 0;
   font-size: 1.5rem;
   color: white;
 }
 
 
-.close-btn {
+.close-btn-new {
   background: transparent;
   border: none;
   color: #b3b3b3;
@@ -137,7 +137,7 @@
 }
 
 .secondary-btn:hover {
-  color: white;
+  color: red;
   border-color: #00d47c;
 }
 
@@ -153,7 +153,8 @@
 }
 
 .primary-btn-new:hover {
-  background: #3e6c80;
+  background: #0091ff;
+  transform: scale(1.05);
 }
 
 .primary-btn-new:disabled {

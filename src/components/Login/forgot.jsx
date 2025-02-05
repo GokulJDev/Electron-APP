@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './Login.css';
 
-const ForgotPassword = ({ onClose }) => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -60,10 +59,6 @@ const ForgotPassword = ({ onClose }) => {
       </div>
     </div>
   );
-};
-
-ForgotPassword.propTypes = {
-  onClose: PropTypes.func.isRequired,
 };
 
 export default ForgotPassword;

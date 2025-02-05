@@ -18,7 +18,7 @@ publicGateway.interceptors.request.use(
 );
 
 export const privateGateway = axios.create({
-  baseURL: import.meta.env.REACT_APP_API_URL,
+  baseURL: 'http://localhost:3001',
   headers: {
     "Content-Type": "application/json",
   },

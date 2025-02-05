@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ContactUs.css';
 import PropTypes from 'prop-types';
 import { FaLocationArrow, FaEnvelope, FaPhone } from 'react-icons/fa';
-
+import Navbar from '../Nav/Navbar';
 
 const ContactUs = ({ 
   onSubmit = () => {},
@@ -33,6 +33,7 @@ const ContactUs = ({
 
   return (
     <div className="contact-us-container">
+      <Navbar />
       <div className="contact-wrapper">
         <h1 className="main-title animated-gradient">Contact Us</h1>
         <h2 className="subtitle">For Any Queries and Support</h2>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './HowItWorks.css';
+import Navbar from '../Nav/Navbar';
 
 const HowItWorks = ({
   title = "How It Works",
@@ -39,6 +40,7 @@ const HowItWorks = ({
 
   return (
     <div className="how-it-works">
+      <Navbar />
       <h1 className="title animated-gradient">{title}</h1>
       
       <div className="steps-container">

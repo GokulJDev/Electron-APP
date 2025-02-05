@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Navbarin.css';
 import { assets } from '../../assets/assets';
 import { Search, Bell, User, Menu } from 'lucide-react';
+import { authLogout } from '../../../api/auth';
 
 const Navbarin = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Clear token from localStorage and redirect to login
-    localStorage.clear();
-    navigate("/");
-  };
+const handleLogout = async () => {
+  await authLogout();
+};
 
   return (
     <nav className="unique-navbar">
