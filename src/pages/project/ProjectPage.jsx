@@ -145,12 +145,13 @@ const ProjectPage = () => {
           {floorPlan && (
             <div className="floor-plan">
               <h3>Floor Plan</h3>
-              {console.log('Floor Plan URL:', 'http://localhost:3001'+floorPlan)}
               <img 
                 src={'http://localhost:3001'+floorPlan} 
                 alt="Uploaded Floor Plan" 
                 className="floor-plan-img" 
-                onError={(e) => {console.error('Image Load Error:', e);e.target.src = '/src/assets/floorplan.png';}} 
+                onError={(e) => {console.error('Image Load Error:', e);
+                  // e.target.src = '/src/assets/floorplan.png'
+                }} 
               />
             </div>
           )}
