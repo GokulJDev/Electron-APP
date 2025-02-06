@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  background: linear-gradient(302.77deg, rgba(0,0,2,1) 4.73%, rgba(13,38,32,1) 32.37%, rgba(0,0,2,1) 72.7%);
+  background-size: 400% 400%; 
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  animation: backgroundAnimation 15s ease-in-out infinite;
+  border: none !important;
+
+  /* Allow scrolling but hide scrollbar */
+  overflow: auto;  /* Enables scrolling */
+}
+
+body::-webkit-scrollbar {
+  display: none;  /* Hides scrollbar for WebKit browsers (Chrome, Brave, Safari) */
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+    background-color: rgba(0, 0, 2, 1);
+  }
+  25% {
+    background-position: 50% 75%;
+    background-color: rgba(13, 38, 32, 1);
+  }
+  50% {
+    background-position: 100% 50%;
+    background-color: rgba(0, 30, 2, 1);
+  }
+  75% {
+    background-position: 50% 25%;
+    background-color: rgba(13, 10, 32, 1);
+  }
+  100% {
+    background-position: 0% 50%;
+    background-color: rgba(0, 0, 2, 1);
+  }
+}
+
+/* Add this for consistent app layout styles */
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

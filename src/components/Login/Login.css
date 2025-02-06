@@ -1,0 +1,160 @@
+/* Modal overlay with better blur effect and animation */
+.modal-overlay-login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  backdrop-filter: blur(12px);
+}
+
+/* Modal content with larger font and more professional design */
+.modal-content-login {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 48px;
+  color: #333333;
+  border-radius: 12px;
+  width: 80%;
+  z-index: 9999;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+  h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000000;
+  }
+  p {
+    font-size: 16px;
+    padding: 12px;
+    color: #070707cb;
+  }
+}
+
+/* Form and input styles for a clean and modern feel */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form label {
+  font-size: 16px;
+  color: #333333;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  color: black;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.login-form input::placeholder {
+  color: #1f1e1e79;
+}
+
+.login-form input:focus {
+  border-color: #4caf50;
+  transform: scale(1.02);
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: #388e3c;
+  text-decoration: none;
+  text-align: right;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-submit {
+  padding: 14px;
+  background-color: #388e3c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.login-submit:hover {
+  background-color: #4caf50;
+  transform: scale(1.05);
+}
+
+.signup-link {
+  color: #388e3c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.skip-for-now {
+  display: block;
+  margin-top: 24px;
+  font-size: 16px;
+  color: #388e3c;
+  text-decoration: none;
+}
+
+.skip-for-now:hover {
+  text-decoration: underline;
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 40px; /* Add padding to the right to make space for the icon */
+}
+
+.password-container .eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 60%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #1f1e1e79;
+  transition: color 0.3s ease;
+  visibility: hidden;
+}
+.password-container:focus-within .eye-icon {
+  visibility: visible;
+}
+.password-container .eye-icon:hover {
+  color: #4caf50;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.95) inset !important;
+  -webkit-text-fill-color: #000 !important;
+}

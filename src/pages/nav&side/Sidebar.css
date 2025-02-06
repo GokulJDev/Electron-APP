@@ -1,0 +1,116 @@
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    height: 82vh;
+    background-color: #185143;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 1%;
+}
+
+/* Links in Sidebar */
+.sidebar .unique-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .unique-nav-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: all 0.3s ease;
+    padding: 12px 16px;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Hover effect for links */
+.sidebar .unique-nav-list li:hover {
+    background-color: rgba(0, 212, 124, 0.1);
+    transform: translateX(8px);
+}
+
+/* Active state for selected item */
+.sidebar .unique-nav-list li.active {
+    background-color: #00d47c;
+    color: #0D2620;
+    font-weight: 500;
+    transform: translateX(8px);
+}
+
+/* Add a subtle indicator for active item */
+.sidebar .unique-nav-list li.active::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: #00d47c;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Buttons inside Sidebar */
+.project-buttons-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.primary-btn-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #0098d4;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.primary-btn-side:hover {
+    background-color: #0091ff;
+    font-weight: 600;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgb(0, 57, 34);
+}
+
+
+/* Secondary navigation section */
+.sidebar-nav.secondary {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .sidebar .unique-nav-list li:hover,
+    .sidebar .unique-nav-list li.active {
+        transform: none;
+    }
+}
