@@ -10,6 +10,7 @@
     box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     border-radius: 1%;
+    position: fixed;
 }
 
 /* Links in Sidebar */

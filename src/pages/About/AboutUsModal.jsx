@@ -38,8 +38,8 @@ const AboutUs = () => {
           </section>
 
           <div className="features-container">
-            {features.map((feature, index) => (
-              <div key={index} className="feature-card">
+            {features.map((feature) => (
+              <div key={feature.title} className="feature-card">
                 <h3 className="feature-title">{feature.title}</h3>
                 <p className="feature-description">{feature.description}</p>
               </div>

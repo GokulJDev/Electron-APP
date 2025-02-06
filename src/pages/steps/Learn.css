@@ -8,12 +8,13 @@
   .learn-content {
     display: flex;
     flex: 1;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
   
   .learn-main {
     flex: 1;
+    margin-left: 300px;
   }
   
   .learning-card {

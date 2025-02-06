@@ -1,4 +1,5 @@
 import logo from './kaira.png'
+import klogo from './kaira.ico'
 import hero_image from './hero_image.png'
 import Eg_Design from './Eg_Design.png'
 import image_1 from './image_1.png'
@@ -14,6 +15,7 @@ import video from './video.gif'
 
 export const assets = {
     logo,
+    klogo,
     hero_image,
     Eg_Design,
     image_1,

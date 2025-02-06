@@ -5,6 +5,7 @@ export const kaira ={
     logout: '/logout',
 
     //Project
+    dashboard: '/dashboard',
     project: '/project',
     projectData: '/projectdata',
 }

@@ -1,6 +1,18 @@
 import { privateGateway } from "../services/gateways";
 import { kaira } from "../services/url";
 
+export const fetchDashboardData = async (setProjectStats, setRecentProjects) => {
+    privateGateway
+        .get(kaira.dashboard)
+        .then((response )=> {
+            setProjectStats(response.data.stats);
+            setRecentProjects(response.data.projects);
+        })
+        .catch ((error) =>{
+            console.error('Error fetching dashboard data:', error);
+        });
+};
+
 export const namecheck = async (projectName, setNameExists) => {
     privateGateway
         .get(`${kaira.project}/check-name`, { params: { name: projectName } })
