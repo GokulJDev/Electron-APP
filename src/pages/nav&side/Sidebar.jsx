@@ -5,15 +5,22 @@ import Uploadpage from "../project/Newproject";
 
 const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showVRAlert, setShowVRAlert] = useState(false); // State to control VR alert visibility
   const navigate = useNavigate();
   const location = useLocation();
   const fileInputRef = useRef(null); // Reference to file input
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const closeVRAlert = () => setShowVRAlert(false); // Close VR alert
 
+  
   const handleNavigation = (path) => {
-    navigate(path);
+    if (path === "/settings") {
+      setShowVRAlert(true); // Show VR alert instead of navigating
+    } else {
+      navigate(path);
+    }
   };
 
   // Handle the file selection when the input changes
@@ -27,14 +34,14 @@ const Sidebar = () => {
 
   // Define navigation items with their paths
   const mainNavItems = [
-    { label: 'Home', path: '/dashboard' },
-    { label: 'Learn', path: '/learn' },
-    { label: 'VR View', path: '/settings' }
+    { label: "Home", path: "/dashboard" },
+    { label: "Learn", path: "/learn" },
+    { label: "VR View", path: "/settings" }
   ];
 
   const secondaryNavItems = [
-    { label: 'About Us', path: '/weare' },
-    { label: 'Support', path: '/contact' }
+    { label: "About Us", path: "/weare" },
+    { label: "Support", path: "/support" }
   ];
 
   return (
@@ -45,12 +52,22 @@ const Sidebar = () => {
             <li
               key={item.path}
               onClick={() => handleNavigation(item.path)}
-              className={location.pathname === item.path ? 'active' : ''}
+              className={location.pathname === item.path ? "active" : ""}
             >
               {item.label}
             </li>
           ))}
         </ul>
+
+        {/* VR Alert Message Appearing Below "VR View" */}
+        {showVRAlert && (
+          <div className="vr-alert">
+            <p>You must add your 2D plan before accessing the VR View.</p>
+            <button onClick={closeVRAlert} className="cancel-btn">
+              Cancel
+            </button>
+          </div>
+        )}
       </nav>
 
       <div className="project-buttons-side">
@@ -66,7 +83,7 @@ const Sidebar = () => {
         <input
           type="file"
           ref={fileInputRef}
-          style={{ display: 'none' }} // Hide the file input
+          style={{ display: "none" }} // Hide the file input
           onChange={handleFileSelection} // Handle file selection
         />
       </div>
@@ -77,7 +94,7 @@ const Sidebar = () => {
             <li
               key={item.path}
               onClick={() => handleNavigation(item.path)}
-              className={location.pathname === item.path ? 'active' : ''}
+              className={location.pathname === item.path ? "active" : ""}
             >
               {item.label}
             </li>

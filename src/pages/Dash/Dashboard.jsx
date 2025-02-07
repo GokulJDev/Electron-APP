@@ -27,7 +27,7 @@ const Dashboard = () => {
       <Navbar links={[
         { label: 'Home', href: '/' },
         { label: 'Learn', href: '/learn' },
-        { label: 'VR View', href: '/settings' },
+        { label: 'VR View', href: '/view' },
         { label: 'AboutUsModel', href: '/weare' },
         { label: 'Support', href: '/support' },
       ]} />

@@ -12,6 +12,7 @@ import Dashboard from './pages/Dash/Dashboard';
 import Learn from './pages/steps/Learn';
 import ProjectPage from './pages/project/ProjectPage';
 import AboutUsModal from './pages/About/AboutUsModal';
+import Support from './pages/Support/Support';
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/learn" element={<Learn />} />
           <Route path="/project/:project_id" element={<ProjectPage />} />
           <Route path="/weare" element={<AboutUsModal />} />
+          <Route path="/support" element={<Support/>} />
         </Routes>
       </Router>
   );

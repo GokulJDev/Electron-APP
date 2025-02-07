@@ -171,7 +171,7 @@
   position: absolute;
   right: 0;
   top: 40px;
-  background: #222;
+  background: #185143;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(20, 131, 101, 0.2);
@@ -206,8 +206,8 @@
 
 /* Hover effect for dropdown items */
 .unique-profile-dropdown li:hover {
-  background-color: #333;
-  color: #00d47c; /* Color change on hover */
+  background-color: #2a846d;
+  color: white; /* Color change on hover */
 }
 
 

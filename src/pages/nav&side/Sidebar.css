@@ -9,7 +9,7 @@
     gap: 20px;
     box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    border-radius: 1%;
+    border-radius: 1rem;
     position: fixed;
 }
 
@@ -115,3 +115,29 @@
         transform: none;
     }
 }
+
+.vr-alert {
+    background-color: #ffe5e5;
+    color: #d9534f;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    width: 90%;
+  }
+  
+  .cancel-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #c9302c;
+  }
+  
