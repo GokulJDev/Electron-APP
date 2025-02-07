@@ -8,4 +8,6 @@ export const kaira ={
     dashboard: '/dashboard',
     project: '/project',
     projectData: '/projectdata',
+    update: '/update',
+    blenderProject: '/blenderProject',
 }

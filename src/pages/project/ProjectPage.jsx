@@ -2,11 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { X, AlertTriangle } from "lucide-react";
+import { createBlenderProject, getDetails, updateProjectDetails } from "../../../api/project";
+import PropTypes from 'prop-types';
+import ErrorBoundary from "../../../services/ErrorBoundary.jsx";
 import "./ProjectPage.css";
-import { getDetails, updateProjectDetails } from "../../../api/project";
 
-const HouseModel = () => {
-  const { scene } = useGLTF('/houseplan.glb');
+const HouseModel = ({ modelUrl }) => {
+  const { scene } = useGLTF(modelUrl, true, (error) => {
+    console.error('Error loading GLTF model:', error);
+  });
   const modelRef = useRef();
 
   useEffect(() => {
@@ -48,17 +52,22 @@ const HouseModel = () => {
   return <primitive ref={modelRef} object={scene} scale={1.5} />;
 };
 
+HouseModel.propTypes = {
+  modelUrl: PropTypes.string.isRequired,
+};
+
 const ProjectPage = () => {
   const [projectDetails, setProjectDetails] = useState(null);
   const [floorPlan, setFloorPlan] = useState(null);
   const [is3DModelVisible, setIs3DModelVisible] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error] = useState("");
   const [showSavePrompt, setShowSavePrompt] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [modelUrl, setModelUrl] = useState(null);
 
   useEffect(() => {
     getDetails(setProjectDetails, setFloorPlan);
-
   }, []);
 
   const toggle3DView = async () => {
@@ -66,56 +75,34 @@ const ProjectPage = () => {
 
     // If opening 3D view, invoke the API to convert 2D to 3D
     if (!is3DModelVisible) {
-      try {
-        const response = await fetch("/api/convert-2d-to-3d", {
-          method: "POST",
-          body: JSON.stringify({ floorPlan }), // Send the floor plan or necessary data
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const data = await response.json();
-        // Assuming the response contains a 3D model path or relevant data
-        console.log("3D model data", data);
-      } catch (error) {
-        // setError("Failed to convert to 3D.")
-      }
+      setLoading(true);
+      await createBlenderProject(floorPlan, setModelUrl);
+      setLoading(false);
     }
   };
 
   const saveChanges = async () => {
     setIsSaving(true);
-    try {
-      // Fetch updated project details
-      const response = updateProjectDetails(projectDetails);
-      if (response.status === 200) {
-        // Convert project details to JSON
-        const jsonData = JSON.stringify(projectDetails, null, 2);
-        const blob = new Blob([jsonData], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-  
-        // Create a temporary link to trigger download
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${projectDetails.name || "KAIRA_Project"}.kaira`; // Save as .kaira file
-        document.body.appendChild(a);
-        a.click();
-  
-        // Clean up
-        URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-  
-        setShowSavePrompt(false);
-        window.location.href = "/dashboard"; // Redirect after saving
-      }
-    } catch (error) {
-      setError("Failed to save the changes.");
-    } finally {
-      setIsSaving(false);
+    const response = updateProjectDetails(projectDetails);
+    if (response.status === 200) {
+      // Convert project details to JSON
+      const jsonData = JSON.stringify(projectDetails, null, 2);
+      const blob = new Blob([jsonData], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      // Create a temporary link to trigger download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${projectDetails.name || "KAIRA_Project"}.kaira`; // Save as .kaira file
+      document.body.appendChild(a);
+      a.click();
+
+      // Clean up
+      URL.revokeObjectURL(url);
+      document.body.removeChild(a);
     }
+    setIsSaving(false);
   };
-  
 
   const discardChanges = () => {
     setShowSavePrompt(false);
@@ -146,7 +133,7 @@ const ProjectPage = () => {
             <div className="floor-plan">
               <h3>Floor Plan</h3>
               <img 
-                src={'http://localhost:3001'+floorPlan} 
+                src={`http://localhost:3001/${floorPlan}`} 
                 alt="Uploaded Floor Plan" 
                 className="floor-plan-img" 
                 onError={(e) => {console.error('Image Load Error:', e);
@@ -156,25 +143,26 @@ const ProjectPage = () => {
             </div>
           )}
 
-          {is3DModelVisible && (
+          {is3DModelVisible && modelUrl && (
             <div className="three-container">
-              <Canvas camera={{ position: [5, 2, 5] }}>
-                <ambientLight intensity={0.6} />
-                <directionalLight position={[3, 3, 3]} intensity={1} />
-                <HouseModel />
-                <OrbitControls
-                  enableZoom={true}
-                  zoomSpeed={0.6}
-                  enablePan={true}
-                  panSpeed={0.5}
-                  enableRotate={true}
-                  rotateSpeed={0.4}
-                  minDistance={2}
-                  maxDistance={10}
-                  maxPolarAngle={Math.PI / 2}
-                  enableKeys={true}
-                />
-              </Canvas>
+              <ErrorBoundary>
+                <Canvas camera={{ position: [5, 2, 5] }}>
+                  <ambientLight intensity={0.6} />
+                  <directionalLight position={[3, 3, 3]} intensity={1} />
+                  <HouseModel modelUrl={modelUrl} />
+                  <OrbitControls
+                    enableZoom={true}
+                    zoomSpeed={0.6}
+                    enablePan={true}
+                    panSpeed={0.5}
+                    enableRotate={true}
+                    rotateSpeed={0.4}
+                    minDistance={2}
+                    maxDistance={10}
+                    maxPolarAngle={Math.PI / 2}
+                  />
+                </Canvas>
+              </ErrorBoundary>
             </div>
           )}
         </div>
@@ -182,7 +170,7 @@ const ProjectPage = () => {
         {/* View Options */}
         <div className="view-options">
           <button className="view-btn" onClick={toggle3DView}>
-            {is3DModelVisible ? "Close 3D View" : "Develop to 3D"}
+            {is3DModelVisible || loading ? "Close 3D View" : "Develop to 3D"}
           </button>
         </div>
       </div>

@@ -46,6 +46,7 @@
 .stat-icon {
   background-color: #1a4137;
   border-radius: 12px;
+  align-items: center;
   padding: 12px;
   color: #00d47c;
 }

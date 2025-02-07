@@ -39,8 +39,10 @@
   align-items: center;
   padding: 10px;
   margin-bottom: 20px;
-  background-color: #ffebee;
+  background-color: #94c9fb;
+  font-weight: 700;
   color: #c62828;
+  border: 2px solid #c62828;
   border-radius: 4px;
   font-size: 14px;
 }

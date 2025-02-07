@@ -67,14 +67,14 @@ export const getDetails = (setProjectDetails, setFloorPlan) => {
 };
 
 export const updateProjectDetails=(projectData) =>{
+    const proj = localStorage.getItem('projectName');
     const formData = new FormData();
     formData.append('name', projectData.projectName);
     formData.append('description', projectData.description);
     formData.append('tags', projectData.tags);
     formData.append('image', projectData.image);
-
     privateGateway
-        .put(`${kaira.projectData}/${projectName}`, formData, {
+        .put(`${kaira.update}/${proj}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -88,4 +88,15 @@ export const updateProjectDetails=(projectData) =>{
         });
 };
 
-
+export const createBlenderProject = async (floorPlan, setModelUrl) => {
+    privateGateway
+        .post(kaira.blenderProject, { image: floorPlan }, { responseType: 'blob' })
+        .then((response) => {
+            const blob = new Blob([response.data], { type: 'model/gltf-binary' });
+            const url = URL.createObjectURL(blob);
+            setModelUrl(url); // Update the state with the URL
+        })
+        .catch((error) => {
+            console.error('Error creating Blender project:', error);
+        });
+};
