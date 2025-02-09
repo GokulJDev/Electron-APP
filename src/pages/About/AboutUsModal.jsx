@@ -3,34 +3,47 @@ import { Building, Users, Laptop, Target, Github, Linkedin, Mail } from "lucide-
 import Navbar from "../nav&side/Navbarin";
 import Sidebar from "../nav&side/Sidebar";
 import "./AboutUsModal.css";
+import { assets } from '../../assets/assets';
 
 const AboutUs = () => {
   const [expandedFeature, setExpandedFeature] = useState(null);
 
   const teamMembers = [
     {
+      name: "Sheryl Susan Sujan",
+      role: "Team Lead & Frontend Developer",
+      bio: "Leading the development of KAIRA with expertise in frontend technologies and team management.",
+      image:assets.sheryl,
+      github: "https://github.com/sherylsujan",  // Replace with actual links
+      linkedin: "https://www.linkedin.com/in/sherylsusansujan/",
+      email: "sherylsusansujan@gmail.com"
+    },
+    {
       name: "Gokul J Dev",
-      role: "Team Lead & Full Stack Developer",
-      bio: "Leading the development of KAIRA with expertise in full-stack technologies and architectural visualization.",
-      image: "/team/gokul.jpg" // Replace with actual image path
+      role: "Backend Developer & 2D to 3D Automation",
+      bio: "Developing backend systems and automating 2D to 3D transformation.",
+      image: assets.gokul,
+      github: "https://github.com/GokulJDev",  // Replace with actual links
+      linkedin: "https://www.linkedin.com/in/gokul-j-dev/",
+      email:"gokuljdevpulickal@gmail.com" 
     },
     {
       name: "Nandana Suresh V",
       role: "Frontend Developer",
       bio: "Specializing in creating intuitive user interfaces and seamless user experiences.",
-      image: "/team/nandana.jpg" // Replace with actual image path
-    },
-    {
-      name: "Sheryl Susan Sujan",
-      role: "Backend Developer",
-      bio: "Focused on building robust backend systems and efficient data management solutions.",
-      image: "/team/sheryl.jpg" // Replace with actual image path
+      image: assets.nandu,
+      github: "https://github.com/Nandanans9072",  // Replace with actual links
+      linkedin: "https://www.linkedin.com/in/nandana-ns/",
+      email: "nsnandana812@gmail.com"
     },
     {
       name: "Vaisakh R Nair",
-      role: "3D Visualization Specialist",
-      bio: "Expert in 3D modeling and virtual reality integration for architectural visualization.",
-      image: "/team/vaisakh.jpg" // Replace with actual image path
+      role: "Backend Developer",
+      bio: "Integrating interactive 3D floor plan editing with features like color customization and furniture placement.",
+      image: assets.vais,
+      github: "https://github.com/Vaisakh-3759",  // Replace with actual links
+      linkedin: "https://www.linkedin.com/in/vaisakh-r-nair/",
+      email: "vaisakhrn@gmail.com"
     }
   ];
 
@@ -97,16 +110,30 @@ const AboutUs = () => {
                       <p className="team-member-role">{member.role}</p>
                       <p className="team-member-bio">{member.bio}</p>
                       <div className="team-social-links">
-                        <a href="#" className="social-link">
-                          <Github size={18} />
-                        </a>
-                        <a href="#" className="social-link">
-                          <Linkedin size={18} />
-                        </a>
-                        <a href="#" className="social-link">
-                          <Mail size={18} />
-                        </a>
-                      </div>
+  {member.github && (
+    <a href={member.github} target="_blank" rel="noopener noreferrer" className="social-link">
+      <Github size={18} />
+    </a>
+  )}
+  {member.linkedin && (
+    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
+      <Linkedin size={18} />
+    </a>
+  )}
+  {member.email && (
+    <a
+  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.email}&su=Hello&body=I%20would%20like%20to%20connect.`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="social-link"
+>
+  <Mail size={18} />
+</a>
+
+
+  )}
+</div>
+
                     </div>
                   ))}
                 </div>

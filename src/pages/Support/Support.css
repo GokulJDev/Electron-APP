@@ -3,6 +3,8 @@
   flex-direction: column;
   min-height: 100vh;
   background: #0D2620;
+  position: relative;
+  
 }
 
 .support-content {
@@ -40,6 +42,8 @@
 
 .support-card-content {
   padding: 1.5rem;
+  
+  
 }
 
 /* Vertical Layout */
@@ -220,4 +224,49 @@
   .topic-card-support {
     padding: 1rem;
   }
+}
+
+/* Add these styles to your Support.css file */
+
+/* Create a parent stacking context */
+.support-container {
+  isolation: isolate;
+}
+
+/* Overlay for the blur effect */
+.blur-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0; /* shorthand for top: 0, right: 0, bottom: 0, left: 0 */
+  background: rgba(13, 38, 32, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.blur-overlay.active::before {
+  opacity: 1;
+}
+
+/* Ensure support content stays under the overlay */
+.support-content,
+.support-card,
+.support-card-header,
+.support-title,
+.support-card-content,
+.topics-grid-support,
+.topic-card-support,
+.topic-content-support,
+.topic-info-support {
+  position: relative;
+  z-index: -1;
+}
+
+/* Modal should always be on top */
+.modal-window {
+  position: relative;
+  z-index: 100;
 }

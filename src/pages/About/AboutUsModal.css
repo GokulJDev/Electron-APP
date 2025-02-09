@@ -5,6 +5,7 @@
   min-height: 100vh;
   background: #0D2620;
   color: #ffffff;
+  position: relative;
 }
 
 .about-content {
@@ -116,15 +117,21 @@
   padding: 1rem;
 }
 
+
 .team-card {
-  position: relative;
-  background: rgba(24, 81, 67, 0.2);
-  border-radius: 20px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(55, 180, 149, 0.2);
-}
+    position: relative;
+    background: rgba(24, 81, 67, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(55, 180, 149, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Ensures proper alignment */
+    min-height: 350px; /* Adjust based on content length */
+  }
 
 .team-card::before {
   content: '';
@@ -190,7 +197,8 @@
 .team-social-links {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .social-link {
@@ -203,6 +211,10 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 10; /* Ensure it's clickable */
+
+  
 }
 
 .social-link:hover {
@@ -269,4 +281,33 @@
   .team-member-name {
     font-size: 1.25rem;
   }
+}
+.about-container{
+  isolation: isolate;
+}
+.blur-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0; /* shorthand for top: 0, right: 0, bottom: 0, left: 0 */
+  background: rgba(13, 38, 32, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.blur-overlay.active::before {
+  opacity: 1;
+}
+.about-content,
+.about-card,
+.about-card-content,
+.about-card-header,
+.about-container
+.about-content,
+.about-main,
+.about-title{
+  position: relative;
+  z-index: -1;
 }
