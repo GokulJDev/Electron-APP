@@ -38,7 +38,7 @@ const AboutUs = () => {
     },
     {
       name: "Vaisakh R Nair",
-      role: "Backend Developer",
+      role: "Backend Developer & Unity Developer",
       bio: "Integrating interactive 3D floor plan editing with features like color customization and furniture placement.",
       image: assets.vais,
       github: "https://github.com/Vaisakh-3759",  // Replace with actual links
