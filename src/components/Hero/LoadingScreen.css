@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #050505 30%, #000000 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* Fade out when loading completes */
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Holographic KAIRA Logo */
+.hologram-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hologram-logo {
+  width: 100%;
+  height: auto;
+  animation: hologram-glow 1.5s infinite alternate, floatUp 2s infinite ease-in-out;
+}
+
+@keyframes hologram-glow {
+  0% { filter: drop-shadow(0 0 10px #07A22B) drop-shadow(0 0 20px #07A22B) drop-shadow(0 0 30px #07A22B); }
+  100% { filter: drop-shadow(0 0 15px #07A22B) drop-shadow(0 0 30px #07A22B) drop-shadow(0 0 50px #07A22B); }
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Energy Ring */
+.energy-ring {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid rgba(7, 162, 43, 0.8);
+  box-shadow: 0 0 15px rgba(7, 162, 43, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulseGlow 3s infinite ease-in-out, rotateRing 5s infinite linear;
+}
+
+@keyframes rotateRing {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(7, 162, 43, 0.8); }
+  50% { box-shadow: 0 0 25px rgba(7, 162, 43, 1); }
+}
+
+/* Loading Text */
+.loading-text {
+  color: #07A22B;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  transition: opacity 0.5s ease-in-out;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.fade-in { opacity: 1; }
+
+/* Floating Particles */
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(7, 162, 43, 0.2) 5%, transparent 80%);
+  background-size: 100px 100px;
+  animation: particlesMove 5s infinite alternate;
+  opacity: 0.3;
+}
+
+@keyframes particlesMove {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-20px); }
+}

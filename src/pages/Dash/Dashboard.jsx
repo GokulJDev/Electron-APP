@@ -20,7 +20,7 @@ const Dashboard = () => {
     setShowAllProjects(!showAllProjects);
   };
 
-  const projectsToShow = showAllProjects ? recentProjects : recentProjects.slice(0, 4);
+  const projectsToShow = showAllProjects ? recentProjects : recentProjects.slice(0, 5);
 
   return (
     <div className="dashboard">

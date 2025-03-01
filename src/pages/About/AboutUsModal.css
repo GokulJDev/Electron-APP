@@ -281,33 +281,33 @@
   .team-member-name {
     font-size: 1.25rem;
   }
-}
-.about-container{
-  isolation: isolate;
-}
-.blur-overlay::before {
-  content: '';
-  position: fixed;
-  inset: 0; /* shorthand for top: 0, right: 0, bottom: 0, left: 0 */
-  background: rgba(13, 38, 32, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.blur-overlay.active::before {
-  opacity: 1;
-}
-.about-content,
-.about-card,
-.about-card-content,
-.about-card-header,
-.about-container
-.about-content,
-.about-main,
-.about-title{
-  position: relative;
-  z-index: -1;
+  .about-container{
+    isolation: isolate;
+  }
+  .blur-overlay::before {
+    content: '';
+    position: fixed;
+    inset: 0; /* shorthand for top: 0, right: 0, bottom: 0, left: 0 */
+    background: rgba(13, 38, 32, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .blur-overlay.active::before {
+    opacity: 1;
+  }
+  .about-content,
+  .about-card,
+  .about-card-content,
+  .about-card-header,
+  .about-container
+  .about-content,
+  .about-main,
+  .about-title{
+    position: relative;
+    z-index: -1;
+  }
 }
