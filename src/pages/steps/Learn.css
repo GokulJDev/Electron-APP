@@ -140,6 +140,13 @@
     line-height: 1.5;
     margin-bottom: 1rem;
   }
+  .step-note {
+    color: #ff6600; /* Example: Make it stand out */
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: small;
+  }
+  
   
   .upload-button {
     padding: 0.5rem 1rem;
@@ -156,4 +163,79 @@
   .upload-button:hover {
     background-color: #2ca587;
   }
-  
+  /* Add these styles to your Learn.css file */
+
+.sub-steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(221, 26, 26, 0.1);
+}
+
+.sub-step {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.sub-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sub-step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.sub-step-icon {
+  color: #4a90e2;
+}
+
+.sub-step-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #4a90e2;
+}
+
+.sub-step-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+/* Improve existing styles */
+.step-card-learn {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.step-card-learn.active {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.step-extra-content {
+  padding-top: 16px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-details-learn {
+  margin-bottom: 16px;
+}

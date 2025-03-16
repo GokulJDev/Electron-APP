@@ -45,8 +45,8 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="sidebar">
-      <nav className="sidebar-nav">
+    <aside className="sidebar-dash">
+      <nav className="sidebar-nav-dash">
         <ul className="unique-nav-list">
           {mainNavItems.map((item) => (
             <li
@@ -88,7 +88,7 @@ const Sidebar = () => {
         />
       </div>
 
-      <nav className="sidebar-nav secondary">
+      <nav className="sidebar-nav-dash secondary">
         <ul className="unique-nav-list">
           {secondaryNavItems.map((item) => (
             <li

@@ -63,7 +63,7 @@
   position: absolute;
   left: 12px;
   color: #b3b3b3;
-  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth transform and color transition */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 /* Input field */
@@ -76,7 +76,7 @@
   font-size: 14px;
   width: 100%;
   display: block;
-  transition: all 0.3s ease-in-out; /* Simplified transition */
+  transition: all 0.3s ease-in-out;
 }
 
 /* Focus state for input field */
@@ -85,8 +85,8 @@
   border-color: #00d47c;
   background-color: #1e6049;
   width: 130%;
-  padding-left: 50px; /* Extra padding for smoothness */
-  box-shadow: 0 0 8px rgba(27, 98, 68, 0.5); /* Added subtle glow effect */
+  padding-left: 50px;
+  box-shadow: 0 0 8px rgba(27, 98, 68, 0.5);
 }
 
 /* Placeholder color animation */
@@ -103,7 +103,7 @@
 /* Change icon color and animate when focused */
 .unique-search-input:focus + .unique-search-icon {
   color: #00d47c;
-  transform: scale(1.2); /* Icon grows when search is focused */
+  transform: scale(1.2);
 }
 
 /* Notifications */
@@ -116,6 +116,7 @@
 .unique-notifications:hover {
   transform: scale(1.1);
 }
+
 .unique-notification-count {
   position: absolute;
   top: -5px;
@@ -145,25 +146,25 @@
   padding: 10px;
   border-radius: 50%;
   background-color: #185143;
-  transition: transform 0.3s ease-in-out; /* Smooth hover effect for the profile container */
+  transition: transform 0.3s ease-in-out;
 }
 
 /* Hover effect for profile container */
 .unique-profile-container:hover {
-  transform: scale(1.1); /* Slightly enlarges the profile icon */
+  transform: scale(1.1);
   background: #00d47c;
-  border: 2px solid white; /* Adds a border when hovered */
+  border: 2px solid white;
 }
 
 /* Profile icon */
 .unique-profile-icon {
   color: #b3b3b3;
-  transition: color 0.3s ease-in-out; /* Smooth color transition */
+  transition: color 0.3s ease-in-out;
 }
 
 /* Hover effect for profile icon */
 .unique-profile-container:hover .unique-profile-icon {
-  color: #ffffff; /* New color when hovered */
+  color: #ffffff;
 }
 
 /* Profile Dropdown */
@@ -171,21 +172,78 @@
   position: absolute;
   right: 0;
   top: 40px;
-  background: #185143;
-  padding: 10px;
+  background: #031d16;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(20, 131, 101, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px); /* Initially positioned below the profile icon */
+  transform: translateY(10px);
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+  width: 180px;
+  z-index: 1100;
 }
 
-/* Show dropdown when active */
+.dropdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1090;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.unique-profile-container.active .dropdown-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.unique-profile-container.active .unique-profile-dropdown,
 .unique-profile-container:hover .unique-profile-dropdown {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0); /* Dropdown smoothly moves up */
+  transform: translateY(0);
+}
+
+/* User Info Section */
+.profile-dropdown-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 10px;
+}
+
+.profile-dropdown-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #00d47c;
+  object-fit: cover;
+  background-color: #12633a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Profile info */
+.profile-dropdown-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
 }
 
 /* Profile Dropdown List */
@@ -197,22 +255,27 @@
 
 /* Profile Dropdown Items */
 .unique-profile-dropdown li {
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
   color: white;
-  border-radius: 10px;
-  transition: background-color 0.2s ease-in-out, color 0.3s ease-in-out;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2px;
 }
 
 /* Hover effect for dropdown items */
 .unique-profile-dropdown li:hover {
-  background-color: #2a846d;
-  color: white; /* Color change on hover */
+  background-color: #12633a;
 }
 
-
 .outbut {
-  color: white; /* Ensure text color is legible */
+  font-size: medium;
+  color: white;
+  width: 100%;
+  text-align: left;
 }
 
 .outbut:hover {
@@ -227,15 +290,40 @@
   }
 
   .unique-navbar-left {
-    justify-content: space-between; /* Ensure logo and menu button are spaced out */
+    justify-content: space-between;
   }
 
   .unique-navbar-right {
-    display: none; /* Hide the right section in mobile by default */
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: #0D2620;
+    padding: 20px;
+    gap: 20px;
+    z-index: 999;
+  }
+
+  /* Search container in mobile view */
+  .unique-search-container {
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Menu open state for mobile */
   .unique-navbar.open .unique-navbar-right {
     display: flex;
+  }
+
+  /* Adjust dropdown position in mobile view */
+  .unique-profile-dropdown {
+    position: fixed;
+    top: unset;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    width: auto;
   }
 }

@@ -129,6 +129,7 @@ html, body {
 }
 
 .upload-btn:hover {
+    color: white;
     background: #34fc0288;
     transform: translateY(-1px);
 }

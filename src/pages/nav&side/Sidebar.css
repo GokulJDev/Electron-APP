@@ -1,5 +1,5 @@
 /* Sidebar */
-.sidebar {
+.sidebar-dash {
     width: 280px;
     height: 82vh;
     background-color: #185143;
@@ -14,7 +14,7 @@
 }
 
 /* Links in Sidebar */
-.sidebar .unique-nav-list {
+.sidebar-dash .unique-nav-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -23,7 +23,7 @@
     margin: 0;
 }
 
-.sidebar .unique-nav-list li {
+.sidebar-dash .unique-nav-list li {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -37,13 +37,13 @@
 }
 
 /* Hover effect for links */
-.sidebar .unique-nav-list li:hover {
+.sidebar-dash .unique-nav-list li:hover {
     background-color: rgba(0, 212, 124, 0.1);
     transform: translateX(8px);
 }
 
 /* Active state for selected item */
-.sidebar .unique-nav-list li.active {
+.sidebar-dash .unique-nav-list li.active {
     background-color: #00d47c;
     color: #0D2620;
     font-weight: 500;
@@ -51,7 +51,7 @@
 }
 
 /* Add a subtle indicator for active item */
-.sidebar .unique-nav-list li.active::before {
+.sidebar-dash .unique-nav-list li.active::before {
     content: '';
     position: absolute;
     left: -20px;
@@ -96,7 +96,7 @@
 
 
 /* Secondary navigation section */
-.sidebar-nav.secondary {
+.sidebar-nav-dash .secondary {
     margin-top: auto;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -104,14 +104,14 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .sidebar {
+    .sidebar-dash {
         width: 100%;
         height: auto;
         border-radius: 0;
     }
 
-    .sidebar .unique-nav-list li:hover,
-    .sidebar .unique-nav-list li.active {
+    .sidebar-dash .unique-nav-list li:hover,
+    .sidebar-dash .unique-nav-list li.active {
         transform: none;
     }
 }

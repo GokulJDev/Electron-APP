@@ -13,11 +13,14 @@ import Learn from './pages/steps/Learn';
 import ProjectPage from './pages/project/ProjectPage';
 import AboutUsModal from './pages/About/AboutUsModal';
 import Support from './pages/Support/Support';
+import Profile from './pages/Profile/Profile';
+import Navbarin from './pages/nav&side/Navbarin';
 
 const App = () => {
 
   return (
       <Router>
+
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HeroSection />} />
@@ -34,6 +37,7 @@ const App = () => {
           <Route path="/project/:project_id" element={<ProjectPage />} />
           <Route path="/weare" element={<AboutUsModal />} />
           <Route path="/support" element={<Support/>} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
       </Router>
   );
