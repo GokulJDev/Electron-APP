@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Camera, Trash2, ChevronRight, Upload, Download, Cog, Layers, Monitor, Home, Settings, LogOut, Moon, Sun, Check } from 'lucide-react';
+import { User, Camera, Trash2, ChevronRight, Bell, CreditCard, Wallet, Home, Settings, LogOut, Moon, Sun, Check } from 'lucide-react';
 import './Profile.css';
 import { assets } from '../../assets/assets';
 
@@ -9,23 +9,21 @@ const Profile = () => {
     lastName: 'Doe',
     email: 'john.doe@example.com',
     phone: '+1 (555) 123-4567',
-    projectName: 'My Home Renovation',
-    floorDimensions: '12m x 10m',
-    preferredScale: '1:50',
-    outputFormat: 'OBJ',
-    renderQuality: 'High',
-    texturePreference: 'Realistic',
+    gender: 'Male',
+    taxID: '1234-5678-9012',
+    country: 'USA',
+    address: '123 Street, New York, USA',
+    preferredLanguage: 'English',
+    dateOfBirth: '1990-01-01',
+    avatar: null,
   });
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedFloorplan, setSelectedFloorplan] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [activeTab, setActiveTab] = useState('conversion');
+  const [activeTab, setActiveTab] = useState('personal');
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [formModified, setFormModified] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
-  const [conversionProgress, setConversionProgress] = useState(0);
-  const [isConverting, setIsConverting] = useState(false);
 
   useEffect(() => {
     // Check system preference for dark mode
@@ -42,23 +40,8 @@ const Profile = () => {
     }
   };
 
-  const handleFloorplanUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const fileUrl = URL.createObjectURL(file);
-      setSelectedFloorplan(fileUrl);
-      setFormModified(true);
-      setSuccessMessage('Floorplan uploaded successfully!');
-      
-      // Clear success message after 3 seconds
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 3000);
-    }
-  };
-
-  const handleDeleteFloorplan = () => {
-    setSelectedFloorplan(null);
+  const handleDeleteAvatar = () => {
+    setSelectedImage(null);
     setFormModified(true);
   };
 
@@ -74,42 +57,13 @@ const Profile = () => {
     e.preventDefault();
     // Simulate API call for saving data
     setTimeout(() => {
-      setSuccessMessage('Settings updated successfully!');
+      setSuccessMessage('Profile updated successfully!');
       setFormModified(false);
       
       // Clear success message after 3 seconds
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000);
-    }, 500);
-  };
-
-  const handleConversion = () => {
-    if (!selectedFloorplan) {
-      setSuccessMessage('Please upload a floorplan first');
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 3000);
-      return;
-    }
-    
-    setIsConverting(true);
-    setConversionProgress(0);
-    
-    // Simulate conversion process
-    const interval = setInterval(() => {
-      setConversionProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsConverting(false);
-          setSuccessMessage('Conversion completed successfully!');
-          setTimeout(() => {
-            setSuccessMessage('');
-          }, 3000);
-          return 100;
-        }
-        return prev + 10;
-      });
     }, 500);
   };
 
@@ -146,6 +100,12 @@ const Profile = () => {
               Upload Photo
               <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
             </label>
+            {selectedImage && (
+              <button onClick={handleDeleteAvatar} className="delete-btn">
+                <Trash2 size={16} />
+                Remove
+              </button>
+            )}
           </div>
         </div>
       </aside>
@@ -153,7 +113,7 @@ const Profile = () => {
       {/* Main Content */}
       <div className="main-content">
         <div className="header">
-          <h1>Floor 2D to 3D Conversion</h1>
+          <h1>Account Settings</h1>
           <div className="header-actions">
             <button 
               onClick={toggleDarkMode} 
@@ -167,22 +127,22 @@ const Profile = () => {
         {/* Settings Tabs */}
         <div className="tabs">
           <button 
-            onClick={() => setActiveTab('conversion')} 
-            className={activeTab === 'conversion' ? 'active' : ''}
+            onClick={() => setActiveTab('personal')} 
+            className={activeTab === 'personal' ? 'active' : ''}
           >
-            Conversion Tool
+            Personal Info
           </button>
           <button 
-            onClick={() => setActiveTab('settings')} 
-            className={activeTab === 'settings' ? 'active' : ''}
+            onClick={() => setActiveTab('security')} 
+            className={activeTab === 'security' ? 'active' : ''}
           >
-            Conversion Settings
+            Security
           </button>
           <button 
-            onClick={() => setActiveTab('history')} 
-            className={activeTab === 'history' ? 'active' : ''}
+            onClick={() => setActiveTab('preferences')} 
+            className={activeTab === 'preferences' ? 'active' : ''}
           >
-            Conversion History
+            Preferences
           </button>
         </div>
 
@@ -194,224 +154,239 @@ const Profile = () => {
           </div>
         )}
 
-        {/* Content Section */}
+        {/* Profile Section */}
         <div className="content-card">
-          {activeTab === 'conversion' && (
+          {activeTab === 'personal' && (
             <div className="tab-content">
-              <div className="conversion-layout">
-                {/* Floorplan Upload Section */}
-                <div className="floorplan-section">
-                  <h3 className="section-title">Upload Floorplan</h3>
-                  <div className="floorplan-upload-area">
-                    {selectedFloorplan ? (
-                      <div className="floorplan-preview">
-                        <img src={selectedFloorplan} alt="Floorplan" className="floorplan-image" />
-                        <div className="floorplan-actions">
-                          <button onClick={handleDeleteFloorplan} className="delete-btn">
-                            <Trash2 size={16} />
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="upload-placeholder">
-                        <Layers size={48} />
-                        <p>Drag and drop your 2D floorplan here</p>
-                        <p className="upload-subtitle">Supports JPG, PNG, PDF (max 20MB)</p>
-                        <label className="upload-btn">
-                          <Upload size={16} />
-                          Browse Files
-                          <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={handleFloorplanUpload} className="hidden" />
-                        </label>
-                      </div>
-                    )}
-                  </div>
-                  
-                  {selectedFloorplan && (
-                    <div className="conversion-actions">
-                      <button 
-                        onClick={handleConversion} 
-                        disabled={isConverting} 
-                        className={`convert-btn ${isConverting ? 'disabled' : ''}`}
-                      >
-                        Convert to 3D
-                      </button>
-                      
-                      {isConverting && (
-                        <div className="progress-container">
-                          <div className="progress-bar">
-                            <div 
-                              className="progress-fill" 
-                              style={{ width: `${conversionProgress}%` }}
-                            ></div>
-                          </div>
-                          <span className="progress-text">{conversionProgress}%</span>
-                        </div>
-                      )}
+              <div className="profile-layout">
+               
+                {/* Form Section */}
+                <form onSubmit={handleSubmit} className="profile-form">
+                  <div className="form-grid">
+                    <div className="form-group">
+                      <label>First Name</label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        value={userData.firstName}
+                        onChange={handleInputChange}
+                      />
                     </div>
-                  )}
+                    <div className="form-group">
+                      <label>Last Name</label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        value={userData.lastName}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={userData.email}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Mobile Number</label>
+                      <input
+                        type="text"
+                        name="phone"
+                        value={userData.phone}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Gender</label>
+                      <select
+                        name="gender"
+                        value={userData.gender}
+                        onChange={handleInputChange}
+                      >
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label>Date of Birth</label>
+                      <input
+                        type="date"
+                        name="dateOfBirth"
+                        value={userData.dateOfBirth}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Tax Identification Number</label>
+                      <input
+                        type="text"
+                        name="taxID"
+                        value={userData.taxID}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Country</label>
+                      <input
+                        type="text"
+                        name="country"
+                        value={userData.country}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="form-group full-width">
+                      <label>Residential Address</label>
+                      <input
+                        type="text"
+                        name="address"
+                        value={userData.address}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+
+                  </div>
+                  <div className="form-actions">
+                    <button
+                      type="submit"
+                      disabled={!formModified}
+                      className={formModified ? 'save-btn' : 'save-btn disabled'}
+                    >
+                      Save Changes
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'security' && (
+            <div className="tab-content">
+              <h3 className="section-title">Security Settings</h3>
+              <div className="security-sections">
+                <div className="security-section">
+                  <h4>Change Password</h4>
+                  <div className="password-grid">
+                    <div className="form-group">
+                      <label>Current Password</label>
+                      <input type="password" />
+                    </div>
+                    <div className="form-group empty"></div>
+                    <div className="form-group">
+                      <label>New Password</label>
+                      <input type="password" />
+                    </div>
+                    <div className="form-group">
+                      <label>Confirm New Password</label>
+                      <input type="password" />
+                    </div>
+                  </div>
+                  <div className="section-actions">
+                    <button className="action-btn">
+                      Update Password
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="security-section">
+                  <h4>Two-Factor Authentication</h4>
+                  <p className="section-description">Add an extra layer of security to your account</p>
+                  <button className="action-btn green">
+                    Enable 2FA
+                  </button>
+                </div>
+                
+                <div className="security-section">
+                  <h4>Login Sessions</h4>
+                  <p className="section-description">You're currently logged in on these devices</p>
+                  <div className="session-item">
+                    <div className="session-info">
+                      <div className="device-name">Chrome on Windows</div>
+                      <div className="device-details">New York, USA · Current Session</div>
+                    </div>
+                    <button className="link-btn">This Device</button>
+                  </div>
+                  <div className="session-item">
+                    <div className="session-info">
+                      <div className="device-name">Safari on iPhone</div>
+                      <div className="device-details">New York, USA · 2 days ago</div>
+                    </div>
+                    <button className="link-btn red">Sign Out</button>
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
-          {activeTab === 'settings' && (
+          {activeTab === 'preferences' && (
             <div className="tab-content">
-              <h3 className="section-title">Conversion Settings</h3>
-              
-              {/* Form Section */}
-              <form onSubmit={handleSubmit} className="profile-form">
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label>Project Name</label>
-                    <input
-                      type="text"
-                      name="projectName"
-                      value={userData.projectName}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Floor Dimensions</label>
-                    <input
-                      type="text"
-                      name="floorDimensions"
-                      value={userData.floorDimensions}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Preferred Scale</label>
-                    <select
-                      name="preferredScale"
-                      value={userData.preferredScale}
-                      onChange={handleInputChange}
-                    >
-                      <option value="1:50">1:50</option>
-                      <option value="1:100">1:100</option>
-                      <option value="1:200">1:200</option>
-                      <option value="custom">Custom</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Output Format</label>
-                    <select
-                      name="outputFormat"
-                      value={userData.outputFormat}
-                      onChange={handleInputChange}
-                    >
-                      <option value="OBJ">OBJ</option>
-                      <option value="FBX">FBX</option>
-                      <option value="GLTF">GLTF/GLB</option>
-                      <option value="DAE">DAE (Collada)</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Render Quality</label>
-                    <select
-                      name="renderQuality"
-                      value={userData.renderQuality}
-                      onChange={handleInputChange}
-                    >
-                      <option value="Low">Low (Faster)</option>
-                      <option value="Medium">Medium</option>
-                      <option value="High">High (Detailed)</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Texture Preference</label>
-                    <select
-                      name="texturePreference"
-                      value={userData.texturePreference}
-                      onChange={handleInputChange}
-                    >
-                      <option value="Basic">Basic</option>
-                      <option value="Realistic">Realistic</option>
-                      <option value="Stylized">Stylized</option>
-                      <option value="None">No Textures</option>
-                    </select>
-                  </div>
-                  <div className="form-group full-width">
-                    <label>Additional Notes</label>
-                    <textarea
-                      name="notes"
-                      rows="3"
-                      placeholder="Any special requirements for your conversion..."
-                      onChange={handleInputChange}
-                    ></textarea>
+              <h3 className="section-title">Preferences</h3>
+              <div className="preference-sections">
+                <div className="preference-section">
+                  <h4>Notification Settings</h4>
+                  <div className="toggle-list">
+                    <div className="toggle-item">
+                      <label>Email Notifications</label>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="email-notifications" defaultChecked />
+                        <label htmlFor="email-notifications" className="toggle-label"></label>
+                      </div>
+                    </div>
+                    <div className="toggle-item">
+                      <label>SMS Notifications</label>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="sms-notifications" />
+                        <label htmlFor="sms-notifications" className="toggle-label"></label>
+                      </div>
+                    </div>
+                    <div className="toggle-item">
+                      <label>Push Notifications</label>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="push-notifications" defaultChecked />
+                        <label htmlFor="push-notifications" className="toggle-label"></label>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="form-actions">
-                  <button
-                    type="submit"
-                    disabled={!formModified}
-                    className={formModified ? 'save-btn' : 'save-btn disabled'}
-                  >
-                    Save Settings
+                
+                <div className="preference-section">
+                  <h4>Privacy Settings</h4>
+                  <div className="toggle-list">
+                    <div className="toggle-item">
+                      <label>Allow data collection for personalization</label>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="data-collection" defaultChecked />
+                        <label htmlFor="data-collection" className="toggle-label"></label>
+                      </div>
+                    </div>
+                    <div className="toggle-item">
+                      <label>Share account activity with third parties</label>
+                      <div className="toggle-switch">
+                        <input type="checkbox" id="share-activity" />
+                        <label htmlFor="share-activity" className="toggle-label"></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="preference-section">
+                  <h4>Appearance</h4>
+                  <div className="appearance-options">
+                    <button className="appearance-btn">System Default</button>
+                    <button className={`appearance-btn ${!isDarkMode ? 'active' : ''}`}>Light Mode</button>
+                    <button className={`appearance-btn ${isDarkMode ? 'active' : ''}`}>Dark Mode</button>
+                  </div>
+                </div>
+                
+                <div className="preference-actions">
+                  <button className="save-btn">
+                    Save Preferences
                   </button>
                 </div>
-              </form>
-            </div>
-          )}
-
-          {activeTab === 'history' && (
-            <div className="tab-content">
-              <h3 className="section-title">Conversion History</h3>
-              {/* Conversion History Table */}
-              <div className="history-table-container">
-                <table className="history-table">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Project Name</th>
-                      <th>Input File</th>
-                      <th>Output Format</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Mar 15, 2025</td>
-                      <td>My Home Renovation</td>
-                      <td>home_floorplan.jpg</td>
-                      <td>OBJ</td>
-                      <td><span className="status-complete">Complete</span></td>
-                      <td>
-                        <button className="action-link">
-                          <Download size={14} />
-                          Download
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Mar 10, 2025</td>
-                      <td>Office Space</td>
-                      <td>office_layout.pdf</td>
-                      <td>FBX</td>
-                      <td><span className="status-complete">Complete</span></td>
-                      <td>
-                        <button className="action-link">
-                          <Download size={14} />
-                          Download
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Mar 5, 2025</td>
-                      <td>Kitchen Redesign</td>
-                      <td>kitchen_plan.png</td>
-                      <td>GLTF</td>
-                      <td><span className="status-complete">Complete</span></td>
-                      <td>
-                        <button className="action-link">
-                          <Download size={14} />
-                          Download
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
             </div>
           )}
