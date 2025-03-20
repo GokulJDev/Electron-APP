@@ -96,7 +96,7 @@ const Navbarin = () => {
               <ul>
                 <li onClick={handleNavigateToAccount}>
                   <Settings size={16} />
-                  Account Settings
+                  Settings
                 </li>
                 <li>
                   <LogOut size={16} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { X, AlertTriangle, Home, Calendar, FileText, User } from "lucide-react";
+import { X, AlertTriangle, Calendar, FileText, User } from "lucide-react";
 import { createBlenderProject, getDetails, updateProjectDetails } from "../../../api/project";
 import PropTypes from 'prop-types';
 import ErrorBoundary from "../../../services/ErrorBoundary.jsx";
@@ -12,46 +12,10 @@ const HouseModel = ({ modelUrl }) => {
   const { scene } = useGLTF(modelUrl, true, (error) => {
     console.error('Error loading GLTF model:', error);
   });
-  const modelRef = useRef();
 
-  useEffect(() => {
-    let frameId;
-    let isMouseInside = false;
-
-    const animate = () => {
-      if (modelRef.current && !isMouseInside) {
-        modelRef.current.rotation.y += 0.01;
-      }
-      frameId = requestAnimationFrame(animate);
-    };
-
-    const handleMouseEnter = () => {
-      isMouseInside = true;
-    };
-
-    const handleMouseLeave = () => {
-      isMouseInside = false;
-    };
-
-    const canvas = document.querySelector('canvas');
-    if (canvas) {
-      canvas.addEventListener('mouseenter', handleMouseEnter);
-      canvas.addEventListener('mouseleave', handleMouseLeave);
-    }
-
-    animate();
-
-    return () => {
-      cancelAnimationFrame(frameId);
-      if (canvas) {
-        canvas.removeEventListener('mouseenter', handleMouseEnter);
-        canvas.removeEventListener('mouseleave', handleMouseLeave);
-      }
-    };
-  }, []);
-
-  return <primitive ref={modelRef} object={scene} scale={1.5} />;
+  return <primitive object={scene} scale={1.5} />;
 };
+
 
 HouseModel.propTypes = {
   modelUrl: PropTypes.string.isRequired,
@@ -136,7 +100,7 @@ const ProjectPage = () => {
         </button>
       </div>
 
-      <div className="main-content">
+      <div className="main-content2">
         {error && (
           <div className="error-message">
             <AlertTriangle size={16} /> {error}

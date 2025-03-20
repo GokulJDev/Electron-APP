@@ -10,4 +10,8 @@ export const kaira ={
     projectData: '/projectdata',
     update: '/update',
     blenderProject: '/blenderProject',
+
+    //Profile
+    profile: '/profile',
+    profileData: '/profiledata',
 }

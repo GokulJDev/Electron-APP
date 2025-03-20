@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { User, Camera, Trash2, ChevronRight, Bell, CreditCard, Wallet, Home, Settings, LogOut, Moon, Sun, Check } from 'lucide-react';
+import { User, Camera, Trash2, Moon, Sun, Check } from 'lucide-react';
 import './Profile.css';
 import { assets } from '../../assets/assets';
+import { fetchProfileDetails } from '../../../api/profile';
 
 const Profile = () => {
+  
   const [userData, setUserData] = useState({
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
-    phone: '+1 (555) 123-4567',
-    gender: 'Male',
-    taxID: '1234-5678-9012',
-    country: 'USA',
-    address: '123 Street, New York, USA',
-    preferredLanguage: 'English',
-    dateOfBirth: '1990-01-01',
-    avatar: null,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    gender: '',
+    dateOfBirth: '',
+    taxID: '',
+    country: '',
+    address: '',
   });
-
+  
   const [selectedImage, setSelectedImage] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeTab, setActiveTab] = useState('personal');
@@ -29,6 +29,7 @@ const Profile = () => {
     // Check system preference for dark mode
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setIsDarkMode(prefersDark);
+    fetchProfileDetails(setUserData);
   }, []);
 
   const handleImageUpload = (e) => {
