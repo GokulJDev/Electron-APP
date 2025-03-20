@@ -1,60 +1,72 @@
+:root {
+  --primary-color: #00d47c;
+  --secondary-color: #185143;
+  --background-color: #0D2620;
+  --text-color: #F7FAFA;
+  --border-color: #00d47c;
+  --error-color: #ff4d4f;
+}
+
 .project-page {
   display: flex;
   height: 100vh;
-  background-color: #0D2620;
+  background-color: var(--background-color);
   font-family: 'Manrope', sans-serif;
+  color: var(--text-color);
 }
 
 .sidebars {
-  width: 250px;
-  background-color: #185143;
-  padding: 20px;
+  width: 280px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--background-color));
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #F7FAFA;
+  border-right: 2px solid var(--border-color);
 }
 
 .sidebars-logo img {
-  max-width: 120px;
-  margin-bottom: 30px;
+  max-width: 150px;
+  margin-bottom: 35px;
+  left: 8%;
 }
 
 .sidebars-project-details {
   text-align: center;
   width: 100%;
+  padding: 15px 0;
 }
 
 .sidebars-project-details h3 {
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: var(--primary-color);
 }
 
 .project-metadata {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .metadata-item {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   font-size: 14px;
-  margin-bottom: 10px;
-  word-break: break-word;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .metadata-item svg {
-  color: #00d47c;
+  color: var(--primary-color);
   flex-shrink: 0;
-  margin-top: 2px;
 }
 
 .close-btn {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
   cursor: pointer;
@@ -63,30 +75,118 @@
 }
 
 .close-btn:hover {
-  color: #00d47c;
+  color: var(--primary-color);
 }
 
-.main-content {
+.main-content2 {
   flex-grow: 1;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  background: #10332d;
+  overflow-y: hidden;
 }
 
 .floor-plan {
-  max-width: 500px;
-  background-color: #185143;
+  max-width: 320px;
+  background-color: var(--secondary-color);
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
   text-align: center;
+  border: 2px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.floor-plan h3 {
+  color: var(--primary-color);
+  margin-bottom: 12px;
 }
 
 .floor-plan-img {
   max-width: 100%;
-  max-height: 400px;
-  border-radius: 4px;
+  max-height: 220px;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
 }
 
-/* Rest of the previous CSS remains the same */
+.three-container {
+  width: 100%;
+  height: 350px;
+  max-width: 850px;
+  margin: 0 auto;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  background-color: #132E28;
+  padding: 4px;
+}
+
+.view-options .view-btn,
+.save-prompt-modal button {
+  background-color: var(--primary-color);
+  border: none;
+  color: var(--background-color);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.view-options .view-btn:hover,
+.save-prompt-modal button:hover {
+  background-color: #00a35c;
+}
+
+.error-message {
+  background-color: var(--error-color);
+  color: var(--text-color);
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.save-prompt-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.save-prompt-modal p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .sidebars {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .sidebars-logo img {
+    max-width: 100px;
+    margin-bottom: 20px;
+  }
+
+  .floor-plan {
+    max-width: 100%;
+  }
+
+  .three-container {
+    height: 320px;
+  }
+}
