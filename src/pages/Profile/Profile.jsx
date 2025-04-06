@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { User, Camera, Trash2, Moon, Sun, Check } from 'lucide-react';
+import { User, Camera, Trash2, Moon, Sun, Check, X, ArrowLeft } from 'lucide-react';
 import './Profile.css';
 import { assets } from '../../assets/assets';
 import { fetchProfileDetails } from '../../../api/profile';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+  const navigate = useNavigate();
   
   const [userData, setUserData] = useState({
     firstName: '',
@@ -16,16 +18,35 @@ const Profile = () => {
     taxID: '',
     country: '',
     address: '',
+    bio: '',
+    occupation: '',
   });
   
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [activeTab, setActiveTab] = useState('personal');
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [formModified, setFormModified] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
- 
+  useEffect(() => {
+    // Simulate fetching user data
+    setTimeout(() => {
+      setUserData({
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@example.com',
+        phone: '+1 (555) 123-4567',
+        gender: 'Male',
+        dateOfBirth: '1990-01-15',
+        taxID: 'KAIRA-12345',
+        country: 'United States',
+        address: '123 Main Street, New York, NY 10001',
+        bio: 'Software developer with 5+ years of experience',
+        occupation: 'Senior Developer',
+      });
+    }, 500);
+  }, []);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -71,13 +92,19 @@ const Profile = () => {
     setSidebarCollapsed(!isSidebarCollapsed);
   };
 
+  const handleBackToDashboard = () => {
+    navigate('/dashboard');
+  };
+
   return (
-    <div className={`profile-container ${isDarkMode ? 'dark-mode' : ''}`}>
+    <div className={`profile-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
       {/* Sidebar */}
       <aside className={`sidebar ${isSidebarCollapsed ? 'collapsed' : ''}`}>
         <div className="sidebar-header">
           <img src={assets.logo} className="unique-logo-dash" alt="logo" />
+
         </div>
+        
         {/* Avatar Section */}
         <div className="avatar-section">
           <div className="avatar-container">
@@ -90,6 +117,7 @@ const Profile = () => {
             )}
           </div>
           <p className="user-name">{userData.firstName} {userData.lastName}</p>
+          <p className="user-role">{userData.occupation}</p>
           <div className="avatar-actions">
             <label className="upload-btn-pro">
               <Camera size={16} />
@@ -104,6 +132,12 @@ const Profile = () => {
             )}
           </div>
         </div>
+        
+        {/* Sidebar Nav Links - Added but hidden when collapsed */}
+        <div className="sidebar-nav">
+          
+          {/* Additional nav items could be added here */}
+        </div>
       </aside>
 
       {/* Main Content */}
@@ -111,6 +145,9 @@ const Profile = () => {
         <div className="header">
           <h1>Account Settings</h1>
           <div className="header-actions">
+            <button onClick={handleBackToDashboard} className="back-to-dashboard">
+              <X size={18} />
+            </button>
           </div>
         </div>
 
@@ -149,9 +186,9 @@ const Profile = () => {
           {activeTab === 'personal' && (
             <div className="tab-content">
               <div className="profile-layout">
-               
                 {/* Form Section */}
                 <form onSubmit={handleSubmit} className="profile-form">
+                  <h3 className="section-title">Personal Information</h3>
                   <div className="form-grid">
                     <div className="form-group">
                       <label>First Name</label>
@@ -160,6 +197,7 @@ const Profile = () => {
                         name="firstName"
                         value={userData.firstName}
                         onChange={handleInputChange}
+                        placeholder="Enter your first name"
                       />
                     </div>
                     <div className="form-group">
@@ -169,24 +207,28 @@ const Profile = () => {
                         name="lastName"
                         value={userData.lastName}
                         onChange={handleInputChange}
+                        placeholder="Enter your last name"
                       />
                     </div>
                     <div className="form-group">
-                    <label>KAIRA User ID</label>
+                      <label>KAIRA User ID</label>
                       <input
                         type="text"
                         name="taxID"
                         value={userData.taxID}
                         onChange={handleInputChange}
+                        placeholder="Your unique ID"
+                        disabled
                       />
                     </div>
                     <div className="form-group">
-                    <label>Email</label>
+                      <label>Email</label>
                       <input
                         type="email"
                         name="email"
                         value={userData.email}
                         onChange={handleInputChange}
+                        placeholder="your.email@example.com"
                       />
                     </div>
                     <div className="form-group">
@@ -196,6 +238,7 @@ const Profile = () => {
                         value={userData.gender}
                         onChange={handleInputChange}
                       >
+                        <option value="">Select gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
@@ -212,12 +255,23 @@ const Profile = () => {
                       />
                     </div>
                     <div className="form-group">
-                    <label>Mobile Number</label>
+                      <label>Mobile Number</label>
                       <input
                         type="text"
                         name="phone"
                         value={userData.phone}
                         onChange={handleInputChange}
+                        placeholder="+1 (123) 456-7890"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Occupation</label>
+                      <input
+                        type="text"
+                        name="occupation"
+                        value={userData.occupation}
+                        onChange={handleInputChange}
+                        placeholder="Your occupation"
                       />
                     </div>
                     <div className="form-group">
@@ -227,6 +281,7 @@ const Profile = () => {
                         name="country"
                         value={userData.country}
                         onChange={handleInputChange}
+                        placeholder="Your country"
                       />
                     </div>
                     <div className="form-group full-width">
@@ -236,11 +291,22 @@ const Profile = () => {
                         name="address"
                         value={userData.address}
                         onChange={handleInputChange}
+                        placeholder="Your full address"
                       />
                     </div>
-
+                    <div className="form-group full-width">
+                      <label>Bio</label>
+                      <textarea
+                        name="bio"
+                        value={userData.bio}
+                        onChange={handleInputChange}
+                        placeholder="Tell us about yourself"
+                        rows={4}
+                      />
+                    </div>
                   </div>
                   <div className="form-actions">
+                    <button type="button" className="cancel-btn">Cancel</button>
                     <button
                       type="submit"
                       disabled={!formModified}
@@ -263,17 +329,26 @@ const Profile = () => {
                   <div className="password-grid">
                     <div className="form-group">
                       <label>Current Password</label>
-                      <input type="password" />
+                      <input type="password" placeholder="Enter current password" />
                     </div>
                     <div className="form-group empty"></div>
                     <div className="form-group">
                       <label>New Password</label>
-                      <input type="password" />
+                      <input type="password" placeholder="Enter new password" />
                     </div>
                     <div className="form-group">
                       <label>Confirm New Password</label>
-                      <input type="password" />
+                      <input type="password" placeholder="Confirm new password" />
                     </div>
+                  </div>
+                  <div className="password-requirements">
+                    <p>Password must:</p>
+                    <ul>
+                      <li>Be at least 8 characters long</li>
+                      <li>Include at least one uppercase letter</li>
+                      <li>Include at least one number</li>
+                      <li>Include at least one special character</li>
+                    </ul>
                   </div>
                   <div className="section-actions">
                     <button className="action-btn">
@@ -282,7 +357,7 @@ const Profile = () => {
                   </div>
                 </div>
                 
-
+               
                 
                 <div className="security-section">
                   <h4>Login Sessions</h4>
@@ -301,6 +376,9 @@ const Profile = () => {
                     </div>
                     <button className="link-btn red">Sign Out</button>
                   </div>
+                  <div className="section-actions">
+                    <button className="action-btn danger">Sign Out All Devices</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -314,21 +392,30 @@ const Profile = () => {
                   <h4>Notification Settings</h4>
                   <div className="toggle-list">
                     <div className="toggle-item">
-                      <label>Email Notifications</label>
+                      <div>
+                        <label>Email Notifications</label>
+                        <p className="small-text">Receive updates and alerts via email</p>
+                      </div>
                       <div className="toggle-switch">
                         <input type="checkbox" id="email-notifications" defaultChecked />
                         <label htmlFor="email-notifications" className="toggle-label"></label>
                       </div>
                     </div>
                     <div className="toggle-item">
-                      <label>SMS Notifications</label>
+                      <div>
+                        <label>SMS Notifications</label>
+                        <p className="small-text">Receive updates and alerts via SMS</p>
+                      </div>
                       <div className="toggle-switch">
                         <input type="checkbox" id="sms-notifications" />
                         <label htmlFor="sms-notifications" className="toggle-label"></label>
                       </div>
                     </div>
                     <div className="toggle-item">
-                      <label>Push Notifications</label>
+                      <div>
+                        <label>Push Notifications</label>
+                        <p className="small-text">Receive updates and alerts via push notifications</p>
+                      </div>
                       <div className="toggle-switch">
                         <input type="checkbox" id="push-notifications" defaultChecked />
                         <label htmlFor="push-notifications" className="toggle-label"></label>
@@ -341,14 +428,20 @@ const Profile = () => {
                   <h4>Privacy Settings</h4>
                   <div className="toggle-list">
                     <div className="toggle-item">
-                      <label>Allow data collection for personalization</label>
+                      <div>
+                        <label>Allow data collection for personalization</label>
+                        <p className="small-text">We use this data to improve your experience</p>
+                      </div>
                       <div className="toggle-switch">
                         <input type="checkbox" id="data-collection" defaultChecked />
                         <label htmlFor="data-collection" className="toggle-label"></label>
                       </div>
                     </div>
                     <div className="toggle-item">
-                      <label>Share account activity with third parties</label>
+                      <div>
+                        <label>Share account activity with third parties</label>
+                        <p className="small-text">We never share your personal information</p>
+                      </div>
                       <div className="toggle-switch">
                         <input type="checkbox" id="share-activity" />
                         <label htmlFor="share-activity" className="toggle-label"></label>
@@ -356,20 +449,10 @@ const Profile = () => {
                     </div>
                   </div>
                 </div>
-                
-                <div className="preference-section">
-                  <h4>Appearance</h4>
-                  <div className="appearance-options">
-                    <button className="appearance-btn">System Default</button>
-                    <button className={`appearance-btn ${!isDarkMode ? 'active' : ''}`}>Light Mode</button>
-                    <button className={`appearance-btn ${isDarkMode ? 'active' : ''}`}>Dark Mode</button>
-                  </div>
-                </div>
-                
+                            
                 <div className="preference-actions">
-                  <button className="save-btn">
-                    Save Preferences
-                  </button>
+                  <button className="cancel-btn">Cancel</button>
+                  <button className="save-btn">Save Preferences</button>
                 </div>
               </div>
             </div>
