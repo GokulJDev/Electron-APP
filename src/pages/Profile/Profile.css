@@ -7,42 +7,35 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #333;
-  background-color: #f4f5f7;
+  color: #f0f0f0;
+  background-color: #144235;
 }
 
 /* Profile Container */
 .profile-container {
   display: flex;
   min-height: 100vh;
-  background: #f4f5f7;
+  background: #144235;
 }
 
-.profile-container.dark-mode {
-  background: #1a1a1a;
-  color: #e0e0e0;
-}
+
 
 /* Sidebar Styles */
 .sidebar {
     width: 280px;
-    height: 70vh;
-    background-color: #cfe3de;
+    height: 700vh;
+    background: rgba(10, 92, 62, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 0 10px rgba(8, 42, 28, 0.3);
     overflow: hidden;
-    border-radius: 1rem;
     position: fixed;
-    top: 150px;
+    
 }
 
-.profile-container.dark-mode .sidebar {
-  background: #222;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
-}
+
 
 .sidebar.collapsed {
   width: 70px;
@@ -53,6 +46,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: 50px;
 }
 
 
@@ -75,32 +69,26 @@ body {
   align-items: center;
   gap: 12px;
   padding: 12px 20px;
-  color: #555;
+  color: #c81e1e;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.profile-container.dark-mode .nav-item {
-  color: #ae5757;
-}
+
 
 .nav-item:hover {
   background-color: #f5f5f5;
 }
 
-.profile-container.dark-mode .nav-item:hover {
-  background-color: #ef4e4e;
-}
+
 
 .nav-item.active {
-  background-color: #e6f0ff;
-  color: #007bff;
+  background-color: rgba(32, 178, 170, 0.2);
+  color: #20B2AA;
   font-weight: 500;
 }
 
-.profile-container.dark-mode .nav-item.active {
-  background-color: #1a365d;
-}
+
 
 /* Main Content Styles */
 .main-content {
@@ -122,8 +110,8 @@ body {
 }
 
 .header h1 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 40px;
+  font-weight: 700;
 }
 
 .header-actions {
@@ -138,26 +126,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
+  background-color: #bfe3dd69;
   border: none;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.profile-container.dark-mode .theme-toggle {
-  background-color: #333;
-}
+
 
 /* Tabs */
 .tabs {
   display: flex;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #d7d1d1;
   margin-bottom: 24px;
 }
 
-.profile-container.dark-mode .tabs {
-  border-bottom-color: #444;
-}
 
 .tabs button {
   padding: 10px 16px;
@@ -167,6 +150,7 @@ body {
   font-size: 15px;
   opacity: 0.7;
   transition: all 0.2s;
+  color: #f8f0f0;
 }
 
 .tabs button:hover {
@@ -176,7 +160,8 @@ body {
 .tabs button.active {
   opacity: 1;
   font-weight: 500;
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid #00ff37;
+  color: #ffffff;
 }
 
 /* Success Message */
@@ -191,22 +176,17 @@ body {
   margin-bottom: 16px;
 }
 
-.profile-container.dark-mode .success-message {
-  background-color: rgba(40, 167, 69, 0.2);
-}
+
 
 /* Content Card */
 .content-card {
-  background-color: #cfe3de;
+  background: rgba(10, 92, 62, 0.1);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
 
-.profile-container.dark-mode .content-card {
-  background-color: #2d2d2d;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
+
 
 .tab-content {
   padding: 24px;
@@ -246,9 +226,7 @@ body {
   border: 4px solid #ebf4ff;
 }
 
-.profile-container.dark-mode .avatar-image {
-  border-color: #1a365d;
-}
+
 
 .avatar-placeholder {
   width: 100%;
@@ -261,9 +239,7 @@ body {
   color: #aaa;
 }
 
-.profile-container.dark-mode .avatar-placeholder {
-  background-color: #444;
-}
+
 
 .avatar-actions {
   display: flex;
@@ -309,6 +285,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  
 }
 
 @media (min-width: 768px) {
@@ -339,17 +316,10 @@ body {
 .form-group input,
 .form-group select {
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
   font-size: 14px;
 }
 
-.profile-container.dark-mode .form-group input,
-.profile-container.dark-mode .form-group select {
-  background-color: #333;
-  border-color: #555;
-  color: #e0e0e0;
-}
+
 
 .form-actions {
   display: flex;
@@ -359,7 +329,7 @@ body {
 
 .save-btn {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 6px;
@@ -372,9 +342,7 @@ body {
   cursor: not-allowed;
 }
 
-.profile-container.dark-mode .save-btn.disabled {
-  background-color: #444;
-}
+
 
 /* Security Tab Styles */
 .security-sections {
@@ -388,9 +356,6 @@ body {
   border-bottom: 1px solid #eee;
 }
 
-.profile-container.dark-mode .security-section {
-  border-bottom-color: #444;
-}
 
 .security-section:last-child {
   border-bottom: none;
@@ -408,9 +373,7 @@ body {
   margin-bottom: 12px;
 }
 
-.profile-container.dark-mode .section-description {
-  color: #999;
-}
+
 
 .password-grid {
   display: grid;
@@ -452,9 +415,7 @@ body {
   margin-bottom: 8px;
 }
 
-.profile-container.dark-mode .session-item {
-  background-color: #333;
-}
+
 
 .device-name {
   font-weight: 500;
@@ -466,9 +427,7 @@ body {
   color: #777;
 }
 
-.profile-container.dark-mode .device-details {
-  color: #999;
-}
+
 
 .link-btn {
   background: none;
@@ -494,9 +453,7 @@ body {
   border-bottom: 1px solid #eee;
 }
 
-.profile-container.dark-mode .preference-section {
-  border-bottom-color: #444;
-}
+
 
 .preference-section:last-child {
   border-bottom: none;
@@ -580,9 +537,7 @@ input:checked + .toggle-label:before {
   cursor: pointer;
 }
 
-.profile-container.dark-mode .appearance-btn {
-  border-color: #555;
-}
+
 
 .appearance-btn.active {
   border-color: #007bff;
@@ -590,10 +545,7 @@ input:checked + .toggle-label:before {
   color: #007bff;
 }
 
-.profile-container.dark-mode .appearance-btn.active {
-  background-color: #1a365d;
-  color: #63b3ed;
-}
+
 
 .preference-actions {
   display: flex;

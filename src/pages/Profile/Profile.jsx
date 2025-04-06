@@ -25,12 +25,7 @@ const Profile = () => {
   const [formModified, setFormModified] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  useEffect(() => {
-    // Check system preference for dark mode
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(prefersDark);
-    fetchProfileDetails(setUserData);
-  }, []);
+ 
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -116,12 +111,6 @@ const Profile = () => {
         <div className="header">
           <h1>Account Settings</h1>
           <div className="header-actions">
-            <button 
-              onClick={toggleDarkMode} 
-              className="theme-toggle"
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
           </div>
         </div>
 
@@ -183,20 +172,20 @@ const Profile = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label>Email</label>
+                    <label>KAIRA User ID</label>
                       <input
-                        type="email"
-                        name="email"
-                        value={userData.email}
+                        type="text"
+                        name="taxID"
+                        value={userData.taxID}
                         onChange={handleInputChange}
                       />
                     </div>
                     <div className="form-group">
-                      <label>Mobile Number</label>
+                    <label>Email</label>
                       <input
-                        type="text"
-                        name="phone"
-                        value={userData.phone}
+                        type="email"
+                        name="email"
+                        value={userData.email}
                         onChange={handleInputChange}
                       />
                     </div>
@@ -223,11 +212,11 @@ const Profile = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label>Tax Identification Number</label>
+                    <label>Mobile Number</label>
                       <input
                         type="text"
-                        name="taxID"
-                        value={userData.taxID}
+                        name="phone"
+                        value={userData.phone}
                         onChange={handleInputChange}
                       />
                     </div>
@@ -241,7 +230,7 @@ const Profile = () => {
                       />
                     </div>
                     <div className="form-group full-width">
-                      <label>Residential Address</label>
+                      <label>Address</label>
                       <input
                         type="text"
                         name="address"
@@ -293,13 +282,7 @@ const Profile = () => {
                   </div>
                 </div>
                 
-                <div className="security-section">
-                  <h4>Two-Factor Authentication</h4>
-                  <p className="section-description">Add an extra layer of security to your account</p>
-                  <button className="action-btn green">
-                    Enable 2FA
-                  </button>
-                </div>
+
                 
                 <div className="security-section">
                   <h4>Login Sessions</h4>

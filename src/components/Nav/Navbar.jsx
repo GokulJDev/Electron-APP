@@ -54,7 +54,7 @@ const Navbar = () => {
     <nav className={`navbar ${isNavbarVisible ? '' : 'hidden'}`}>
       <img src={assets.logo} alt="Brand Logo" className="navbar-logo" />
       <ul className="navbar-menu">
-        {["HOME", "ABOUT", "STEPS", "PROJECTS", "CONTACT"].map((menu) => (
+        {["HOME", "ABOUT", "WORKFLOW", "PROJECTS", "CONTACT"].map((menu) => (
           <li key={menu}>
             <Link
               to={`/${menu === "HOME" ? "" : menu.toLowerCase()}`}
