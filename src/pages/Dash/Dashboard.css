@@ -138,6 +138,16 @@
   font-weight: bold;
 }
 
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.clickable-row:hover {
+  background-color: #00d47c8c;
+}
+
+
 .status {
   padding: 6px 12px;
   border-radius: 20px;

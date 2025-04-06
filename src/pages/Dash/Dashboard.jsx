@@ -20,6 +20,11 @@ const Dashboard = () => {
     setShowAllProjects(!showAllProjects);
   };
 
+  const handleProjectClick = (projectName) => {
+    localStorage.setItem('projectName', projectName);
+    navigate('/projectName');
+  };
+
   const projectsToShow = showAllProjects ? recentProjects : recentProjects.slice(0, 5);
 
   return (
@@ -85,7 +90,7 @@ const Dashboard = () => {
                   </thead>
                   <tbody>
                     {projectsToShow.map((project) => (
-                      <tr key={project.id}>
+                      <tr key={project.id} onClick={() => handleProjectClick(project.name)} className="clickable-row">
                         <td>
                           <div className="project-name">
                             <div className="project-icon">
@@ -96,7 +101,11 @@ const Dashboard = () => {
                         </td>
                         <td>{project.lastModified}</td>
                         <td>{project.size}</td>
-                        <td><span className={`status ${project.status.toLowerCase()}`}>{project.status}</span></td>
+                        <td>
+                          <span className={`status ${project.status.toLowerCase()}`}>
+                            {project.status}
+                          </span>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

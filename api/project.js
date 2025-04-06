@@ -66,27 +66,31 @@ export const getDetails = (setProjectDetails, setFloorPlan) => {
     }
 };
 
-export const updateProjectDetails=(projectData) =>{
-    const proj = localStorage.getItem('projectName');
+export const updateProjectDetails = async (projectData) => {
+    const proj = localStorage.getItem('projectId');
     const formData = new FormData();
-    formData.append('name', projectData.projectName);
+    formData.append('name', projectData.name);
     formData.append('description', projectData.description);
     formData.append('tags', projectData.tags);
     formData.append('image', projectData.image);
-    privateGateway
-        .put(`${kaira.update}/${proj}`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        })
-        .then((response) => {
-            console.log('Project details updated successfully:', response.data);
-            window.location.href = `/project/${response.data.projectName}`;
-        })
-        .catch((error) => {
-            console.error('Error updating project details:', error);
-        });
-};
+  
+    try {
+      const response = await privateGateway
+      .put(`${kaira.update}/${proj}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      console.log('Project details updated successfully:', response.data);
+      return response;
+  
+    } catch (error) {
+      console.error('Error updating project details:', error);
+      return { status: 500 }; // Still return something so your saveChanges doesn't break
+    }
+  };
+  
 
 export const createBlenderProject = async (floorPlan, setModelUrl) => {
     privateGateway

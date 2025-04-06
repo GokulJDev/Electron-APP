@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { X, AlertTriangle, Calendar, FileText, User } from "lucide-react";
@@ -47,24 +47,34 @@ const ProjectPage = () => {
 
   const saveChanges = async () => {
     setIsSaving(true);
-    const response = updateProjectDetails(projectDetails);
-    if (response.status === 200) {
-      const jsonData = JSON.stringify(projectDetails, null, 2);
-      const blob = new Blob([jsonData], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${projectDetails.name || "KAIRA_Project"}.kaira`;
-      document.body.appendChild(a);
-      a.click();
-
-      URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+  
+    try {
+      const response = await updateProjectDetails(projectDetails);
+  
+      if (response.status === 200) {
+        const jsonData = JSON.stringify(projectDetails, null, 2);
+        const blob = new Blob([jsonData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+  
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${projectDetails.name || "KAIRA_Project"}.kaira`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } else {
+        alert("Couldn't update project. Try again later.");
+      }
+    } catch (error) {
+      console.error("Error saving file:", error);
+      alert("Something went wrong while saving the file.");
     }
+  
     setIsSaving(false);
   };
-
+  
+  
   const discardChanges = () => {
     setShowSavePrompt(false);
     window.location.href = "/dashboard";
@@ -113,7 +123,7 @@ const ProjectPage = () => {
               <div className="floor-plan">
                 <h3>Floor Plan</h3>
                 <img 
-                  src={`http://localhost:3001/${floorPlan}`} 
+                  src={`${import.meta.env.VITE_REACT_APP_API_URL}/${floorPlan}`} 
                   alt="Uploaded Floor Plan" 
                   className="floor-plan-img" 
                   onError={(e) => {console.error('Image Load Error:', e);}} 

@@ -2,7 +2,7 @@ import { kaira } from "./url";
 import axios from "axios";
 
 export const publicGateway = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: import.meta.env.VITE_REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -18,7 +18,7 @@ publicGateway.interceptors.request.use(
 );
 
 export const privateGateway = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: import.meta.env.VITE_REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
