@@ -1,0 +1,589 @@
+/* Getaccount.css */
+/* Global styles for the pricing page */
+.pricing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  color: #333;
+}
+
+/* Hero section with title and toggles */
+.pricing-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pricing-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.pricing-header p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Billing toggle and currency selector */
+.action-toggles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.billing-toggle span {
+  font-size: 1rem;
+  color: #666;
+}
+
+.billing-toggle span.active {
+  color: #333;
+  font-weight: 600;
+}
+
+.discount-badge {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+/* Switch toggle styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Currency selector styling */
+.currency-select {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.currency-select:hover {
+  border-color: #aaa;
+}
+
+/* Pricing cards layout */
+.pricing-plans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Individual plan card styling */
+.plan-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.plan-card.featured {
+  transform: scale(1.05);
+  z-index: 1;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.popular-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff9800;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-bottom-left-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.star-icon {
+  font-size: 0.8rem;
+}
+
+/* Plan header styling */
+.plan-header {
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.plan-badge {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.plan-badge.basic {
+  background-color: #e3f2fd;
+  color: #0f7226;
+}
+
+.plan-badge.pro {
+  background-color: #e0f2f1;
+  color: #0f7226;
+}
+
+.plan-badge.enterprise {
+  background-color: #f3e5f5;
+  color: #0f7226;
+}
+
+.plan-price {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.currency {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.period {
+  color: #777;
+  margin-left: 0.3rem;
+}
+
+.plan-header p {
+  color: #666;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Features list styling */
+.plan-features {
+  list-style: none;
+  padding: 1.5rem;
+  margin: 0;
+}
+
+.feature-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.feature-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.check-icon {
+  color: #4caf50;
+  font-size: 1rem;
+}
+
+.info-icon {
+  color: #777;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Tooltip styling */
+.tooltip-container {
+  position: relative;
+}
+
+.feature-tooltip {
+  position: absolute;
+  bottom: 120%;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  width: 200px;
+  font-size: 0.85rem;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature-tooltip:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* Plan button styling */
+.plan-button {
+  display: block;
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem 1.5rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arrow-icon {
+  font-size: 0.9rem;
+}
+
+/* Comparison section */
+.info-section {
+  margin-bottom: 3rem;
+}
+
+.comparison-button-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.comparison-button {
+  background-color: transparent;
+  border: 2px solid #2196f3;
+  color: #2196f3;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comparison-button:hover {
+  background-color: #e3f2fd;
+}
+
+.plan-comparison {
+  margin-top: 2rem;
+}
+
+.plan-comparison h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.comparison-table-container {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.comparison-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+.comparison-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.yes-feature {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.no-feature {
+  color: #f44336;
+}
+
+.limited-feature {
+  color: #ff9800;
+}
+
+/* Testimonials section */
+.testimonials-section {
+  margin-bottom: 3rem;
+}
+
+.testimonials-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.testimonial-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-stars {
+  color: #ffb400;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  text-align: right;
+  font-weight: 600;
+  color: #666;
+}
+
+/* FAQ section */
+.faq-section {
+    margin: 64px auto;
+    padding: 32px;
+    border-radius: 16px;
+    
+    max-width: 1000px;
+  }
+  
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #21f380;
+    letter-spacing: 1px;
+  }
+  
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .faq-item {
+    
+    border-left: 4px solid #21f380;
+    padding: 20px 24px;
+    border-radius: 12px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    background: #0a834214;
+    border-color: #29ffa6;
+  }
+  
+  .faq-item h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .faq-icon {
+    color: #21f380;
+    font-size: 18px;
+  }
+  
+  .faq-item p {
+    color: #b0b0b0;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  
+
+/* CTA section */
+.cta-section {background: rgba(24, 81, 67, 0.4);
+  
+  color: white;
+  padding: 3rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.cta-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-button {
+  background-color: white;
+  color: #165018;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact support section */
+.contact-support {
+  text-align: center;
+  color: #666;
+}
+
+.contact-support a {
+  color: #f6f6f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-support a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pricing-plans {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .plan-card {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .plan-card.featured {
+    transform: none;
+    order: -1;
+  }
+  
+  .action-toggles {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .cta-section {
+    padding: 2rem 1rem;
+  }
+}

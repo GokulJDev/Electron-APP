@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // import this
 import './Login.css';
 import { authLogin } from '../../../api/auth';
 import { FaEyeSlash, FaEye } from 'react-icons/fa';
@@ -10,15 +11,14 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate(); // use this hook
+
   const onClose = () => {
-    setActiveMenu("LOGIN");
     window.location.href = "/";
   };
-  
-  // Handle login submission
+
   const handleLogin = async (e) => {
     e.preventDefault();
-
     if (!username || !password) {
       setErrorMessage('Please enter both username and password');
       return;
@@ -27,6 +27,7 @@ const Login = () => {
     setIsLoading(true);
     try {
       await authLogin({ username, password });
+      // Redirect or handle success here
     } catch (error) {
       setErrorMessage('Login failed. Please check your credentials.');
     }
@@ -81,16 +82,21 @@ const Login = () => {
         </form>
 
         <p className="para">
-          Don’t have an account? <a href="https://www.google.com" className="signup-link">Get an Account</a>
+          Don’t have an account?{' '}
+          <button
+            className="signup-button"
+            onClick={() => navigate('/get-account')}
+          >
+            Get an Account
+          </button>
         </p>
-        
-          <a href="/" className="skip-for-now" onClick={onClose}>
-            Skip for now &rarr;
-          </a>
+
+        <a href="/" className="skip-for-now" onClick={onClose}>
+          Skip for now &rarr;
+        </a>
       </div>
     </div>
   );
 };
-
 
 export default Login;

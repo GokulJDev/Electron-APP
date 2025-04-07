@@ -14,6 +14,7 @@ import ProjectPage from './pages/project/ProjectPage';
 import AboutUsModal from './pages/About/AboutUsModal';
 import Support from './pages/Support/Support';
 import Profile from './pages/Profile/Profile';
+import Getaccount from './components/Login/Getaccount';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/get-account" element={<Getaccount />} />
 
           {/* Protected Routes */}
           <Route path="/dashboard" element={<Dashboard />} />
