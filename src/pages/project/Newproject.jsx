@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { X, AlertTriangle, Upload } from "lucide-react";
-import "./NewProject.css";
+import "./Newproject.css";
 import { projectentry, namecheck } from "../../../api/project";
 
 // Debounce function to limit API calls

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HeroSection from './components/Hero/Herosection';
-import AboutUsSection from './components/Aboutus/AboutUsSection';
+import AboutUsSection from './components/Aboutus/Aboutussection';
 import HowItWorks from './components/Steps/HowItWorks';
 import ProjectsSection from './components/Project/ProjectsSection';
 import ContactUs from './components/Contactus/ContactUs';
@@ -14,7 +14,6 @@ import ProjectPage from './pages/project/ProjectPage';
 import AboutUsModal from './pages/About/AboutUsModal';
 import Support from './pages/Support/Support';
 import Profile from './pages/Profile/Profile';
-import Navbarin from './pages/nav&side/Navbarin';
 
 const App = () => {
 
@@ -25,7 +24,7 @@ const App = () => {
           {/* Public Routes */}
           <Route path="/" element={<HeroSection />} />
           <Route path="/about" element={<AboutUsSection />} />
-          <Route path="/steps" element={<HowItWorks />} />
+          <Route path="/workflow" element={<HowItWorks />} />
           <Route path="/projects" element={<ProjectsSection />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
