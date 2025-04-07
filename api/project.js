@@ -93,8 +93,9 @@ export const updateProjectDetails = async (projectData) => {
   
 
 export const createBlenderProject = async (floorPlan, setModelUrl) => {
+    const projectName = localStorage.getItem('projectName');
     privateGateway
-        .post(kaira.blenderProject, { image: floorPlan }, { responseType: 'blob' })
+        .post(kaira.blenderProject, { image: floorPlan, projectName: projectName }, { responseType: 'blob' })
         .then((response) => {
             const blob = new Blob([response.data], { type: 'model/gltf-binary' });
             const url = URL.createObjectURL(blob);

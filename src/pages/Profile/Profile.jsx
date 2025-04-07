@@ -30,22 +30,16 @@ const Profile = () => {
   const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
-    // Simulate fetching user data
-    setTimeout(() => {
-      setUserData({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        phone: '+1 (555) 123-4567',
-        gender: 'Male',
-        dateOfBirth: '1990-01-15',
-        taxID: 'KAIRA-12345',
-        country: 'United States',
-        address: '123 Main Street, New York, NY 10001',
-        bio: 'Software developer with 5+ years of experience',
-        occupation: 'Senior Developer',
-      });
-    }, 500);
+    const loadProfileDetails = async () => {
+      try {
+        await fetchProfileDetails(setUserData);
+      } catch (error) {
+        console.error('Error fetching profile details:', error);
+        setErrorMessage('Failed to load profile details.');
+      }
+    };
+
+    loadProfileDetails();
   }, []);
 
   const handleImageUpload = (e) => {

@@ -12,7 +12,7 @@ const Navbarin = () => {
   
   // Sample user data - replace with actual user data from your auth context/state
   const user = {
-    name: "John Doe",
+    name: "Gokul JD",
     initials: "JD",
     avatar: null // Set to user's avatar URL if available
   };
