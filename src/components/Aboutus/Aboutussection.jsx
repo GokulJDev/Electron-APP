@@ -1,5 +1,5 @@
 import React from 'react';
-import './AboutUsSection.css';
+import './Aboutussection.css';
 import { assets } from '../../assets/assets';
 import Navbar from '../Nav/Navbar';
 

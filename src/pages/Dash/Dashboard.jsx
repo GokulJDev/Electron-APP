@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   const handleProjectClick = (projectName) => {
     localStorage.setItem('projectName', projectName);
-    navigate('/projectName');
+    window.location.href = `/project/${projectName}`;
   };
 
   const projectsToShow = showAllProjects ? recentProjects : recentProjects.slice(0, 5);
