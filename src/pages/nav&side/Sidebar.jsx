@@ -63,7 +63,7 @@ const Sidebar = () => {
         {showVRAlert && (
           <div className="vr-alert">
             <p>You must add your 2D plan before accessing the VR View.</p>
-            <button onClick={closeVRAlert} className="cancel-btn">
+            <button onClick={closeVRAlert} className="cancel-btn-side">
               Cancel
             </button>
           </div>

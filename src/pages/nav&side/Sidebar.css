@@ -127,7 +127,7 @@
     width: 90%;
   }
   
-  .cancel-btn {
+  .cancel-btn-side {
     background-color: #d9534f;
     color: white;
     border: none;
@@ -137,7 +137,7 @@
     border-radius: 3px;
   }
   
-  .cancel-btn:hover {
+  .cancel-btn-side:hover {
     background-color: #c9302c;
   }
   

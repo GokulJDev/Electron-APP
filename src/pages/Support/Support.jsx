@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { LifeBuoy, Mail, PhoneCall, MessageCircle, X, ChevronRight, Search, HelpCircle } from "lucide-react";
+import { BookOpen, Mail, PhoneCall, MessageCircle, X, ChevronRight, Search, HelpCircle, Bookmark } from "lucide-react";
 import Navbar from "../nav&side/Navbarin";
 import Sidebar from "../nav&side/Sidebar";
 import "./Support.css";
@@ -53,49 +53,44 @@ const Support = () => {
   ];
 
   const supportTopics = [
-    {
-      title: "Contact Support",
-      description: "Get in touch with our support team for any assistance.",
-      details: "You can reach us via email, phone, or live chat. Our team is available 24/7 to help you with any technical issues, account problems, or questions about our services.",
-      icon: PhoneCall,
-      contactOptions: [
-        { type: "Email", value: "support@example.com" },
-        { type: "Phone", value: "+1 (555) 123-4567" },
-        { type: "Hours", value: "24/7 Support Available" }
-      ]
-    },
-    {
-      title: "FAQs",
-      description: "Find answers to frequently asked questions.",
-      details: "Browse our comprehensive FAQ section to resolve common issues quickly without having to contact support.",
-      icon: LifeBuoy,
-      faqItems: [
-        { question: "How do I reset my password?", 
-          answer: "Go to the login page and click on 'Forgot Password'. Follow the instructions sent to your email to create a new password." },
-        { question: "How can I update my account information?", 
-          answer: "Navigate to Settings > Account Details where you can edit your personal information and preferences." },
-        { question: "What payment methods do you accept?", 
-          answer: "We accept all major credit cards, PayPal, and bank transfers for premium subscriptions." }
-      ]
-    },
-    {
-      title: "Submit a Ticket",
-      description: "Report an issue or request help.",
-      details: "Fill out our support form with details about your issue, and our team will get back to you within 24 hours.",
-      icon: Mail,
-      formFields: [
-        { label: "Subject", type: "text", placeholder: "Brief description of your issue" },
-        { label: "Category", type: "select", options: ["Technical Issue", "Billing Question", "Feature Request", "Other"] },
-        { label: "Priority", type: "select", options: ["Low", "Medium", "High", "Critical"] },
-        { label: "Description", type: "textarea", placeholder: "Please provide as much detail as possible" }
-      ]
-    },
-    {
-      title: "Live Chat",
-      description: "Chat with a support agent in real time.",
-      details: "Connect with a support representative instantly to get immediate assistance with your questions or issues.",
-      icon: MessageCircle,
-    }
+      {
+        number: "1",
+        title: "Contact Support",
+        description: "Get in touch with our support team for any assistance.",
+        details: "You can reach us via email, phone, or live chat. Our team is available 24/7 to help you with any technical issues, account problems, or questions about our services.",
+        icon: PhoneCall,
+        contactOptions: [
+          { type: "Email", value: "kaira@gmail.com" },
+          { type: "Phone", value: "1234567899" },
+          { type: "Hours", value: "24/7 Support Available" }
+        ]
+      },
+        {
+          number: "3",
+          title: "FAQs",
+          description: "Find answers to frequently asked questions.",
+          details: "Browse our comprehensive FAQ section to resolve common issues quickly without having to contact support.",
+          icon: HelpCircle,
+          faqItems: [
+            { question: "How do I reset my password?", 
+              answer: "Go to the login page and click on 'Forgot Password'. Follow the instructions sent to your email to create a new password." },
+            { question: "How can I update my account information?", 
+              answer: "Navigate to Settings > Account Details where you can edit your personal information and preferences." },
+            { question: "What payment methods do you accept?", 
+              answer: "We accept all major credit cards, PayPal, and bank transfers for premium subscriptions." },
+            { question: "How do I cancel my subscription?",
+              answer: "To cancel your subscription, go to Settings > Subscription and click on 'Cancel Subscription'. Follow the confirmation steps to complete the process." },
+            { question: "Can I download my data?",
+              answer: "Yes, you can request a download of all your data from Settings > Privacy > Download My Data. The process may take up to 24 hours to complete." }
+          ]
+        },
+        {
+          number: "4",
+          title: "Live Chat",
+          description: "Chat with a support agent in real time.",
+          details: "Connect with a support representative instantly to get immediate assistance with your questions or issues.",
+          icon: MessageCircle,
+        }
   ];
 
   const filteredTopics = supportTopics.filter(topic => 
@@ -110,11 +105,28 @@ const Support = () => {
     { title: "How to Use Advanced Features", views: 762 }
   ];
 
-  // Simple mock chatbot functionality
+  // Enhanced chatbot functionality
   const [chatMessages, setChatMessages] = useState([
     { sender: "bot", text: "Hello! How can I help you today?" }
   ]);
   const [userInput, setUserInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  // Auto-scroll to the bottom of messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages]);
+
+  // Common support responses
+  const quickResponses = {
+    "password": "To reset your password, go to the login page and click on 'Forgot Password'. Follow the instructions sent to your email.",
+    "account": "You can update your account information by navigating to Settings > Account Details.",
+    "payment": "We accept all major credit cards, PayPal, and bank transfers for premium subscriptions.",
+    "contact": "You can reach our support team via email at kaira@gmail.com or by phone at 1234567899.",
+    "help": "I'm here to help! You can ask me about account issues, technical problems, billing questions, or any other support needs.",
+    "default": "Thanks for your message. I'll connect you with a support agent shortly. Is there anything specific you'd like help with while you wait?"
+  };
 
   const handleChatSubmit = (e) => {
     e.preventDefault();
@@ -123,22 +135,50 @@ const Support = () => {
     // Add user message
     setChatMessages(prev => [...prev, { sender: "user", text: userInput }]);
     
-    // Mock response after delay
+    // Set typing indicator
+    setIsTyping(true);
+    
+    // Generate a response based on keywords
     setTimeout(() => {
-      setChatMessages(prev => [...prev, { 
-        sender: "bot", 
-        text: "Thanks for your message. A support agent will respond shortly. In the meantime, you might want to check our FAQ section for quick answers."
-      }]);
+      setIsTyping(false);
+      
+      // Check for keywords in the user's message
+      const lowerCaseInput = userInput.toLowerCase();
+      let botResponse = quickResponses.default;
+      
+      if (lowerCaseInput.includes("password")) {
+        botResponse = quickResponses.password;
+      } else if (lowerCaseInput.includes("account")) {
+        botResponse = quickResponses.account;
+      } else if (lowerCaseInput.includes("payment") || lowerCaseInput.includes("pay")) {
+        botResponse = quickResponses.payment;
+      } else if (lowerCaseInput.includes("contact") || lowerCaseInput.includes("email") || lowerCaseInput.includes("phone")) {
+        botResponse = quickResponses.contact;
+      } else if (lowerCaseInput.includes("help") || lowerCaseInput.includes("support")) {
+        botResponse = quickResponses.help;
+      }
+      
+      setChatMessages(prev => [...prev, { sender: "bot", text: botResponse }]);
+      
+      // If it's a general inquiry, add a follow-up message after a delay
+      if (botResponse === quickResponses.default) {
+        setTimeout(() => {
+          setChatMessages(prev => [...prev, { 
+            sender: "bot", 
+            text: "While I'm connecting you with a specialist, you might want to check our FAQ section for quick answers to common questions."
+          }]);
+        }, 2000);
+      }
     }, 1000);
     
     setUserInput("");
   };
 
-  const handleTicketSubmit = (e) => {
-    e.preventDefault();
-    // Mocked submission - would connect to backend in real implementation
-    alert("Support ticket submitted successfully! We'll get back to you soon.");
-    setExpandedTopic(null);
+  // Function to handle FAQ item clicks
+  const [openFAQ, setOpenFAQ] = useState(null);
+  
+  const handleFAQClick = (index) => {
+    setOpenFAQ(openFAQ === index ? null : index);
   };
 
   return (
@@ -227,49 +267,29 @@ const Support = () => {
                               </div>
                             )}
                             
-                            {/* FAQs Content */}
+                            {/* FAQs Content - Improved to ensure visibility */}
                             {topic.title === "FAQs" && topic.faqItems && (
                               <div className="faq-list">
                                 {topic.faqItems.map((faq, i) => (
-                                  <details key={i} className="faq-item">
-                                    <summary className="faq-question">{faq.question}</summary>
-                                    <p className="faq-answer">{faq.answer}</p>
-                                  </details>
-                                ))}
-                              </div>
-                            )}
-                            
-                            {/* Submit Ticket Form */}
-                            {topic.title === "Submit a Ticket" && topic.formFields && (
-                              <form className="ticket-form" onSubmit={handleTicketSubmit}>
-                                {topic.formFields.map((field, i) => (
-                                  <div key={i} className="form-group">
-                                    <label className="form-label">{field.label}</label>
-                                    {field.type === 'select' ? (
-                                      <select className="form-input form-select" required>
-                                        <option value="">Select an option</option>
-                                        {field.options.map((option, j) => (
-                                          <option key={j} value={option}>{option}</option>
-                                        ))}
-                                      </select>
-                                    ) : field.type === 'textarea' ? (
-                                      <textarea 
-                                        className="form-input form-textarea" 
-                                        placeholder={field.placeholder}
-                                        required
-                                      ></textarea>
-                                    ) : (
-                                      <input 
-                                        type={field.type} 
-                                        className="form-input" 
-                                        placeholder={field.placeholder}
-                                        required
-                                      />
+                                  <div key={i} className="faq-item">
+                                    <div 
+                                      className={`faq-question ${openFAQ === i ? 'active' : ''}`}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleFAQClick(i);
+                                      }}
+                                    >
+                                      <span>{faq.question}</span>
+                                      <ChevronRight className={`faq-chevron ${openFAQ === i ? 'rotate' : ''}`} size={16} />
+                                    </div>
+                                    {openFAQ === i && (
+                                      <div className="faq-answer">
+                                        {faq.answer}
+                                      </div>
                                     )}
                                   </div>
                                 ))}
-                                <button type="submit" className="submit-ticket-btn">Submit Ticket</button>
-                              </form>
+                              </div>
                             )}
                             
                             {/* Live Chat Content */}
@@ -333,7 +353,7 @@ const Support = () => {
         </main>
       </div>
       
-      {/* Chat Window */}
+      {/* Enhanced Chat Window */}
       {showChatbot && (
         <div className="chat-window modal-window">
           <div className="chat-header">
@@ -354,6 +374,36 @@ const Support = () => {
                 {msg.text}
               </div>
             ))}
+            {isTyping && (
+              <div className="chat-message bot typing">
+                <span className="typing-indicator">
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                </span>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+          <div className="chat-quick-responses">
+            <button onClick={() => {
+              setUserInput("How do I reset my password?");
+              setTimeout(() => {
+                document.querySelector('.send-message-btn').click();
+              }, 100);
+            }}>Password Reset</button>
+            <button onClick={() => {
+              setUserInput("Update account info");
+              setTimeout(() => {
+                document.querySelector('.send-message-btn').click();
+              }, 100);
+            }}>Account Info</button>
+            <button onClick={() => {
+              setUserInput("Payment methods");
+              setTimeout(() => {
+                document.querySelector('.send-message-btn').click();
+              }, 100);
+            }}>Payments</button>
           </div>
           <form className="chat-input-form" onSubmit={handleChatSubmit}>
             <input
