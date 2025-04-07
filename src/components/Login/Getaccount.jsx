@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Getaccount.css';
 import { FaCheck, FaArrowRight, FaInfoCircle, FaRegLightbulb, FaStar } from 'react-icons/fa';
 
@@ -49,14 +49,16 @@ const GetAccount = () => {
     USD: 1,
     EUR: 0.91,
     GBP: 0.77,
-    JPY: 148.5
+    JPY: 148.5,
+    INR: 83.0
   };
 
   const currencySymbols = {
     USD: '$',
     EUR: '€',
     GBP: '£',
-    JPY: '¥'
+    JPY: '¥',
+    INR: '₹'
   };
 
   const planColors = {
@@ -79,7 +81,7 @@ const GetAccount = () => {
 
   const handlePurchase = (planType) => {
     console.log(`Purchasing ${planType} plan with ${selectedPlan} billing in ${currency}`);
-    window.location.href = `/register?plan=${planType}&billing=${selectedPlan}&currency=${currency}`;
+    window.location.href = `/contact`;
   };
 
   const convertPrice = (priceInUSD) => {
@@ -165,6 +167,7 @@ const GetAccount = () => {
               <option value="EUR">EUR (€)</option>
               <option value="GBP">GBP (£)</option>
               <option value="JPY">JPY (¥)</option>
+              <option value="INR">INR (₹)</option>
             </select>
           </div>
         </div>
@@ -428,12 +431,13 @@ const GetAccount = () => {
         <div className="cta-content">
           <h2>Ready to transform your design workflow?</h2>
           <p>Join thousands of satisfied customers using KAIRA's AI-powered tools</p>
-          <button className="cta-button">Get Started Today</button>
+          <a className="cta-button" href="/contact">Get Started Today</a>
         </div>
       </div>
 
       <div className="contact-support">
         <p>Still have questions? <a href="/contact">Contact our team</a> or email us directly at <strong>support@kaira.app</strong></p>
+        <p>Already have an account? <a href="/login">Log in here</a></p>
       </div>
     </div>
   );

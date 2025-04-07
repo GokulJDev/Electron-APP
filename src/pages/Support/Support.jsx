@@ -99,11 +99,12 @@ const Support = () => {
   );
 
   const recentArticles = [
-    { title: "Getting Started Guide", views: 1243 },
-    { title: "Account Security Best Practices", views: 987 },
-    { title: "Troubleshooting Connection Issues", views: 856 },
-    { title: "How to Use Advanced Features", views: 762 }
+    { title: "Getting Started with KAIRA Projects", views: 1243 },
+    { title: "Securing Your KAIRA Workspace", views: 987 },
+    { title: "Fixing Model Load & Render Issues", views: 856 },
+    { title: "Exploring KAIRA's VR Preview Mode", views: 762 }
   ];
+  
 
   // Enhanced chatbot functionality
   const [chatMessages, setChatMessages] = useState([

@@ -99,13 +99,14 @@
   transform: scale(1.05);
 }
 
-.signup-link {
+.signup-button {
   color: #388e3c;
   text-decoration: none;
   font-weight: bold;
+  border: none;
 }
 
-.signup-link:hover {
+.signup-button:hover {
   text-decoration: underline;
 }
 

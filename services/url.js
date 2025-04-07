@@ -10,6 +10,7 @@ export const kaira ={
     projectData: '/projectdata',
     update: '/update',
     blenderProject: '/blenderProject',
+    launchvr: '/vrlaunch',
 
     //Profile
     profile: '/profile',

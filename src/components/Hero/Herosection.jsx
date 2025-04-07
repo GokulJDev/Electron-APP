@@ -52,7 +52,7 @@ const HeroSection = ({
           {/* Hero Image with 3D Rotating Slider */}
           <div className="hero-image-container">
             <div className="banner">
-              <div className="slider" style={{ '--quantity': 10 }}>
+              <div className="sliderholder" style={{ '--quantity': 10 }}>
                 {[...Array(10)].map((_, index) => (
                   <div className="item" key={index} style={{ '--position': index + 1 }}>
                     <img src={`/src/assets/images/green_${index + 1}.jpg`} alt="" />

@@ -2,41 +2,57 @@ import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 import Uploadpage from "../project/Newproject";
+import { vrview } from "../../../api/vr";
 
 const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showVRAlert, setShowVRAlert] = useState(false); // State to control VR alert visibility
   const navigate = useNavigate();
   const location = useLocation();
-  const fileInputRef = useRef(null); // Reference to file input
+  const fileInputRef = useRef(null);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const closeVRAlert = () => setShowVRAlert(false); // Close VR alert
 
-  
   const handleNavigation = (path) => {
-    if (path === "/settings") {
-      setShowVRAlert(true); // Show VR alert instead of navigating
+    if (path === "/vrview") {
+      vrview((status) => {
+        if (status) {
+          console.log("Unity VR launched successfully 🚀");
+        } else {
+          console.error("Failed to launch Unity VR");
+        }
+      });
     } else {
       navigate(path);
     }
   };
 
-  // Handle the file selection when the input changes
   const handleFileSelection = (e) => {
-    const file = e.target.files[0]; // Get the first selected file
+    const file = e.target.files[0];
     if (file) {
-      console.log("Selected File: ", file);
-      // Add any further file processing here (e.g., displaying it or uploading)
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const projectData = JSON.parse(reader.result);
+          console.log("Parsed Project: ", projectData);
+
+          // 💡 URL-safe encode name
+          const encodedName = encodeURIComponent(projectData.name.toLowerCase().replace(/\s+/g, "-"));
+
+          navigate(`/project/${encodedName}`, { state: { projectData } });
+        } catch (err) {
+          console.error("Invalid .kaira file 🧨", err);
+        }
+      };
+      reader.readAsText(file);
     }
   };
+  
 
-  // Define navigation items with their paths
   const mainNavItems = [
     { label: "Home", path: "/dashboard" },
     { label: "Learn", path: "/learn" },
-    { label: "VR View", path: "/settings" }
+    { label: "VR View", path: "/vrview" }
   ];
 
   const secondaryNavItems = [
@@ -58,16 +74,6 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
-
-        {/* VR Alert Message Appearing Below "VR View" */}
-        {showVRAlert && (
-          <div className="vr-alert">
-            <p>You must add your 2D plan before accessing the VR View.</p>
-            <button onClick={closeVRAlert} className="cancel-btn-side">
-              Cancel
-            </button>
-          </div>
-        )}
       </nav>
 
       <div className="project-buttons-side">
@@ -76,15 +82,15 @@ const Sidebar = () => {
         </button>
         <button
           className="primary-btn-side"
-          onClick={() => fileInputRef.current.click()} // Trigger file input
+          onClick={() => fileInputRef.current.click()}
         >
           Open Project
         </button>
         <input
           type="file"
           ref={fileInputRef}
-          style={{ display: "none" }} // Hide the file input
-          onChange={handleFileSelection} // Handle file selection
+          style={{ display: "none" }}
+          onChange={handleFileSelection}
         />
       </div>
 

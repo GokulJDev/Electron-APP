@@ -151,7 +151,9 @@ html, body {
     position: relative;
 }
 
-.banner .slider {
+
+
+.banner .sliderholder {
     position: absolute;
     width: 100px;
     height: 125px;
@@ -160,6 +162,7 @@ html, body {
     transform-style: preserve-3d;
     transform: perspective(1000px);
     animation: autoRun 20s linear infinite;
+    background: transparent;
     z-index: 2;
 }
 
@@ -172,7 +175,7 @@ html, body {
     }
 }
 
-.banner .slider .item {
+.banner .sliderholder .item {
     position: absolute;
     inset: 0;
     transform: 
@@ -180,7 +183,7 @@ html, body {
         translateZ(300px);
 }
 
-.banner .slider .item img {
+.banner .sliderholder .item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -216,12 +219,12 @@ html, body {
 
 /* Responsive Adjustments */
 @media screen and (max-width: 1023px) {
-    .banner .slider {
+    .banner .sliderholder {
         width: 160px;
         height: 200px;
         left: calc(50% - 80px);
     }
-    .banner .slider .item {
+    .banner .sliderholder .item {
         transform: 
             rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
             translateZ(280px);
@@ -233,12 +236,12 @@ html, body {
 }
 
 @media screen and (max-width: 767px) {
-    .banner .slider {
+    .banner .sliderholder {
         width: 100px;
         height: 150px;
         left: calc(50% - 50px);
     }
-    .banner .slider .item {
+    .banner .sliderholder .item {
         transform: 
             rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
             translateZ(180px);

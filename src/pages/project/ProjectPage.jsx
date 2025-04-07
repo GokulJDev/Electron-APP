@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { X, AlertTriangle, Calendar, FileText, User } from "lucide-react";
+import { X, AlertTriangle, Calendar, FileText, User} from "lucide-react";
 import { createBlenderProject, getDetails, updateProjectDetails } from "../../../api/project";
 import PropTypes from 'prop-types';
 import ErrorBoundary from "../../../services/ErrorBoundary.jsx";
 import "./ProjectPage.css";
-import { assets } from '../../assets/assets'; // Assuming you have a logo file
+import { assets } from '../../assets/assets';
 
 const HouseModel = ({ modelUrl }) => {
   const { scene } = useGLTF(modelUrl, true, (error) => {
@@ -15,7 +15,6 @@ const HouseModel = ({ modelUrl }) => {
 
   return <primitive object={scene} scale={1.5} />;
 };
-
 
 HouseModel.propTypes = {
   modelUrl: PropTypes.string.isRequired,
@@ -52,10 +51,10 @@ const ProjectPage = () => {
       const response = await updateProjectDetails(projectDetails);
   
       if (response.status === 200) {
+        // Save as downloadable file
         const jsonData = JSON.stringify(projectDetails, null, 2);
         const blob = new Blob([jsonData], { type: "application/json" });
         const url = URL.createObjectURL(blob);
-  
         const a = document.createElement("a");
         a.href = url;
         a.download = `${projectDetails.name || "KAIRA_Project"}.kaira`;
@@ -63,6 +62,9 @@ const ProjectPage = () => {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+  
+        // Redirect after saving
+        window.location.href = "/dashboard";
       } else {
         alert("Couldn't update project. Try again later.");
       }
@@ -74,11 +76,12 @@ const ProjectPage = () => {
     setIsSaving(false);
   };
   
-  
+
   const discardChanges = () => {
     setShowSavePrompt(false);
     window.location.href = "/dashboard";
   };
+
 
   return (
     <div className="project-page">
@@ -122,11 +125,13 @@ const ProjectPage = () => {
             {floorPlan && (
               <div className="floor-plan">
                 <h3>Floor Plan</h3>
-                <img 
-                  src={`${import.meta.env.VITE_REACT_APP_API_URL}/${floorPlan}`} 
-                  alt="Uploaded Floor Plan" 
-                  className="floor-plan-img" 
-                  onError={(e) => {console.error('Image Load Error:', e);}} 
+                <img
+                  src={`${import.meta.env.VITE_REACT_APP_API_URL}/${floorPlan}`}
+                  alt="Uploaded Floor Plan"
+                  className="floor-plan-img"
+                  onError={(e) => {
+                    console.error("Image Load Error:", e);
+                  }}
                 />
               </div>
             )}
@@ -166,7 +171,9 @@ const ProjectPage = () => {
       {showSavePrompt && (
         <div className="save-prompt-modal">
           <p>Are you sure you want to leave? Your changes may not be saved.</p>
-          <button onClick={saveChanges} disabled={isSaving}>Save</button>
+          <button onClick={saveChanges} disabled={isSaving}>
+            Save
+          </button>
           <button onClick={discardChanges}>Don't Save</button>
         </div>
       )}
