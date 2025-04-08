@@ -97,6 +97,14 @@
   padding-top: 0;
   padding-left: 16px;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.projects-list-vr .project-content-vr .open-vr-btn {
+  bottom: 16px;
+  right: 16px;
   flex-wrap: wrap;
   gap: 8px;
 }
@@ -268,7 +276,7 @@
   background-color: #183a33;
   padding: 12px 18px;
   border-radius: 30px;
-  width: 320px;
+  width: 90%;
   border: 1px solid rgba(0, 212, 124, 0.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -282,6 +290,7 @@
 }
 
 .search-box svg {
+  width: 60px;
   color: #94a3b8;
   margin-right: 14px;
   transition: transform 0.3s ease, color 0.3s ease;
@@ -342,21 +351,6 @@
   color: #183a33;
 }
 
-/* Project tags */
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.project-tag {
-  background-color: #183a33;
-  color: #94a3b8;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
 
 .no-projects-message {
   text-align: center;
@@ -386,6 +380,33 @@
     flex-wrap: wrap;
   }
 }
+
+/* Add styles for the View More button */
+.view-more-btn {
+  display: block;
+  margin: 16px 0;
+  padding: 10px 20px;
+  background-color: #00d47c;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: auto; /* Aligns the button to the right */
+}
+
+.view-more-btn:hover {
+  background-color: #00b36f;
+  transform: translateY(-2px);
+}
+
+.view-more-btn:active {
+  transform: translateY(0);
+}
+
 
 @media (max-width: 768px) {
   .projects-grid-vr {

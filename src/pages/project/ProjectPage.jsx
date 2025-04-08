@@ -139,9 +139,32 @@ const ProjectPage = () => {
             {is3DModelVisible && modelUrl && (
               <div className="three-container">
                 <ErrorBoundary>
-                  <Canvas camera={{ position: [5, 2, 5] }}>
-                    <ambientLight intensity={0.6} />
-                    <directionalLight position={[3, 3, 3]} intensity={1} />
+                <Canvas shadows camera={{ position: [5, 3, 7], fov: 50 }}>
+                  {/* Soft fill */}
+                  <ambientLight intensity={0.8} />
+
+                  {/* Sunlight direction */}
+                  <directionalLight
+                    position={[5, 10, 5]}
+                    intensity={6}
+                    castShadow
+                    shadow-mapSize-width={2048}
+                    shadow-mapSize-height={2048}
+                    shadow-camera-far={50}
+                    shadow-camera-left={-10}
+                    shadow-camera-right={10}
+                    shadow-camera-top={10}
+                    shadow-camera-bottom={-10}
+                  />
+
+                  {/* Spotlight with a gentle glow */}
+                  <spotLight
+                    position={[30, 0, 0]}
+                    angle={0.4}
+                    penumbra={0.7}
+                    intensity={6000}
+                    castShadow
+                  />
                     <HouseModel modelUrl={modelUrl} />
                     <OrbitControls
                       enableZoom={true}
@@ -154,6 +177,8 @@ const ProjectPage = () => {
                       maxDistance={10}
                       maxPolarAngle={Math.PI / 2}
                     />
+                     {/* Extra bounce + depth */}
+                      <pointLight position={[-5, 3, -5]} intensity={3} color="#ffe6cc" />
                   </Canvas>
                 </ErrorBoundary>
               </div>
