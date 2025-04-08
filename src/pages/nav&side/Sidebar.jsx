@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 import Uploadpage from "../project/Newproject";
-import { vrview } from "../../../api/vr";
+//import { vrview } from "../../../api/vr";
 
 const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,17 +14,18 @@ const Sidebar = () => {
   const closeModal = () => setIsModalOpen(false);
 
   const handleNavigation = (path) => {
-    if (path === "/vrview") {
-      vrview((status) => {
-        if (status) {
-          console.log("Unity VR launched successfully 🚀");
-        } else {
-          console.error("Failed to launch Unity VR");
-        }
-      });
-    } else {
-      navigate(path);
-    }
+    //if (path === "/vrview") {
+      //vrview((status) => {
+       // if (status) {
+        //  console.log("Unity VR launched successfully 🚀");
+        //} else {
+         // console.error("Failed to launch Unity VR");
+        //}
+      //});
+    //} else {
+      //navigate(path);
+    //}
+    navigate(path);
   };
 
   const handleFileSelection = (e) => {
@@ -52,7 +53,7 @@ const Sidebar = () => {
   const mainNavItems = [
     { label: "Home", path: "/dashboard" },
     { label: "Learn", path: "/learn" },
-    { label: "VR View", path: "/vrview" }
+    { label: "VR View", path: "/lastvr" }
   ];
 
   const secondaryNavItems = [

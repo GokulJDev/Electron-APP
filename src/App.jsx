@@ -15,6 +15,8 @@ import AboutUsModal from './pages/About/AboutUsModal';
 import Support from './pages/Support/Support';
 import Profile from './pages/Profile/Profile';
 import Getaccount from './components/Login/Getaccount';
+import Lastvr from './pages/Lastvr/Lastvr';
+
 
 const App = () => {
 
@@ -39,6 +41,7 @@ const App = () => {
           <Route path="/weare" element={<AboutUsModal />} />
           <Route path="/support" element={<Support/>} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/lastvr" element={<Lastvr/>} />
         </Routes>
       </Router>
   );
